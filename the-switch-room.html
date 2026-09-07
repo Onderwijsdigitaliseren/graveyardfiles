@@ -556,7 +556,7 @@ function tekenAsPanelen(){
 /* ---------- realisme: illustraties & briefhoofd ---------- */
 function briefhoofd(pv,datum){
   return '<div class="briefhoofd"><span><b>CITY POLICE</b> &middot; CRIMINAL INVESTIGATION</span>'+
-  '<span>P.V. '+pv+'</span><span>'+datum+'</span></div>';
+  '<span>REF. '+pv+'</span><span>'+datum+'</span></div>';
 }
 function plattegrondSVG(){
   return '<svg class="fotoSVG" viewBox="0 0 640 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="floor plan">'+
@@ -645,11 +645,11 @@ function openDoc(id){
   huidigDoc=id;
   const vel=$("docVel");
   let binnen="";
-  const KOPPEN={D1:['44-P1/63','16 okt. 1963'],D2:['44-P1/63 bijl. 2','17 okt. 1963'],
-    D3:['44-P1/63 bijl. 3','aangetroffen ter plaatse'],D4:['44-P1/63 bijl. 4','archiefdienst'],
-    D5:['44-P1/63 bijl. 5','17 okt. 1963'],D6:['44-P1/63 bijl. 6','weerstation'],
-    D6A:['44-P1/63 bijl. 7','tweede verhoor'],D7:['44-P1/63 bijl. 8','fotodienst'],
-    D8:['44-P1/63 bijl. 9','technische dienst'],D9:['44-P1/63 bijl. 10','GERECHTELIJK LAB']};
+  const KOPPEN={D1:['44-P1/63','16 Oct 1963'],D2:['44-P1/63 ann. 2','17 Oct 1963'],
+    D3:['44-P1/63 ann. 3','found at the scene'],D4:['44-P1/63 ann. 4','records branch'],
+    D5:['44-P1/63 ann. 5','17 Oct 1963'],D6:['44-P1/63 ann. 6','weather station'],
+    D6A:['44-P1/63 ann. 7','second interview'],D7:['44-P1/63 ann. 8','photographic branch'],
+    D8:['44-P1/63 ann. 9','technical branch'],D9:['44-P1/63 ann. 10','FORENSIC LABORATORY']};
   if(d.id==="D9") binnen=htmlD9();
   else if(d.puzzel) binnen=PZ[d.puzzel].html();
   else binnen='<div class="doctekst">'+d.html+'</div>';
@@ -1076,7 +1076,7 @@ function vulConclusie(){
   const koppel={cDader:"dader",cLocatie:"locatie",cVoorwerp:"voorwerp",cMotief:"motief"};
   Object.keys(koppel).forEach(id=>{
     const sel=$(id);
-    sel.innerHTML='<option value="">&mdash; kies &mdash;</option>'+ASSEN[koppel[id]].map(o=>'<option>'+esc(o)+'</option>').join("");
+    sel.innerHTML='<option value="">&mdash; choose &mdash;</option>'+ASSEN[koppel[id]].map(o=>'<option>'+esc(o)+'</option>').join("");
   });
 }
 function beoordeel(){

@@ -1067,7 +1067,7 @@ function hintBlok(pid,hints){
   getoond.innerHTML="";const n=S.hints[pid]||0;
   for(let i=0;i<n;i++)getoond.appendChild(el("div","hintTekst","<b>Hint "+(i+1)+":</b> "+hints[i]));
   knop.style.display=n>=hints.length?"none":"inline-block";
-  knop.textContent="Toon hint "+(n+1)+" van "+hints.length;
+  knop.textContent="Show hint "+(n+1)+" of "+hints.length;
  }
  const knop=el("button","hKnop");
  knop.addEventListener("click",()=>{klik();S.hints[pid]=(S.hints[pid]||0)+1;bewaar();teken();});
@@ -1133,7 +1133,7 @@ PUZZELS.p_rooster=function(){
 const KW=[
  {v:"1. The weather that is tearing at the lines and shutters tonight (5)",a:"STORM",m:3},
  {v:"2. Falls from the sky and is measured in millimetres (4)",a:"RAIN",m:1},
- {v:"3. The room with the grand piano (5)",a:"SALON",m:2},
+ {v:"3. The room with the grand piano (11)",a:"DRAWINGROOM",m:2},
  {v:"4. Eleanor\u2019s instrument (5)",a:"PIANO",m:4},
  {v:"5. Outbuilding that holds the weather log and the gate recorder (6)",a:"GARAGE",m:1},
  {v:"6. The name of this house (11)",a:"RAVENSCOURT",m:4},
@@ -1163,14 +1163,14 @@ PUZZELS.p_kruiswoord=function(){
   if(window.__losKruiswoordOp)invoeren.forEach((inp,i)=>inp.value=KW[i].a);
   const goed=KW.every((k,i)=>invoeren[i].value.toUpperCase().replace(/[^A-Z]/g,"")===k.a);
   if(goed){rondPuzzelAf("p_kruiswoord");
-   if(!S.open.serre){S.open.serre=true;toast("Nieuwe locatie beschikbaar");}
+   if(!S.open.serre){S.open.serre=true;toast("New location unlocked");}
    bewaar();modalDicht();setTimeout(()=>PUZZELS.p_kruiswoord(),260);}
   else{geluidFout();fr.textContent="At least one answer doesn\u2019t fit the case.";}});
  kn.appendChild(ok);w.appendChild(fr);w.appendChild(kn);
  w.appendChild(hintBlok("p_kruiswoord",[
   "Every answer comes straight out of this case: the weather, the house, the people.",
   "Clues 3, 5, 6 and 8 are written on your floor plan. Clue 7 is in the suspect file.",
-  "STORM \u00b7 RAIN \u00b7 SALON \u00b7 PIANO \u00b7 \u2026 \u2014 then read only the ringed (gold) squares from top to bottom: eight letters, and it names a room in this house."]));
+  "STORM \u00b7 RAIN \u00b7 DRAWING ROOM \u00b7 PIANO \u00b7 \u2026 \u2014 then read only the ringed (gold) squares from top to bottom: eight letters, and it names a room in this house."]));
  modalOpen("Open newspaper","Library · puzzle",w);
 };
 
@@ -1560,7 +1560,7 @@ PUZZELS.p_sleutel=function(){
  ok.addEventListener("click",()=>{
   if(window.__losSleutelOp)keuze="s3";
   if(keuze==="s3"){rondPuzzelAf("p_sleutel");S.open.kelder=true;bewaar();geluidSlot();
-   toast("Nieuwe locatie beschikbaar");modalDicht();setTimeout(()=>PUZZELS.p_sleutel(),260);}
+   toast("New location unlocked");modalDicht();setTimeout(()=>PUZZELS.p_sleutel(),260);}
   else{geluidFout();fr.textContent=keuze?"The key jams. Compare chamber by chamber \u2014 mirrored.":"Choose a key first.";}});
  kn.appendChild(ok);w.appendChild(fr);w.appendChild(kn);
  w.appendChild(hintBlok("p_sleutel",[

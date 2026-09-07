@@ -764,12 +764,12 @@ const SCENES={
       ${deurSVG(970,150,200,392,'6')}
       ${wandlampSVG(300,110)}${wandlampSVG(750,110)}
       ${lampSVG(600,64)}
-      ${titelSVG('SLAAPWAGEN B')}
+      ${titelSVG('SLEEPING CAR B')}
     </svg>`;
     return `<div class="wagonscene">${svg}<div class="kliklaag">
-      ${klik('data-coupe="4"',70,150,200,392,'Coup\u00e9 4 \u2014 plaats delict','stil')}
-      ${klik('data-coupe="5"',520,150,200,392,'Coup\u00e9 5 \u2014 C. Voss','stil')}
-      ${klik('data-coupe="6"',970,150,200,392,'Coup\u00e9 6 \u2014 E. Brandt','stil')}
+      ${klik('data-coupe="4"',70,150,200,392,'Compartment 4 \u2014 crime scene','stil')}
+      ${klik('data-coupe="5"',520,150,200,392,'Compartment 5 \u2014 C. Voss','stil')}
+      ${klik('data-coupe="6"',970,150,200,392,'Compartment 6 \u2014 E. Brandt','stil')}
       ${figuur('clara',316,350,1.3)}
     </div></div>`;
   },
@@ -785,12 +785,12 @@ const SCENES={
       ${S.loper?'':`<g><circle cx="1146" cy="374" r="10" fill="#0c1018" stroke="#b8935a" stroke-opacity=".8" stroke-width="2"/><circle cx="1146" cy="374" r="3.4" fill="#070b14"/><text x="1070" y="330" font-family="Courier New,monospace" font-size="11" fill="#8fa0b8" letter-spacing="2">LOCKED</text></g>`}
       ${wandlampSVG(300,110)}${wandlampSVG(750,110)}
       ${lampSVG(600,64,true)}
-      ${titelSVG('SLAAPWAGEN A')}
+      ${titelSVG('SLEEPING CAR A')}
     </svg>`;
     return `<div class="wagonscene">${svg}<div class="kliklaag">
-      ${klik('data-coupe="1"',70,150,200,392,'Coup\u00e9 1','stil')}
-      ${klik('data-coupe="2"',520,150,200,392,'Coup\u00e9 2 \u2014 M. Steinbach','stil')}
-      ${klik('data-coupe="3"',970,150,200,392,S.loper?'Coup\u00e9 3 \u2014 met de loper':'Coup\u00e9 3 \u2014 op slot','stil')}
+      ${klik('data-coupe="1"',70,150,200,392,'Compartment 1','stil')}
+      ${klik('data-coupe="2"',520,150,200,392,'Compartment 2 \u2014 M. Steinbach','stil')}
+      ${klik('data-coupe="3"',970,150,200,392,S.loper?'Compartment 3 \u2014 with the pass key':'Compartment 3 \u2014 locked','stil')}
       ${figuur('mira',314,350,1.3)}
       ${figuur('brandt',760,350,1.3)}
     </div></div>`;
@@ -865,12 +865,12 @@ const SCENES={
       <path d="M516 470 q16 -16 32 0" stroke="#b8935a" stroke-opacity=".7" fill="none" stroke-width="3"/>
       <path d="M528 486 l10 0" stroke="#d4b076" stroke-width="3"/>
       <path d="M552 466 l8 -8 m-4 12 l9 -6" stroke="#d99a94" stroke-width="2"/></g>
-      ${titelSVG('RESTAURATIEWAGEN')}
+      ${titelSVG('DINING CAR')}
     </svg>`;
     return `<div class="wagonscene">${svg}<div class="kliklaag">
-      ${klik('data-ev="bitterfles"',1000,140,120,140,'Fles kruidenbitter achter de bar')}
-      ${klik('data-ev="medtas"',492,458,86,66,'Dokterstas \u2014 het slot is geforceerd')}
-      ${klik('data-ev="tafelzes"',380,352,210,60,'Tafel zes \u2014 hier zat iemand lang alleen')}
+      ${klik('data-ev="bitterfles"',1000,140,120,140,'Bottle of herbal bitters behind the bar')}
+      ${klik('data-ev="medtas"',492,458,86,66,'Doctor\'s bag \u2014 the lock has been forced')}
+      ${klik('data-ev="tafelzes"',380,352,210,60,'Table six \u2014 someone sat here alone for a long time')}
       ${figuur('reiss',626,350,1.3)}
       ${figuur('lotte',798,354,1.27)}
     </div></div>`;
@@ -942,14 +942,14 @@ const SCENES={
       </g>
       ${wandlampSVG(560,110)}
       ${lampSVG(920,64,true)}
-      ${titelSVG('DIENSTWAGEN')}
+      ${titelSVG('GUARD\'S VAN')}
     </svg>`;
     return `<div class="wagonscene">${svg}<div class="kliklaag">
-      ${klik('data-ev="passagierslijst"',414,344,132,42,'Passagierslijst op het bureau')}
-      ${klik('data-ev="kaartregister"',308,408,142,80,'Kaartcontrole-register in de la')}
-      ${klik('data-ev="dienstregeling"',884,152,140,204,'Dienstregeling en vrachtpapieren')}
+      ${klik('data-ev="passagierslijst"',414,344,132,42,'Passenger list on the desk')}
+      ${klik('data-ev="kaartregister"',308,408,142,80,'Ticket inspection register in the drawer')}
+      ${klik('data-ev="dienstregeling"',884,152,140,204,'Timetable and freight papers')}
       ${klik('data-ev="telegraaf"',548,330,110,58,'Telegraph \u2014 er komt iets binnen',S.morseKlaar?'gedaan':'')}
-      ${klik('data-ev="tijdlijn"',1044,140,150,224,'Case board: reconstrueer de nacht','stil')}
+      ${klik('data-ev="tijdlijn"',1044,140,150,224,'Case board: reconstruct the night','stil')}
       ${figuur('jansen',678,344,1.32)}
     </div></div>`;
   },
@@ -1003,13 +1003,13 @@ const SCENES={
       </g>
       <radialGradient id="gVigB" cx=".5" cy=".35" r=".9"><stop offset=".4" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".68"/></radialGradient>
       <rect x="0" y="0" width="1200" height="620" fill="url(#gVigB)"/>
-      ${titelSVG('BAGAGEWAGEN')}
+      ${titelSVG('LUGGAGE VAN')}
     </svg>`;
     return `<div class="wagonscene">${svg}<div class="kliklaag">
       ${klik('data-koffer="A"',100,392,230,130,'Hutkoffer \u2014 label C.V.','stil')}
-      ${klik('data-koffer="B"',420,380,250,142,'Hutkoffer \u2014 label onleesbaar','stil')}
-      ${klik('data-koffer="C"',760,392,230,130,'Hutkoffer \u2014 naar Passau','stil')}
-      ${klik('data-ev="vrachtbrief"',330,244,136,100,'Vrachtbrieven op de kist')}
+      ${klik('data-koffer="B"',420,380,250,142,'Cabin trunk \u2014 label illegible','stil')}
+      ${klik('data-koffer="C"',760,392,230,130,'Cabin trunk \u2014 for Passau','stil')}
+      ${klik('data-ev="vrachtbrief"',330,244,136,100,'Consignment notes on the crate')}
     </div></div>`;
   }
 };
@@ -1212,7 +1212,7 @@ function coupeBasis(inner,opts){
   </svg>`;
 }
 const COUPES={
-  '1':{titel:'Coup\u00e9 1',html:()=>{
+  '1':{titel:'Compartment 1',html:()=>{
     const svg=coupeBasis(`
       <!-- slapende Aalbers -->
       <g>
@@ -1229,7 +1229,7 @@ const COUPES={
     return `<div class="coupescroll"><div class="coupescene">${svg}</div></div>
       <p class="introtekst coupetekst">Mr Aalbers has been asleep since Utrecht and, by the sound of it, will sleep until Vienna. Not even the points bring him back. There is nothing to be had here.</p>`;
   }},
-  '2':{titel:'Coup\u00e9 2 \u2014 M. Steinbach',html:()=>{
+  '2':{titel:'Compartment 2 \u2014 M. Steinbach',html:()=>{
     const kist=S.kofferOpen
       ?`<g transform="rotate(-8 250 236)">
           <rect x="188" y="216" width="130" height="40" rx="9" fill="#241205" stroke="#b8935a" stroke-opacity=".6" stroke-width="2"/>
@@ -1256,9 +1256,9 @@ const COUPES={
       <g stroke="#d8c9a4" stroke-opacity=".28" fill="none"><path d="M56 96 h140 M56 104 h140 M56 112 h140 M56 120 h140"/><circle cx="96" cy="108" r="4" fill="#d8c9a4" opacity=".3"/><circle cx="140" cy="116" r="4" fill="#d8c9a4" opacity=".3"/></g>`,
       {raamdelay:3});
     return `<div class="coupescroll"><div class="coupescene">${svg}<div class="kliklaag">
-        ${S.kofferOpen?klikC('data-ev="flesje"',186,196,140,66,'Vioolkist \u2014 geopend'):klikC('data-actie="kofferslot"',228,150,72,156,'Violin case \u2014 combination lock')}
-        ${klikC('data-ev="brief_vader"',70,250,92,52,'Reistas doorzoeken')}
-        ${klikC('data-ev="programma"',472,192,102,38,'Papieren op het tafeltje')}
+        ${S.kofferOpen?klikC('data-ev="flesje"',186,196,140,66,'Violin case \u2014 open'):klikC('data-actie="kofferslot"',228,150,72,156,'Violin case \u2014 combination lock')}
+        ${klikC('data-ev="brief_vader"',70,250,92,52,'Search the travelling bag')}
+        ${klikC('data-ev="programma"',472,192,102,38,'Papers on the table')}
       </div></div></div>
       <p class="introtekst coupetekst">Orderly, very nearly bare. Only the violin case has any weight in this compartment \u2014 as though everything else merely travels around it.</p>`;
   }},
@@ -1282,11 +1282,11 @@ const COUPES={
       </g>`,
       {donker:.3,raamdelay:6,kleedje:false});
     return `<div class="coupescroll"><div class="coupescene">${svg}<div class="kliklaag">
-        ${klikC('data-ev="mantel"',80,252,240,50,'Onder de bank kijken')}
+        ${klikC('data-ev="mantel"',80,252,240,50,'Look under the berth')}
       </div></div></div>
       <p class="introtekst coupetekst">Jansen stays in the doorway. The compartment smells of cold air and something bitter. The berth has not been touched \u2014 but under the seat the shadow is just a little too deep.</p>`;
   }},
-  '4':{titel:'Coup\u00e9 4 \u2014 plaats delict',html:()=>{
+  '4':{titel:'Compartment 4 \u2014 crime scene',html:()=>{
     const svg=coupeBasis(`
       <!-- Voss, half overeind tegen het kussen -->
       <g>
@@ -1315,13 +1315,13 @@ const COUPES={
       <g transform="rotate(24 462 224)"><circle cx="462" cy="224" r="9" fill="url(#gMessing)"/><circle cx="462" cy="224" r="6" fill="#e9ddc0"/><line x1="462" y1="224" x2="462" y2="219" stroke="#3a2f1e" stroke-width="1.4"/><line x1="462" y1="224" x2="466" y2="224" stroke="#3a2f1e" stroke-width="1.2"/><path d="M471 224 q10 4 14 12" stroke="url(#gMessing)" stroke-width="2.4" fill="none"/></g>`,
       {donker:.14,raamdelay:1});
     return `<div class="coupescroll"><div class="coupescene">${svg}<div class="kliklaag">
-        ${klikC('data-ev="lichaam"',44,120,180,116,'Het slachtoffer onderzoeken')}
-        ${klikC('data-ev="glas"',488,186,54,48,'Het borrelglas')}
-        ${klikC('data-ev="telegram"',640,150,58,124,'De jas aan de haak')}
+        ${klikC('data-ev="lichaam"',44,120,180,116,'Examine the victim')}
+        ${klikC('data-ev="glas"',488,186,54,48,'The liqueur glass')}
+        ${klikC('data-ev="telegram"',640,150,58,124,'The coat on the hook')}
       </div></div></div>
       <p class="introtekst coupetekst">It is quiet in the way that only a scene of crime is quiet. Henry Voss is still half upright, as though death had struck him in the middle of a thought.</p>`;
   }},
-  '5':{titel:'Coup\u00e9 5 \u2014 C. Voss',html:()=>{
+  '5':{titel:'Compartment 5 \u2014 C. Voss',html:()=>{
     const svg=coupeBasis(`
       <!-- documentenmap in het rek -->
       <g transform="rotate(-4 120 50)"><rect x="80" y="36" width="84" height="26" rx="3" fill="#6b1f2a" stroke="#b8935a" stroke-opacity=".5"/><path d="M80 46 l84 0" stroke="#b8935a" stroke-opacity=".5"/><circle cx="122" cy="52" r="3" fill="#d4b076"/></g>
@@ -1335,11 +1335,11 @@ const COUPES={
       <path d="M516 214 q16 -10 34 -2 l-2 10 q-16 -6 -32 2 Z" fill="#cfd6de" opacity=".85"/><path d="M540 208 l6 -12 m-2 12 l7 -10" stroke="#cfd6de" stroke-width="3" opacity=".85"/></g>`,
       {raamdelay:4});
     return `<div class="coupescroll"><div class="coupescene">${svg}<div class="kliklaag">
-        ${klikC('data-ev="testament"',66,26,110,46,'Documentenmap in het bagagenet')}
+        ${klikC('data-ev="testament"',66,26,110,46,'Document folder in the luggage rack')}
       </div></div></div>
       <p class="introtekst coupetekst">Scent, a novel lying open, a crocodile dressing case. Clara Voss waits in the corridor; her compartment speaks for her in the meantime.</p>`;
   }},
-  '6':{titel:'Coup\u00e9 6 \u2014 E. Brandt',html:()=>{
+  '6':{titel:'Compartment 6 \u2014 E. Brandt',html:()=>{
     const svg=coupeBasis(`
       <!-- opgelicht matras met notitieboek -->
       <g><path d="M28 152 l150 -4 l14 -22 l30 26 l180 -2 l0 22 l-374 4 Z" fill="#4a1c28"/>
@@ -1354,8 +1354,8 @@ const COUPES={
       <g><path d="M672 160 q-22 10 -26 46 q-2 30 8 56 l34 0 q8 -26 6 -56 q-4 -36 -22 -46 Z" fill="#2a3040"/></g>`,
       {raamdelay:2.4});
     return `<div class="coupescroll"><div class="coupescene">${svg}<div class="kliklaag">
-        ${klikC('data-ev="notitieboek"',158,116,96,44,'Onder het matras')}
-        ${klikC('data-ev="opdrachtbrief"',84,244,132,66,'De koffer doorzoeken')}
+        ${klikC('data-ev="notitieboek"',158,116,96,44,'Under the mattress')}
+        ${klikC('data-ev="opdrachtbrief"',84,244,132,66,'Search the suitcase')}
       </div></div></div>
       <p class="introtekst coupetekst">A commercial traveller with no samples and no catalogue. But: a pair of field glasses, three newspapers and a coat that smells of corridor draught.</p>`;
   }}
@@ -1399,7 +1399,7 @@ function sluitOverlay(){overlay.classList.remove('open');}
 function toonDocument(id){
   vind(id);
   toonOverlay(`<h2>${EV[id].naam}</h2>
-    <div style="font-size:11px;color:#8fa0b8;letter-spacing:.1em;margin-bottom:10px">VINDPLAATS: ${EV[id].waar.toUpperCase()}</div>
+    <div style="font-size:11px;color:#8fa0b8;letter-spacing:.1em;margin-bottom:10px">LOCATION: ${EV[id].waar.toUpperCase()}</div>
     <div class="papierdoc">${EV[id].doc}</div>`);
   renderScene();
 }
@@ -1460,7 +1460,7 @@ function toonDossier(){
     html+=`<ul id="dossierlijst">`+S.gevonden.map(id=>
       `<li data-doc="${id}"><b>${EV[id].naam}</b><br><span style="color:#8fa0b8;font-size:11px">${EV[id].waar}</span></li>`).join('')+`</ul>`;
   }
-  html+=`<p style="margin-top:14px;font-size:11.5px;color:#7c8698">${S.gevonden.length} of ${Object.keys(EV).length} items \u00b7 ${S.tijdlijnKlaar?'reconstructie voltooid':'reconstruction still open'} \u00b7 ${S.kofferOpen?'vioolkist geopend':'vioolkist dicht'}</p>`;
+  html+=`<p style="margin-top:14px;font-size:11.5px;color:#7c8698">${S.gevonden.length} of ${Object.keys(EV).length} items \u00b7 ${S.tijdlijnKlaar?'reconstruction complete':'reconstruction still open'} \u00b7 ${S.kofferOpen?'violin case open':'violin case closed'}</p>`;
   toonOverlay(html);
 }
 
@@ -1522,7 +1522,7 @@ const LIJST=[
 function toonMedTas(){
   if(S.tasKlaar){toonDocument('medicijnlijst');return;}
   let html=`<h2>Doctor\'s bag \u2014 Dr Reiss</h2>
-    <p class="introtekst">The lock has been forced; fresh scratches in the brass. Inside: five bottles and an inventory that lists <em>zes</em> beschrijft. Vergelijk de lijst met wat er ligt &mdash; welk middel is verdwenen?</p>
+    <p class="introtekst">The lock has been forced; fresh scratches in the brass. Inside: five bottles and an inventory that lists <em>six</em>. Compare the list with what is actually there &mdash; which medicine is missing?</p>
     <div style="margin-top:14px;font-size:11px;color:#8fa0b8;letter-spacing:.14em">IN THE BAG:</div>
     <div class="flesrij">`+FLESSEN.map(f=>`<div class="fles" style="cursor:default"><span>${f.vorm}</span>${f.oms}</div>`).join('')+`</div>
     <div style="margin-top:6px;font-size:11px;color:#8fa0b8;letter-spacing:.14em">ACCORDING TO THE LIST \u2014 click the one that is missing:</div>
@@ -1558,7 +1558,7 @@ function toonTelegraph(){
   if(S.morseKlaar){toonDocument('telegraafstrook');return;}
   vind('morsekaart',true);
   let html=`<h2>Telegraph \u2014 reply from Amsterdam</h2>
-    <p class="introtekst">U seint: <em>&ldquo;VERZOEK VOLLEDIGE NAAM PASSAGIER CO 2&rdquo;</em>. After long minutes the instrument begins to tick back. Four characters &mdash; the name. Translate them with the signal card.</p>
+    <p class="introtekst">You transmit: <em>&ldquo;REQUEST FULL NAME PASSENGER COMP 2&rdquo;</em>. After long minutes the instrument begins to tick back. Four characters &mdash; the name. Translate them with the signal card.</p>
     <div class="papierdoc" style="margin-top:12px">${EV.morsekaart.doc}</div>
     <div class="morserij">`+
     MORSE.map((m,i)=>`<div class="morsegroep">
@@ -1566,7 +1566,7 @@ function toonTelegraph(){
       <div class="morsekeuzes">${m.opties.map(o=>`<button type="button" data-morse="${i}" data-letter="${o}" class="${morseKeuze[i]===o?'gekozen':''}">${o}</button>`).join('')}</div>
     </div>`).join('')+
     `</div>
-    <button class="hoofdknop" type="button" data-actie="morse-controle" ${morseKeuze.every(x=>x)?'':'disabled'}>Vertaling doorgeven</button>
+    <button class="hoofdknop" type="button" data-actie="morse-controle" ${morseKeuze.every(x=>x)?'':'disabled'}>Send translation</button>
     <div class="pzfeedback" id="morsefb"></div>`;
   toonOverlay(html);
 }
@@ -1589,7 +1589,7 @@ function kiesKoffer(k){
     return;
   }
   if(k==='B'){toonDocument('dossier_steinbach');return;}
-  if(k==='A'){meld('Positie 1 \u2014 42 kg hoedendozen en garderobe van mevrouw Voss. Niets dan vilt en parfum.');}
+  if(k==='A'){meld('Item 1 \u2014 42 kg of hat boxes and Mrs Voss\'s wardrobe. Nothing but felt and perfume.');}
   else{meld('Item 3 \u2014 the case of Rhine wine for Passau. Sealed, and it stays that way.');}
 }
 
@@ -1610,7 +1610,7 @@ function toonTijdlijn(){
   if(S.tijdlijnKlaar){
     toonOverlay(`<h2>The night, reconstructed</h2>
       <ol class="tlvolg">${TL.map(e=>`<li style="cursor:default"><span class="nr">${e.tijd}</span>${e.t}</li>`).join('')}</ol>
-      <p class="introtekst" style="margin-top:14px">E\u00e9n moment blijft over waarop niemand keek en iemand toch handelde: <b>23:40</b>. That is when the poison went into the glass. And whoever left the dining car at 23:30 had ten minutes to put on a cloak and wait.</p>`);
+      <p class="introtekst" style="margin-top:14px">One moment remains when nobody was looking and somebody still acted: <b>23:40</b>. That is when the poison went into the glass. And whoever left the dining car at 23:30 had ten minutes to put on a cloak and wait.</p>`);
     return;
   }
   const beschikbaar=tlBeschikbaar();
@@ -1737,7 +1737,7 @@ function toonEinde(){
   if(S.klaar==='gewonnen'){
     toonOverlay(`<div class="eindtitel goed">The case closes</div>
       <p class="introtekst">Mira Steinbach does not deny it. She folds her hands in her lap &mdash; still at last &mdash; and looks at the violin case.</p>
-      <p class="introtekst">&ldquo;Hij ru\u00efneerde mijn vader met twee handschriften en \u00e9\u00e9n leugen. Ik heb drie jaar gewacht op een trein waarin wij allebei zaten. Ik zat de hele avond aan tafel zes, naast een tas vol medicijnen, tegenover een man die luid over diamanten sprak. Om 23:40 stond het glas alleen in de gang. Tien seconden. Langer duurt gerechtigheid niet, als je haar zelf moet uitvoeren.&rdquo;</p>
+      <p class="introtekst">&ldquo;He ruined my father with two sets of handwriting and one lie. I waited three years for a train we would both be on. I sat at table six all evening, beside a bag full of medicines, opposite a man talking loudly about diamonds. At 23:40 the glass stood alone in the corridor. Ten seconds. Justice takes no longer than that when you have to carry it out yourself.&rdquo;</p>
       <p class="introtekst">The STEINBACH file goes to the court; the bottle from the violin case does the rest. At Vienna the police are waiting on the platform &mdash; and for the first time this journey, nobody will play at the Konzerthaus on Sunday.</p>
       <button class="hoofdknop" type="button" data-actie="herstart">Board again</button>`);
   }else{
@@ -1759,7 +1759,7 @@ function toonIntro(){
   S.intro=true;bewaar();
   toonOverlay(`<h2>Night of the 19th to the 20th of December</h2>
     <div class="introtekst">
-    <p>You are travelling as a passenger on Night Train 212, Amsterdam to Vienna, when Conductor Jansen knocks at your door at half past twelve. Zijn lantaarn trilt licht in zijn hand.</p>
+    <p>You are travelling as a passenger on Night Train 212, Amsterdam to Vienna, when Conductor Jansen knocks at your door at half past twelve. His lantern trembles slightly in his hand.</p>
     <p>&ldquo;You are with the police, are you not? Compartment 4. Mr Voss. He... you had better come and look. And the train does not stop before Vienna &mdash; whatever happens.&rdquo;</p>
     <p>Henry Voss, diamond merchant, is dead. No wound, no struggle. And somewhere between these carriages, behind one of these doors, sits somebody who knows exactly why.</p>
     <p style="color:#8fa0b8">Search the carriages and compartments. Question the passengers &mdash; some questions only occur to you once you are carrying the right evidence. Reconstruct the night on the board. And take care: every false charge costs you a station.</p>
@@ -1872,7 +1872,7 @@ function renderBord(){
     el.dataset.pin=id;
     el.style.left=p.x+'%';el.style.top=p.y+'%';
     el.style.transform='rotate('+p.r+'deg)';
-    el.innerHTML='<button class="pinx" type="button" aria-label="Van het bord halen">\u2715</button>'+
+    el.innerHTML='<button class="pinx" type="button" aria-label="Remove from board">\u2715</button>'+
       '<div class="pincat">'+EV[id].waar+'</div><div class="pinnaam">'+EV[id].naam+'</div>';
     bordvlak.appendChild(el);
   });
@@ -1985,7 +1985,7 @@ document.addEventListener('click',e=>{
   if(t.id==='knop-beschuldig'){toonBeschuldiging();return;}
   if(t.id==='knop-geluid'){toggleGeluid();return;}
   if(t.id==='knop-reset'){
-    toonOverlay(`<h2>Board again?</h2><p class="introtekst">Alle vondsten, verhoren en de reconstructie gaan verloren.</p>
+    toonOverlay(`<h2>Board again?</h2><p class="introtekst">All discoveries, interviews and the reconstruction will be lost.</p>
       <button class="hoofdknop" type="button" data-actie="herstart">Yes, start over</button>`);
     return;
   }
@@ -1993,7 +1993,7 @@ document.addEventListener('click',e=>{
   const d=t.dataset;
   if(d.actie==='start'){
     sluitOverlay();
-    if(window.innerHeight>window.innerWidth*1.02)meld('Veeg horizontaal om de hele wagon te bekijken.');
+    if(window.innerHeight>window.innerWidth*1.02)meld('Swipe horizontally to view the whole carriage.');
     return;
   }
   if(d.actie==='herstart'){herstart();return;}

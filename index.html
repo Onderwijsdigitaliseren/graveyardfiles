@@ -110,6 +110,31 @@ body:not(.lamp-aan) #kaart{transform:rotate(-.6deg) translateY(10px)}
   color:#3c332400;
   color:#3c3324;
 }
+#kaart .briefing{
+  margin:18px 0 0;
+  padding-top:14px;
+  border-top:1px dashed rgba(60,51,36,.35);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px 22px;
+}
+#kaart .briefing div{margin:0}
+#kaart .briefing dt{
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#8e2a22;
+  margin-bottom:3px;
+}
+#kaart .briefing dd{
+  margin:0;
+  font-size:12.5px;
+  line-height:1.6;
+  color:#3c3324;
+}
+#kaart .briefing b{color:#2a2114}
+@media (max-width:520px){ #kaart .briefing{grid-template-columns:1fr} }
 /* ---- dossiers ---- */
 #dossiers{
   position:relative;
@@ -409,6 +434,12 @@ body.lamp-aan #koffiekas{opacity:1}
   <header id="kaart">
     <div class="sub">Unsolved Cases Division &mdash; Graveyard Shift</div>
     <div class="regel">The lamp is on. The files are waiting. Open a folder and the case is yours &mdash; along with everything it carries.</div>
+    <dl class="briefing">
+      <div><dt>What this is</dt><dd>Nine self-contained detective puzzles. No account, no download. Everything runs in this page.</dd></div>
+      <div><dt>How it works</dt><dd>Read the statements, work the board, name the killer. Your progress is saved in this browser.</dd></div>
+      <div><dt>Where to start</dt><dd>New to the night shift? Take <b>The Switch Room</b> &mdash; one evening, one answer. The murdokus in Drawer I are the deep end.</dd></div>
+      <div><dt>Why tonight</dt><dd>Every case has exactly one solution, and the clues give you exactly enough. Nobody is coming to help. That is the appeal.</dd></div>
+    </dl>
   </header>
   <section id="dossiers" aria-label="Case files"></section>
   <section id="koffiekas" aria-label="Support the archive" hidden>
