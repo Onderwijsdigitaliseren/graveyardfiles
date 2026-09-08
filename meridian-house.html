@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MERIDIAN — Graveyard File 44-C</title>
+<title>Meridian House – An interactive murder mystery | The Graveyard Files</title>
+<meta name="description" content="Interactive murder mystery: a dead financier, four suspects, one night at Meridian House. Examine 24 pieces of evidence and name the killer. Free, in-browser.">
+<link rel="canonical" href="https://graveyardfiles.com/meridian-house.html">
+<meta property="og:site_name" content="The Graveyard Files">
+<meta property="og:title" content="Meridian House – The Graveyard Files">
+<meta property="og:description" content="Interactive murder mystery: a dead financier, four suspects, one night at Meridian House. Examine 24 pieces of evidence and name the killer. Free, in-browser.">
+<meta property="og:url" content="https://graveyardfiles.com/meridian-house.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <style>
 /* ============================================================
    PROJECT EVIDENCE — cinematisch detective-onderzoek
@@ -665,7 +673,7 @@ body{
   text-shadow:0 0 16px rgba(255,183,67,.30), 0 6px 34px rgba(0,0,0,.95)!important;
 }
 #briefing h1::after{
-  content:'INTERACTIVE DETECTIVE GAME';display:block;margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--uv);text-indent:0;text-shadow:0 0 16px rgba(80,233,255,.35);
+  content:'INTERACTIEVE DETECTIVE GAME';display:block;margin-top:12px;font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--uv);text-indent:0;text-shadow:0 0 16px rgba(80,233,255,.35);
 }
 #briefing .sub{
   color:#fff0d0!important;border:1px solid rgba(80,233,255,.20);box-shadow:inset 0 0 24px rgba(80,233,255,.035);
@@ -857,13 +865,13 @@ body.uvmode #scene svg{filter:saturate(.85) brightness(.82) hue-rotate(-8deg) dr
   radial-gradient(circle at 70% 82%,rgba(255,78,99,.10),transparent 32%),
   linear-gradient(135deg,#090d18,#05060a 55%,#0b101c);}
 #briefing{background:linear-gradient(180deg,rgba(15,22,38,.72),rgba(7,10,18,.52));border:1px solid rgba(255,209,102,.34);border-radius:26px;padding:36px 34px;box-shadow:0 30px 100px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04) inset}
-#briefing::after{content:'SEARCH 9 ROOMS · FIND EVIDENCE · SOLVE PUZZLES · FILE THE CHARGE';display:block;margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;line-height:1.8;color:#bfeeff;text-shadow:0 0 16px rgba(111,227,255,.28)}
+#briefing::after{content:'ONDERZOEK 9 RUIMTES · VIND BEWIJS · LOS PUZZELS OP · DIEN AANKLACHT IN';display:block;margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;line-height:1.8;color:#bfeeff;text-shadow:0 0 16px rgba(111,227,255,.28)}
 #startBtn{background:linear-gradient(135deg,rgba(255,209,102,.18),rgba(255,78,99,.14));border-color:rgba(255,209,102,.65);box-shadow:0 0 24px rgba(255,209,102,.11)}
 #gameHud{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:82;display:none;gap:8px;align-items:stretch;font-family:var(--mono);pointer-events:none;width:min(760px,94vw)}
 #gameHud.on{display:flex}.hudChip{flex:1;min-width:0;background:linear-gradient(180deg,rgba(17,25,43,.86),rgba(8,12,22,.82));border:1px solid rgba(111,227,255,.22);border-radius:14px;padding:9px 10px;box-shadow:0 14px 40px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.04) inset}.hudChip .hl{font-size:8px;letter-spacing:.18em;color:#7f91b4;white-space:nowrap}.hudChip .hv{margin-top:4px;font-size:12px;letter-spacing:.08em;color:#fff3d3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hudChip.danger{border-color:rgba(255,78,99,.38)}.hudChip.good{border-color:rgba(103,240,160,.35)}.miniBar{height:5px;margin-top:7px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}.miniBar span{display:block;height:100%;width:0%;border-radius:9px;background:linear-gradient(90deg,var(--gold),#ff8d3d,var(--danger));transition:width .45s ease}.hudChip.good .miniBar span{background:linear-gradient(90deg,var(--casegreen),#6fe3ff)}
 #missionCard{position:fixed;left:16px;top:calc(88px + env(safe-area-inset-top,0px));z-index:81;width:min(310px,88vw);background:linear-gradient(180deg,rgba(18,28,49,.90),rgba(8,12,22,.86));border:1px solid rgba(255,209,102,.30);border-radius:18px;padding:14px 15px;box-shadow:0 18px 60px rgba(0,0,0,.48);pointer-events:none;transition:opacity .35s, transform .35s;opacity:.96}.missionTitle{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--gold);margin-bottom:8px}.missionText{font-size:13px;line-height:1.45;color:#e9e4d6}.missionSteps{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.missionSteps div{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:#aeb9d0;border:1px solid rgba(174,185,208,.18);border-radius:10px;padding:7px;background:rgba(255,255,255,.035)}.missionSteps div.done{color:#baf8d0;border-color:rgba(103,240,160,.35);background:rgba(103,240,160,.06)}
 #rewardStamp{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg) scale(.72);z-index:170;pointer-events:none;opacity:0;font-family:var(--mono);font-weight:bold;letter-spacing:.18em;text-align:center;color:#120b04;background:linear-gradient(135deg,#ffd166,#ff8d3d);border:3px solid rgba(255,242,200,.85);border-radius:18px;padding:20px 26px;box-shadow:0 28px 90px rgba(255,141,61,.35),0 0 0 999px rgba(0,0,0,.20);text-transform:uppercase}.rewardShow{animation:rewardPop 1.15s cubic-bezier(.2,1.25,.3,1) both}@keyframes rewardPop{0%{opacity:0;transform:translate(-50%,-50%) rotate(-12deg) scale(.4)}18%,72%{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) rotate(-3deg) scale(1.22)}}
-.evCard{position:relative;overflow:hidden}.evCard::after{content:'SECURED';position:absolute;right:-30px;top:10px;transform:rotate(24deg);font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:rgba(255,209,102,.55);border:1px solid rgba(255,209,102,.28);padding:4px 26px;background:rgba(255,209,102,.06)}
+.evCard{position:relative;overflow:hidden}.evCard::after{content:'VEILIGGESTELD';position:absolute;right:-30px;top:10px;transform:rotate(24deg);font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:rgba(255,209,102,.55);border:1px solid rgba(255,209,102,.28);padding:4px 26px;background:rgba(255,209,102,.06)}
 .hotspot{filter:drop-shadow(0 0 10px rgba(255,209,102,.08))}.hotspot:hover{filter:brightness(1.35) drop-shadow(0 0 16px rgba(255,209,102,.24))}.doorspot{filter:drop-shadow(0 0 10px rgba(111,227,255,.10))}
 .panel header{background:linear-gradient(90deg,rgba(255,209,102,.08),rgba(111,227,255,.05),transparent)}.panel.open{box-shadow:-40px 0 100px rgba(0,0,0,.75),0 0 40px rgba(111,227,255,.05)}
 #dock{box-shadow:0 20px 70px rgba(0,0,0,.72),0 0 35px rgba(111,227,255,.08);border-color:rgba(111,227,255,.24)}.dockBtn{border:1px solid transparent}.dockBtn:hover,.dockBtn.active,.dockBtn.uvactive{border-color:rgba(255,209,102,.25)}#knowFab{box-shadow:0 18px 44px rgba(255,91,91,.36),0 0 24px rgba(255,209,102,.22)!important}
@@ -899,7 +907,7 @@ body.uvmode #scene svg{filter:saturate(.85) brightness(.82) hue-rotate(-8deg) dr
 #caseCoach{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:82;width:min(560px,92vw);background:linear-gradient(180deg,rgba(12,18,31,.86),rgba(6,9,16,.78));border:1px solid rgba(111,227,255,.20);border-left:3px solid rgba(232,183,106,.80);border-radius:16px;padding:11px 14px;box-shadow:0 18px 55px rgba(0,0,0,.52);pointer-events:none;opacity:0;transition:opacity .35s,transform .35s}
 #hud.on ~ #caseCoach,#caseCoach.on{opacity:1}.coachKicker{font-family:var(--mono);font-size:9px;letter-spacing:.26em;color:#e8b76a;margin-bottom:5px}.coachText,#coachText{font-size:12px;line-height:1.45;color:#e8e2d2}
 .panel header h2::after{content:'  ◆';color:var(--amber-hi);font-size:.7em}
-.evCard{position:relative}.evCard::after{content:'VIEW';position:absolute;right:10px;top:10px;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:rgba(111,227,255,.65)}
+.evCard{position:relative}.evCard::after{content:'BEKIJK';position:absolute;right:10px;top:10px;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:rgba(111,227,255,.65)}
 #accuseBox::before{content:'Choose 5 parts. The right answer is not only who, but how, when, why and where.';display:block;margin:0 auto 20px;max-width:560px;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.12em;line-height:1.8;color:#e8b76a;border:1px solid rgba(232,183,106,.25);border-radius:14px;padding:12px 14px;background:rgba(201,147,71,.06)}
 @media (max-width:820px), (pointer:coarse){#briefing{width:92vw!important;padding:24px 18px!important;border-radius:20px!important}#briefing h1{font-size:clamp(29px,10vw,41px)!important}#briefing .sub{font-size:13px!important;line-height:1.55!important}#briefing .mission{font-size:13.5px!important;line-height:1.55!important}#briefing::after{font-size:9.5px!important;letter-spacing:.04em!important}#dock{grid-template-columns:repeat(5,minmax(54px,1fr))!important;display:grid!important;width:96vw!important;left:2vw!important;right:2vw!important;transform:none!important;overflow:visible!important}.dockBtn{min-width:0!important}.dockHint{font-size:6px}#caseCoach{bottom:calc(102px + env(safe-area-inset-bottom,0px));width:94vw;padding:9px 11px}.coachKicker{font-size:8px}#coachText{font-size:11px}#missionCard{display:none!important}}
 @media (max-width:380px){#dock{grid-template-columns:repeat(5,minmax(48px,1fr))!important}.dockBtn span{font-size:7px!important}}
@@ -1019,7 +1027,7 @@ body{background:#22304a}
     <div class="stamp">GRAVEYARD FILE 44-C · MERIDIAN HOUSE</div>
     <h1>MERIDIAN</h1>
     <div class="introTag">03:12 — it has been raining for hours. Outside, the forensic team is waiting on your word. Inside, the clock is ticking towards dawn.</div>
-    <div class="sub"><b>Mission:</b> search the house before it gets light. Gather evidence, work out the puzzles and file your charge — if you dare.</div>
+    <div class="sub"><b>Missie:</b> search the house before it gets light. Gather evidence, work out the puzzles and file your charge — if you dare.</div>
     <div class="mission">Elias Thorne is lying at the foot of his cellar stairs. It <em>has</em> to look like an accident. You have until sunrise to prove it wasn\'t one.</div>
     <button id="startBtn">ENTER THE SCENE</button>
   </div>
@@ -1041,45 +1049,45 @@ body{background:#22304a}
 <!-- ================= HUD ================= -->
 <div id="hud">
   <div id="caseTag">
-    <div class="ct1">INVESTIGATION · GRAVEYARD FILE 44-C</div>
+    <div class="ct1">RECHERCHE · GRAVEYARD FILE 44-C</div>
     <div class="ct2">MERIDIAN HOUSE</div>
-    <div class="ct3" id="clock">SUNDAY · 03:12</div>
+    <div class="ct3" id="clock">ZONDAG · 03:12</div>
     <button id="resetBtn" title="Start the investigation over" style="display:none">
       <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4h-4"/></svg>RESTART
     </button>
     <div id="saveHint" style="display:none">PROGRESS IS SAVED</div>
   </div>
   <div id="dock">
-    <button class="dockBtn" id="btnMap" title="Map (M)">
+    <button class="dockBtn" id="btnMap" title="Plattegrond (M)">
       <svg viewBox="0 0 24 24"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2V6z"/><path d="M9 4v14M15 6v14"/></svg><span>MAP</span>
     </button>
-    <button class="dockBtn" id="btnEvidence" title="Evidence (B)">
+    <button class="dockBtn" id="btnEvidence" title="Bewijs (B)">
       <svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M8 7V5a4 4 0 018 0v2"/></svg><span>EVIDENCE</span><span class="badge" id="evBadge" style="display:none">0</span>
     </button>
-    <button class="dockBtn" id="btnNotes" title="Notebook (N)">
+    <button class="dockBtn" id="btnNotes" title="Notitieboek (N)">
       <svg viewBox="0 0 24 24"><path d="M6 3h11a1 1 0 011 1v16a1 1 0 01-1 1H6z"/><path d="M6 3v18M10 8h5M10 12h5"/></svg><span>NOTES</span>
     </button>
-    <button class="dockBtn" id="btnSuspects" title="People (V)">
+    <button class="dockBtn" id="btnSuspects" title="Personen (V)">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>PEOPLE</span>
     </button>
-    <button class="dockBtn" id="btnTimeline" title="Timeline (T)">
+    <button class="dockBtn" id="btnTimeline" title="Tijdlijn (T)">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2.5"/></svg><span>TIMELINE</span>
     </button>
-    <button class="dockBtn" id="btnBoard" title="Case board (O)">
+    <button class="dockBtn" id="btnBoard" title="Onderzoeksbord (O)">
       <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="1.5"/><circle cx="8" cy="9" r="1.6"/><circle cx="16" cy="8" r="1.6"/><circle cx="12" cy="14" r="1.6"/><path d="M8 9l4 5 4-6"/></svg><span>BOARD</span>
     </button>
-    <button class="dockBtn" id="btnFlash" title="Torch (F)">
+    <button class="dockBtn" id="btnFlash" title="Zaklamp (F)">
       <svg viewBox="0 0 24 24"><path d="M7 3h10l-2.5 5v10a2.5 2.5 0 01-5 0V8L7 3z"/><path d="M12 11v3"/></svg><span>TORCH</span>
     </button>
-    <button class="dockBtn locked" id="btnUV" title="UV lamp (U)">
+    <button class="dockBtn locked" id="btnUV" title="UV-lamp (U)">
       <svg viewBox="0 0 24 24"><path d="M7 3h10l-2.5 5v10a2.5 2.5 0 01-5 0V8L7 3z"/><path d="M10 12l2 2 2-2"/></svg><span>UV</span>
     </button>
     <button class="dockBtn" id="btnReset2" title="Start the investigation over">
       <svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v4h-4"/></svg><span>RESTART</span>
     </button>
     <div id="accuseDock">
-      <button class="dockBtn locked" id="btnAccuse" title="Charge">
-        <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3l9-16z"/><path d="M12 10v4M12 17.5v.5"/></svg><span>CHARGE</span><small class="dockHint">locked</small>
+      <button class="dockBtn locked" id="btnAccuse" title="Aanklacht">
+        <svg viewBox="0 0 24 24"><path d="M12 3l9 16H3l9-16z"/><path d="M12 10v4M12 17.5v.5"/></svg><span>CHARGE</span><small class="dockHint">slot</small>
       </button>
     </div>
   </div>
@@ -1089,7 +1097,7 @@ body{background:#22304a}
 <div id="confirmWrap">
   <div id="confirmBox">
     <h3>START THE INVESTIGATION OVER?</h3>
-    <p>All the evidence you have gathered, your notes, the timeline and the case board will be wiped. The case starts again from the beginning. This cannot be undone.</p>
+    <p>All the evidence you have gathered, your notes, the timeline and the case board will be wiped. The case starts again from the beginning. Dit kan niet ongedaan worden gemaakt.</p>
     <div class="row">
       <button id="confirmCancel">CANCEL</button>
       <button id="confirmOk">WIPE &amp; RESTART</button>
@@ -1103,7 +1111,7 @@ body{background:#22304a}
   <div class="hudChip danger"><div class="hl">STATUS</div><div class="hv" id="hudStatus">CHARGE LOCKED</div></div>
 </div>
 <div id="missionCard">
-  <button id="missionClose" title="Hide objective" aria-label="Hide objective">&times;</button>
+  <button id="missionClose" title="Verberg missie" aria-label="Verberg missie">&times;</button>
   <div class="missionTitle">CURRENT OBJECTIVE</div>
   <div class="missionText" id="missionText">Enter the house. Look for evidence, puzzles and contradictions.</div>
   <div class="missionSteps">
@@ -1121,7 +1129,7 @@ body{background:#22304a}
     <p>So there is nothing to type. It is a multiple-choice form.</p>
     <div class="mini">Needed to unlock it the ordinary way: the statuette, the torn letter, the draft letter, and at least 10 pieces of evidence.</div>
     <div class="accuseHelpBtns">
-      <button class="primary" id="accuseTestOpen">TEST MODE: OPEN FORM</button>
+      <button class="primary" id="accuseTestOpen">TESTMODUS: NU INVULLEN</button>
       <button class="ghost" id="accuseKeepPlaying">CARRY ON</button>
     </div>
   </div>
@@ -1130,7 +1138,7 @@ body{background:#22304a}
 
 <!-- ================= PANELEN ================= -->
 <div class="panel" id="evPanel">
-  <header><div><h2>EVIDENCE ITEMS</h2><div class="sub" id="evSub">0 ITEMS SECURED</div></div><button class="closeX" data-close="evPanel">CLOSE ✕</button></header>
+  <header><div><h2>EVIDENCE ITEMS</h2><div class="sub" id="evSub">0 STUKS VEILIGGESTELD</div></div><button class="closeX" data-close="evPanel">CLOSE ✕</button></header>
   <div class="body" id="evList"><div class="empty">No evidence secured yet.<br>Search the house. Look past the obvious.</div></div>
 </div>
 
@@ -1140,7 +1148,7 @@ body{background:#22304a}
 </div>
 
 <div class="panel" id="susPanel">
-  <header><div><h2>PEOPLE</h2><div class="sub">PERSONS OF INTEREST &amp; SUSPECTS</div></div><button class="closeX" data-close="susPanel">CLOSE ✕</button></header>
+  <header><div><h2>PEOPLE</h2><div class="sub">BETROKKENEN &amp; VERDACHTEN</div></div><button class="closeX" data-close="susPanel">CLOSE ✕</button></header>
   <div class="body" id="susList"></div>
 </div>
 
@@ -1163,8 +1171,8 @@ body{background:#22304a}
     <div id="inspHead"><div><div class="it" id="inspTitle"></div><div class="ic" id="inspCat"></div></div><button class="closeX" id="inspClose">CLOSE ✕</button></div>
     <div id="inspView"><div id="inspSvgHolder" style="display:contents"></div>
       <div id="inspTools">
-        <button class="itool" id="rotL" title="Rotate left">⟲</button>
-        <button class="itool" id="rotR" title="Rotate right">⟳</button>
+        <button class="itool" id="rotL" title="Draai links">⟲</button>
+        <button class="itool" id="rotR" title="Draai rechts">⟳</button>
         <button class="itool" id="zoomIn" title="Zoom in">+</button>
         <button class="itool" id="zoomOut" title="Zoom uit">−</button>
       </div>
@@ -1181,14 +1189,14 @@ body{background:#22304a}
   <svg id="strings"></svg>
   <div id="boardPins"></div>
   <div id="boardTray"></div>
-  <div id="boardHint">A THREAD PROVES NOTHING — IT ONLY HELPS YOU THINK. CLICK A THREAD TO REMOVE IT.</div>
+  <div id="boardHint">EEN DRAAD BEWIJST NIETS — HIJ HELPT ALLEEN JOU TE DENKEN. KLIK EEN DRAAD OM TE VERWIJDEREN.</div>
 </div>
 
 <!-- ================= AANKLACHT ================= -->
 <div id="accuse">
   <div id="accuseBox">
     <h2>THE CHARGE</h2>
-    <div class="warn">BE CERTAIN BEFORE YOU MAKE THE ACCUSATION.<br>A FALSE CHARGE LEAVES THE CASE UNSOLVED.</div>
+    <div class="warn">WEET WAT JE ZEGT VOOR JE HET ZEGT.<br>EEN ONJUISTE BESCHULDIGING LAAT DE ZAAK ONOPGELOST.</div>
     <div class="accSection"><div class="al">WHO — the killer</div><div class="accOpts" id="accWho"></div></div>
     <div class="accSection"><div class="al">HOW — the weapon / the method</div><div class="accOpts" id="accHow"></div></div>
     <div class="accSection"><div class="al">WHEN — the time</div><div class="accOpts" id="accWhen"></div></div>
@@ -1501,13 +1509,13 @@ const SCENE_STYLE=`<style>
   radial-gradient(circle at 70% 82%,rgba(255,78,99,.10),transparent 32%),
   linear-gradient(135deg,#090d18,#05060a 55%,#0b101c);}
 #briefing{background:linear-gradient(180deg,rgba(15,22,38,.72),rgba(7,10,18,.52));border:1px solid rgba(255,209,102,.34);border-radius:26px;padding:36px 34px;box-shadow:0 30px 100px rgba(0,0,0,.65),0 0 0 1px rgba(255,255,255,.04) inset}
-#briefing::after{content:'SEARCH 9 ROOMS · FIND EVIDENCE · SOLVE PUZZLES · FILE THE CHARGE';display:block;margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;line-height:1.8;color:#bfeeff;text-shadow:0 0 16px rgba(111,227,255,.28)}
+#briefing::after{content:'ONDERZOEK 9 RUIMTES · VIND BEWIJS · LOS PUZZELS OP · DIEN AANKLACHT IN';display:block;margin-top:20px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;line-height:1.8;color:#bfeeff;text-shadow:0 0 16px rgba(111,227,255,.28)}
 #startBtn{background:linear-gradient(135deg,rgba(255,209,102,.18),rgba(255,78,99,.14));border-color:rgba(255,209,102,.65);box-shadow:0 0 24px rgba(255,209,102,.11)}
 #gameHud{position:fixed;left:50%;top:calc(14px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:82;display:none;gap:8px;align-items:stretch;font-family:var(--mono);pointer-events:none;width:min(760px,94vw)}
 #gameHud.on{display:flex}.hudChip{flex:1;min-width:0;background:linear-gradient(180deg,rgba(17,25,43,.86),rgba(8,12,22,.82));border:1px solid rgba(111,227,255,.22);border-radius:14px;padding:9px 10px;box-shadow:0 14px 40px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.04) inset}.hudChip .hl{font-size:8px;letter-spacing:.18em;color:#7f91b4;white-space:nowrap}.hudChip .hv{margin-top:4px;font-size:12px;letter-spacing:.08em;color:#fff3d3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.hudChip.danger{border-color:rgba(255,78,99,.38)}.hudChip.good{border-color:rgba(103,240,160,.35)}.miniBar{height:5px;margin-top:7px;border-radius:9px;background:rgba(255,255,255,.08);overflow:hidden}.miniBar span{display:block;height:100%;width:0%;border-radius:9px;background:linear-gradient(90deg,var(--gold),#ff8d3d,var(--danger));transition:width .45s ease}.hudChip.good .miniBar span{background:linear-gradient(90deg,var(--casegreen),#6fe3ff)}
 #missionCard{position:fixed;left:16px;top:calc(88px + env(safe-area-inset-top,0px));z-index:81;width:min(310px,88vw);background:linear-gradient(180deg,rgba(18,28,49,.90),rgba(8,12,22,.86));border:1px solid rgba(255,209,102,.30);border-radius:18px;padding:14px 15px;box-shadow:0 18px 60px rgba(0,0,0,.48);pointer-events:auto;transition:opacity .35s, transform .35s;opacity:.96}.missionTitle{font-family:var(--mono);font-size:10px;letter-spacing:.24em;color:var(--gold);margin-bottom:8px}.missionText{font-size:13px;line-height:1.45;color:#e9e4d6}.missionSteps{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}.missionSteps div{font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:#aeb9d0;border:1px solid rgba(174,185,208,.18);border-radius:10px;padding:7px;background:rgba(255,255,255,.035)}.missionSteps div.done{color:#baf8d0;border-color:rgba(103,240,160,.35);background:rgba(103,240,160,.06)}
 #rewardStamp{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-8deg) scale(.72);z-index:170;pointer-events:none;opacity:0;font-family:var(--mono);font-weight:bold;letter-spacing:.18em;text-align:center;color:#120b04;background:linear-gradient(135deg,#ffd166,#ff8d3d);border:3px solid rgba(255,242,200,.85);border-radius:18px;padding:20px 26px;box-shadow:0 28px 90px rgba(255,141,61,.35),0 0 0 999px rgba(0,0,0,.20);text-transform:uppercase}.rewardShow{animation:rewardPop 1.15s cubic-bezier(.2,1.25,.3,1) both}@keyframes rewardPop{0%{opacity:0;transform:translate(-50%,-50%) rotate(-12deg) scale(.4)}18%,72%{opacity:1;transform:translate(-50%,-50%) rotate(-6deg) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) rotate(-3deg) scale(1.22)}}
-.evCard{position:relative;overflow:hidden}.evCard::after{content:'SECURED';position:absolute;right:-30px;top:10px;transform:rotate(24deg);font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:rgba(255,209,102,.55);border:1px solid rgba(255,209,102,.28);padding:4px 26px;background:rgba(255,209,102,.06)}
+.evCard{position:relative;overflow:hidden}.evCard::after{content:'VEILIGGESTELD';position:absolute;right:-30px;top:10px;transform:rotate(24deg);font-family:var(--mono);font-size:8px;letter-spacing:.12em;color:rgba(255,209,102,.55);border:1px solid rgba(255,209,102,.28);padding:4px 26px;background:rgba(255,209,102,.06)}
 .hotspot{filter:drop-shadow(0 0 10px rgba(255,209,102,.08))}.hotspot:hover{filter:brightness(1.35) drop-shadow(0 0 16px rgba(255,209,102,.24))}.doorspot{filter:drop-shadow(0 0 10px rgba(111,227,255,.10))}
 .panel header{background:linear-gradient(90deg,rgba(255,209,102,.08),rgba(111,227,255,.05),transparent)}.panel.open{box-shadow:-40px 0 100px rgba(0,0,0,.75),0 0 40px rgba(111,227,255,.05)}
 #dock{box-shadow:0 20px 70px rgba(0,0,0,.72),0 0 35px rgba(111,227,255,.08);border-color:rgba(111,227,255,.24)}.dockBtn{border:1px solid transparent}.dockBtn:hover,.dockBtn.active,.dockBtn.uvactive{border-color:rgba(255,209,102,.25)}#knowFab{box-shadow:0 18px 44px rgba(255,91,91,.36),0 0 24px rgba(255,209,102,.22)!important}
@@ -1757,7 +1765,7 @@ ROOMS.hal={naam:'HALL',sector:'GROUND FLOOR · ENTRANCE',dark:'normal',build(){
       <rect x="-6" y="-80" width="250" height="440" fill="transparent"/>
     </g>
   </g>
-  ${hs('plaquette',`<g transform="translate(880,382)">${ao(28,86,40,8,.5)}<rect width="58" height="78" rx="6" fill="url(#brassG)" stroke="#5c451c" stroke-width="2" filter="url(#dShadow)"/><rect x="6" y="7" width="46" height="64" rx="3" fill="none" stroke="#6a521f" stroke-width="1.5"/><rect x="3" y="2" width="52" height="4" rx="2" fill="rgba(255,255,255,.32)"/><text x="29" y="30" text-anchor="middle" fill="#3a2c10" font-family="Georgia" font-size="9.5">GALLERY</text><text x="29" y="44" text-anchor="middle" fill="#3a2c10" font-family="Georgia" font-size="8.5">MERIDIAN</text><text x="29" y="58" text-anchor="middle" fill="#3a2c10" font-family="Georgia" font-size="7">· since ... ·</text></g>`,'A bronze plaque')}
+  ${hs('plaquette',`<g transform="translate(880,382)">${ao(28,86,40,8,.5)}<rect width="58" height="78" rx="6" fill="url(#brassG)" stroke="#5c451c" stroke-width="2" filter="url(#dShadow)"/><rect x="6" y="7" width="46" height="64" rx="3" fill="none" stroke="#6a521f" stroke-width="1.5"/><rect x="3" y="2" width="52" height="4" rx="2" fill="rgba(255,255,255,.32)"/><text x="29" y="30" text-anchor="middle" fill="#3a2c10" font-family="Georgia" font-size="9.5">GALERIE</text><text x="29" y="44" text-anchor="middle" fill="#3a2c10" font-family="Georgia" font-size="8.5">MERIDIAN</text><text x="29" y="58" text-anchor="middle" fill="#3a2c10" font-family="Georgia" font-size="7">· sinds ... ·</text></g>`,'A bronze plaque')}
   ${hs('kapstok',`<g transform="translate(286,318)">${ao(40,300,52,10,.55)}<line x1="40" y1="0" x2="40" y2="292" stroke="url(#woodG)" stroke-width="10" stroke-linecap="round"/><path d="M6 30 Q40 16 74 30" stroke="url(#woodG)" stroke-width="7" fill="none" stroke-linecap="round"/><circle cx="6" cy="30" r="4.5" fill="url(#brassG)"/><circle cx="74" cy="30" r="4.5" fill="url(#brassG)"/><path d="M12 34 q-16 84 2 172 q16 12 34 2 q12 -88 -4 -174 q-16 -8 -32 0z" fill="#2c3a54"/><path d="M16 40 q-8 70 2 150" stroke="rgba(255,255,255,.10)" stroke-width="3" fill="none"/><path d="M56 34 q16 66 8 148 q14 8 26 0 q8 -78 -8 -148 q-12 -8 -26 0z" fill="#33402a"/></g>`,'The coat stand')}
   ${hs('sleepspoor',`<g transform="translate(1010,690)" opacity=".95"><path d="M0 66 Q150 42 310 20" stroke="#211809" stroke-opacity=".55" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M16 92 Q168 66 324 42" stroke="#211809" stroke-opacity=".55" stroke-width="12" fill="none" stroke-linecap="round"/><path d="M4 70 Q152 46 306 24" stroke="rgba(255,220,150,.14)" stroke-width="3" fill="none"/><rect x="-16" y="-2" width="366" height="118" fill="transparent"/></g>`,'Something in the wax of the floor')}
   <g class="emerg" pointer-events="none"><rect width="1600" height="900" fill="url(#emergRed)"/></g>
@@ -1909,7 +1917,7 @@ ROOMS.slaapkamer={naam:'BEDROOM',sector:'UPSTAIRS · SOUTH',dark:'normal',build(
   ${hs('juwelen',`<g transform="translate(300,536)"><rect x="-14" y="82" width="140" height="12" rx="5" fill="url(#woodG)"/><path d="M6 94 L10 148 M96 94 L92 148" stroke="#241a0e" stroke-width="8" stroke-linecap="round"/>${ao(58,86,64,9,.5)}<g filter="url(#dShadow)"><rect y="14" width="112" height="62" rx="9" fill="#5a3a4c"/><path d="M0 22 Q0 -2 24 -2 L88 -2 Q112 -2 112 22 L112 26 L0 26 Z" fill="#6e4a5e"/><path d="M6 10 Q56 -8 106 10" stroke="rgba(255,255,255,.2)" stroke-width="2.5" fill="none"/><rect x="48" y="20" width="16" height="10" rx="3" fill="url(#brassG)"/><circle cx="56" cy="25" r="2" fill="#fff0c4"/></g></g>`,'A jewellery box — untouched?')}
   ${dust(800,400,8)}
   ${door(1104,326,130,306,'badkamer','BATHROOM')}
-  ${door(26,326,130,306,'hal','STAIRS · HALL')}`;
+  ${door(26,326,130,306,'hal','TRAP · HAL')}`;
 }};
 
 ROOMS.badkamer={naam:'BATHROOM',sector:'UPSTAIRS · EAST',dark:'normal',build(){
@@ -1958,13 +1966,13 @@ ROOMS.kelder={naam:'CELLAR',sector:'UNDERGROUND',dark:'pitchUntilPower',build(){
   <g transform="translate(108,128)">
     ${[0,1,2,3,4,5,6].map(i=>`<g><path d="M${i*32} ${418-i*60} h${232-i*32} v-16 h-${232-i*32} z" fill="#3c3428"/><rect x="${i*32}" y="${400-i*60}" width="${232-i*32}" height="4" fill="rgba(255,255,255,.10)"/></g>`).join('')}
     <path d="M4 410 L212 46" stroke="#2c2418" stroke-width="10" stroke-linecap="round"/>
-    <g transform="translate(116,-38)"><rect x="-70" y="-14" width="140" height="26" rx="13" fill="rgba(10,15,26,.75)" stroke="rgba(127,231,255,.35)" stroke-width="1.2"/><text y="4" text-anchor="middle" fill="#bfe9ff" font-family="Courier New" font-size="12.5" letter-spacing="2.5">STAIRS ↑ HALL</text></g>
+    <g transform="translate(116,-38)"><rect x="-70" y="-14" width="140" height="26" rx="13" fill="rgba(10,15,26,.75)" stroke="rgba(127,231,255,.35)" stroke-width="1.2"/><text y="4" text-anchor="middle" fill="#bfe9ff" font-family="Courier New" font-size="12.5" letter-spacing="2.5">TRAP ↑ HAL</text></g>
   </g>
   <g class="doorspot doorBreath" data-door="hal"><rect x="90" y="66" width="280" height="120" fill="transparent" style="cursor:pointer"/></g>
   ${hs('trapbloed',`<g transform="translate(114,140)"><g fill="#6e1e1e" opacity=".95"><path d="M44 44 Q94 56 142 52 Q146 58 142 64 Q92 68 42 56 Q40 50 44 44Z"/><path d="M26 104 Q72 116 118 112 Q122 118 118 124 Q70 128 24 116 Q22 110 26 104Z"/><path d="M8 164 Q48 176 88 172 Q92 178 88 184 Q46 188 6 176 Q4 170 8 164Z"/><ellipse cx="36" cy="268" rx="30" ry="11"/><circle cx="76" cy="252" r="4"/><circle cx="16" cy="240" r="3"/></g><g fill="#8e2a26" opacity=".55"><ellipse cx="88" cy="52" rx="14" ry="4"/><ellipse cx="66" cy="112" rx="12" ry="4"/><ellipse cx="34" cy="264" rx="14" ry="4"/></g><rect x="-12" y="24" width="170" height="266" fill="transparent"/></g>`,'Dark marks on the treads')}
   ${hs('lichaam',`<g transform="translate(316,656)"><ellipse cx="140" cy="56" rx="180" ry="42" fill="#000" opacity=".22" filter="url(#fBlur10)"/><path d="M0 62 Q8 26 46 30 Q64 2 102 12 Q142 -8 178 12 Q222 4 240 32 Q272 36 268 62 Q262 88 226 84 L38 92 Q4 90 0 62Z" fill="none" stroke="#f2d84a" stroke-width="4" stroke-dasharray="12 8" opacity=".95" filter="url(#fGlowA)"/><g transform="translate(196,44)"><circle r="14" fill="#101622" stroke="#9fb4d7" stroke-width="2.5"/><line x1="0" y1="-14" x2="0" y2="-7" stroke="#9fb4d7" stroke-width="2.5"/><line x1="0" y1="0" x2="7" y2="4" stroke="#e8cf9a" stroke-width="2.5"/><line x1="0" y1="0" x2="0" y2="-8" stroke="#e8cf9a" stroke-width="2"/></g><g transform="translate(44,66)"><path d="M0 20 L10 0 L20 20 Z" fill="#f2d84a"/><text x="10" y="17" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="bold" fill="#221a04">1</text></g><g transform="translate(238,72)"><path d="M0 20 L10 0 L20 20 Z" fill="#f2d84a"/><text x="10" y="17" text-anchor="middle" font-family="Courier New" font-size="11" font-weight="bold" fill="#221a04">2</text></g></g>`,'Where the victim was found')}
   ${hs('ketel',`<g transform="translate(1146,282)" filter="url(#dShadow)">${ao(110,362,120,14,.55)}<rect width="220" height="344" rx="20" fill="url(#metalG)" stroke="#161c28" stroke-width="3"/><path d="M14 10 Q110 -2 206 10" stroke="rgba(255,255,255,.22)" stroke-width="4" fill="none"/><circle cx="110" cy="92" r="46" fill="#1c2230" stroke="#38414f" stroke-width="4"/><circle cx="110" cy="92" r="28" fill="#241408"/><path d="M96 104 Q102 74 110 88 Q116 72 124 104 Q112 114 96 104" fill="#e8862e" opacity="${power?'1':'.14'}"${power?' class="fireCore"':''}/><path d="M103 102 Q108 86 114 100 Q110 106 103 102" fill="#ffd166" opacity="${power?'1':'.1'}"/><g transform="translate(168,36)"><circle r="17" fill="#e6ddc6" stroke="#38414f" stroke-width="3"/><line x1="0" y1="0" x2="8" y2="-9" stroke="#a03028" stroke-width="2.5"/><circle r="2.5" fill="#38414f"/></g><rect x="28" y="168" width="164" height="20" rx="8" fill="#28303d"/><rect x="28" y="206" width="164" height="20" rx="8" fill="#28303d"/><rect x="30" y="170" width="160" height="4" rx="2" fill="rgba(255,255,255,.10)"/><path d="M-40 60 Q-56 60 -56 84 L-56 344" stroke="#6f4a2c" stroke-width="14" fill="none"/><path d="M-52 84 L-52 340" stroke="rgba(255,255,255,.14)" stroke-width="3"/><rect x="56" y="344" width="16" height="52" rx="6" fill="#38414f"/><rect x="148" y="344" width="16" height="52" rx="6" fill="#38414f"/></g>`,'The boiler — a hand will fit behind it')}
-  ${hs('zekeringkast',`<g transform="translate(742,244)" filter="url(#dShadow)"><rect width="156" height="206" rx="10" fill="url(#metalG)" stroke="#161c28" stroke-width="3"/><rect x="4" y="3" width="148" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="16" y="16" width="124" height="142" rx="5" fill="#161c28"/>${[0,1,2].map(r=>[0,1,2].map(c=>`<rect x="${30+c*36}" y="${28+r*40}" width="24" height="30" rx="4" fill="${power?'#2c3a2c':'#3a2c2c'}" stroke="#0e1218" stroke-width="1.5"/>`).join('')).join('')}<circle cx="78" cy="180" r="8" fill="${power?'#67f0a0':'#ff5b4a'}" filter="url(#${power?'fGlowC':'fGlowA'})"><animate attributeName="opacity" values="1;.3;1" dur="${power?'3':'1'}s" repeatCount="indefinite"/></circle><g transform="translate(78,-24)"><rect x="-72" y="-13" width="144" height="24" rx="12" fill="rgba(10,15,26,.75)" stroke="rgba(127,231,255,.3)" stroke-width="1"/><text y="4" text-anchor="middle" fill="#9fc6e0" font-family="Courier New" font-size="11.5" letter-spacing="2">FUSE BOX</text></g></g>`,'The fuse box')}
+  ${hs('zekeringkast',`<g transform="translate(742,244)" filter="url(#dShadow)"><rect width="156" height="206" rx="10" fill="url(#metalG)" stroke="#161c28" stroke-width="3"/><rect x="4" y="3" width="148" height="4" rx="2" fill="rgba(255,255,255,.2)"/><rect x="16" y="16" width="124" height="142" rx="5" fill="#161c28"/>${[0,1,2].map(r=>[0,1,2].map(c=>`<rect x="${30+c*36}" y="${28+r*40}" width="24" height="30" rx="4" fill="${power?'#2c3a2c':'#3a2c2c'}" stroke="#0e1218" stroke-width="1.5"/>`).join('')).join('')}<circle cx="78" cy="180" r="8" fill="${power?'#67f0a0':'#ff5b4a'}" filter="url(#${power?'fGlowC':'fGlowA'})"><animate attributeName="opacity" values="1;.3;1" dur="${power?'3':'1'}s" repeatCount="indefinite"/></circle><g transform="translate(78,-24)"><rect x="-72" y="-13" width="144" height="24" rx="12" fill="rgba(10,15,26,.75)" stroke="rgba(127,231,255,.3)" stroke-width="1"/><text y="4" text-anchor="middle" fill="#9fc6e0" font-family="Courier New" font-size="11.5" letter-spacing="2">GROEPENKAST</text></g></g>`,'The fuse box')}
   ${hs('kelderkast',`<g transform="translate(468,346)" filter="url(#dShadow)">${ao(92,316,100,13,.55)}<rect width="184" height="304" rx="7" fill="url(#woodG)" stroke="#17100a" stroke-width="3"/><rect x="5" y="4" width="174" height="4" rx="2" fill="rgba(255,255,255,.10)"/><rect x="12" y="14" width="78" height="278" rx="4" fill="#33261a"/><rect x="94" y="14" width="78" height="278" rx="4" fill="#2c2016"/><path d="M20 40 L70 40 M20 60 L58 60" stroke="rgba(0,0,0,.3)" stroke-width="3"/><circle cx="82" cy="152" r="5" fill="url(#brassG)"/><circle cx="104" cy="152" r="5" fill="url(#brassG)"/><path d="M96 20 L96 288" stroke="rgba(0,0,0,.4)" stroke-width="2"/></g>`,'An old work cupboard')}
   ${dust(700,420,8)}`;
 }};
@@ -1984,7 +1992,7 @@ ROOMS.garage={naam:'GARAGE',sector:'OUTBUILDING · DRIVE',dark:'normal',build(){
     <rect x="0" y="516" width="440" height="52" fill="url(#nightSky)"/>
     ${rainLines(0,516,440,52,10)}
     <ellipse cx="220" cy="568" rx="240" ry="16" fill="url(#coolLeak)"/>
-    <g transform="translate(220,-46)"><rect x="-158" y="-14" width="316" height="26" rx="13" fill="rgba(10,15,26,.75)" stroke="rgba(127,231,255,.35)" stroke-width="1.2"/><text y="4" text-anchor="middle" fill="#bfe9ff" font-family="Courier New" font-size="12.5" letter-spacing="2.5">GARAGE DOOR — AJAR</text></g>
+    <g transform="translate(220,-46)"><rect x="-158" y="-14" width="316" height="26" rx="13" fill="rgba(10,15,26,.75)" stroke="rgba(127,231,255,.35)" stroke-width="1.2"/><text y="4" text-anchor="middle" fill="#bfe9ff" font-family="Courier New" font-size="12.5" letter-spacing="2.5">GARAGEDEUR — OP EEN KIER</text></g>
   </g>
   <g transform="translate(128,352)" filter="url(#dShadow)">
     ${ao(190,178,230,22,.6)}
@@ -2002,7 +2010,7 @@ ROOMS.garage={naam:'GARAGE',sector:'OUTBUILDING · DRIVE',dark:'normal',build(){
   ${hs('familieauto',`<g transform="translate(128,332)"><rect x="-12" y="-6" width="392" height="212" fill="transparent"/></g>`,'The family car — tyres, plate, dust')}
   ${hs('prullenbak',`<g transform="translate(688,460)" filter="url(#dShadow)">${ao(58,186,66,10,.55)}<path d="M10 4 Q58 -4 106 4 L96 172 Q58 182 20 172 Z" fill="#3c4656"/><path d="M14 8 Q58 0 102 8" stroke="rgba(255,255,255,.2)" stroke-width="3" fill="none"/><path d="M22 40 L94 40 M20 76 L94 76 M18 112 L92 112" stroke="#2a3240" stroke-width="4"/><rect x="-6" y="-14" width="128" height="16" rx="8" fill="url(#metalG)"/><path d="M28 -32 Q56 -50 84 -30 Q92 -18 78 -14 L34 -12 Q22 -20 28 -32 Z" fill="#e6ddc6"/><path d="M34 -28 Q56 -40 78 -26" stroke="rgba(0,0,0,.14)" stroke-width="2.5" fill="none"/></g>`,'A bin — paper sticking out of it')}
   ${hs('werkbank',`<g transform="translate(506,310)" filter="url(#dShadow)"><g transform="translate(20,-118)"><rect width="330" height="104" rx="6" fill="#2c3444" stroke="#1c222e" stroke-width="2"/>${[0,1,2,3,4,5,6].map(c=>[0,1,2].map(r=>`<circle cx="${24+c*48}" cy="${20+r*34}" r="2.5" fill="#1a2030"/>`).join('')).join('')}<g stroke="#8a94a4" stroke-width="4" stroke-linecap="round"><path d="M40 22 L40 62 M32 26 Q40 14 48 26"/><path d="M110 20 L110 58"/><circle cx="110" cy="66" r="8" fill="none"/><path d="M182 24 L206 24 L206 60 M194 24 L194 44"/><path d="M270 18 Q286 30 270 44 Q254 58 270 70" fill="none"/></g></g>${ao(190,168,200,16,.55)}<rect width="374" height="26" rx="6" fill="url(#woodG)"/><rect x="4" y="3" width="366" height="4" rx="2" fill="rgba(255,255,255,.16)"/><path d="M22 26 L24 148 M350 26 L348 148" stroke="#241a0e" stroke-width="12" stroke-linecap="round"/><path d="M22 92 L352 92" stroke="#241a0e" stroke-width="7"/><g transform="translate(36,-40)"><rect width="62" height="40" rx="6" fill="url(#metalG)"/><rect x="4" y="4" width="54" height="5" rx="2.5" fill="rgba(255,255,255,.2)"/><circle cx="18" cy="24" r="5" fill="#ff5b4a" opacity=".8"/></g><g transform="translate(120,-24)"><rect width="94" height="24" rx="5" fill="#3c4656"/><rect x="4" y="3" width="86" height="4" rx="2" fill="rgba(255,255,255,.14)"/></g></g>`,'The workbench')}
-  ${hs('bandenspoorSpot',`<g transform="translate(1130,690)"><g fill="#171d28" opacity=".95"><path d="M0 30 Q170 -6 340 -30 L340 -6 Q170 18 0 54 Z"/><path d="M0 96 Q170 60 340 36 L340 60 Q170 84 0 120 Z"/></g><g fill="#3a4a60" opacity=".7">${[...Array(11)].map((_,i)=>`<rect x="${i*30}" y="${30-i*5.4}" width="14" height="20" rx="3" transform="rotate(-9 ${i*30} ${30-i*5.4})"/><rect x="${i*30}" y="${96-i*5.4}" width="14" height="20" rx="3" transform="rotate(-9 ${i*30} ${96-i*5.4})"/>`).join('')}</g><path d="M4 40 Q170 6 336 -18" stroke="rgba(159,216,255,.20)" stroke-width="3" fill="none"/><rect x="-10" y="-34" width="366" height="168" fill="transparent"/></g>`,'Tracks on the wet drive')}
+  ${hs('bandenspoorSpot',`<g transform="translate(1130,690)"><g fill="#171d28" opacity=".95"><path d="M0 30 Q170 -6 340 -30 L340 -6 Q170 18 0 54 Z"/><path d="M0 96 Q170 60 340 36 L340 60 Q170 84 0 120 Z"/></g><g fill="#3a4a60" opacity=".7">${[...Array(11)].map((_,i)=>`<rect x="${i*30}" y="${30-i*5.4}" width="14" height="20" rx="3" transform="rotate(-9 ${i*30} ${30-i*5.4})"/><rect x="${i*30}" y="${96-i*5.4}" width="14" height="20" rx="3" transform="rotate(-9 ${i*30} ${96-i*5.4})"/>`).join('')}</g><path d="M4 40 Q170 6 336 -18" stroke="rgba(159,216,255,.20)" stroke-width="3" fill="none"/><rect x="-10" y="-34" width="366" height="168" fill="transparent"/></g>`,'Sporen op de natte oprit')}
   <ellipse cx="560" cy="770" rx="90" ry="18" fill="#141018" opacity=".7"/><ellipse cx="560" cy="770" rx="90" ry="18" fill="url(#glassG)" opacity=".14"/>
   ${dust(600,380,8)}
   ${door(36,318,138,306,'tuin','GARDEN')}`;
@@ -2027,7 +2035,7 @@ ROOMS.tuin={naam:'GARDEN',sector:'OUTSIDE · REAR',dark:'normal',build(){
     <path d="M-30 44 L280 -20 L590 44 L580 62 L280 2 L-20 62 Z" fill="#1c2740"/>
     <g opacity=".3" stroke="rgba(255,255,255,.4)" stroke-width="1">${[0,1,2,3,4,5,6,7,8].map(i=>`<line x1="${-8+i*72}" y1="${70+(i%2)*4}" x2="${-8+i*72}" y2="340"/>`).join('')}</g>
     <g transform="translate(62,110)"><rect x="-10" y="-10" width="170" height="200" rx="6" fill="url(#frameG)"/><rect width="150" height="180" fill="#0e1626"/><rect x="7" y="7" width="136" height="166" fill="#3a2f14"/><ellipse cx="75" cy="90" rx="100" ry="80" fill="url(#lampGlow)" class="flicker"/><g fill="#141a26"><rect x="30" y="66" width="34" height="60" rx="4"/><path d="M96 70 q14 -20 22 0 l-2 56 l-18 0 z"/></g><line x1="75" y1="7" x2="75" y2="173" stroke="url(#frameG)" stroke-width="6"/><ellipse cx="75" cy="196" rx="110" ry="16" fill="url(#lampGlow)" opacity=".5"/></g>
-    <g transform="translate(132,66)"><rect x="-64" y="-13" width="128" height="24" rx="12" fill="rgba(10,15,26,.78)" stroke="rgba(255,209,102,.4)" stroke-width="1.2"/><text y="4" text-anchor="middle" fill="#ffd98f" font-family="Courier New" font-size="11.5" letter-spacing="2">STUDY WINDOW</text></g>
+    <g transform="translate(132,66)"><rect x="-64" y="-13" width="128" height="24" rx="12" fill="rgba(10,15,26,.78)" stroke="rgba(255,209,102,.4)" stroke-width="1.2"/><text y="4" text-anchor="middle" fill="#ffd98f" font-family="Courier New" font-size="11.5" letter-spacing="2">RAAM KANTOOR</text></g>
     <g transform="translate(340,110)"><rect x="-10" y="-10" width="170" height="200" rx="6" fill="url(#frameG)"/><rect width="150" height="180" fill="#101a2c"/><rect x="7" y="7" width="136" height="166" fill="#142034"/><path d="M14 160 L110 24 L124 24 L30 160 Z" fill="rgba(255,255,255,.05)"/><line x1="75" y1="7" x2="75" y2="173" stroke="url(#frameG)" stroke-width="6"/></g>
   </g>
   ${hs('kantoorraam',`<g transform="translate(582,382)"><rect width="150" height="180" fill="transparent"/></g>`,'The study window, from outside')}
@@ -2047,13 +2055,13 @@ ROOMS.tuin={naam:'GARDEN',sector:'OUTSIDE · REAR',dark:'normal',build(){
 const MAP_LAYOUT=[
   {id:'tuin',      x:20,  y:20,  w:400, h:150, label:'GARDEN'},
   {id:'garage',    x:440, y:20,  w:190, h:150, label:'GARAGE'},
-  {id:'slaapkamer',x:650, y:20,  w:190, h:150, label:'BEDROOM ↑'},
+  {id:'slaapkamer',x:650, y:20,  w:190, h:150, label:'SLAAPKAMER ↑'},
   {id:'keuken',    x:20,  y:190, w:250, h:150, label:'KITCHEN'},
   {id:'kantoor',   x:290, y:190, w:250, h:150, label:'STUDY'},
-  {id:'badkamer',  x:650, y:190, w:190, h:150, label:'BATHROOM ↑'},
+  {id:'badkamer',  x:650, y:190, w:190, h:150, label:'BADKAMER ↑'},
   {id:'woonkamer', x:20,  y:360, w:250, h:140, label:'SITTING ROOM'},
-  {id:'hal',       x:290, y:360, w:250, h:140, label:'HALL'},
-  {id:'kelder',    x:560, y:360, w:280, h:140, label:'CELLAR ↓'}
+  {id:'hal',       x:290, y:360, w:250, h:140, label:'HAL'},
+  {id:'kelder',    x:560, y:360, w:280, h:140, label:'KELDER ↓'}
 ];
 const ROOM_EV={
   hal:['plaquette','sleepspoor'],woonkamer:['smsjes','voicemail'],keuken:['wijnglazen','agenda'],
@@ -2073,7 +2081,7 @@ function renderMap(){
       <text class="mcount" x="${r.x+16}" y="${r.y+r.h-16}">${left>0?left+' SPOOR'+(left>1?'EN':'')+' ONGEVONDEN':'DOORZOCHT'}</text>
     </g>`;
   });
-  s+=`<text x="430" y="500" text-anchor="middle" fill="#4a5266" font-family="Courier New" font-size="10" letter-spacing="4">CLICK A ROOM TO GO THERE</text>`;
+  s+=`<text x="430" y="500" text-anchor="middle" fill="#4a5266" font-family="Courier New" font-size="10" letter-spacing="4">KLIK EEN RUIMTE OM ERHEEN TE GAAN</text>`;
   svg.innerHTML=s;
   svg.querySelectorAll('.mroom').forEach(el=>el.addEventListener('click',()=>{closeMap();gotoRoom(el.dataset.room);}));
 }
@@ -2091,7 +2099,7 @@ function toast(html,kind){
 function advanceClock(min){
   S.gameMin+=min;
   const total=3*60+12+S.gameMin, h=Math.floor(total/60)%24, m=total%60;
-  $('clock').textContent='SUNDAY · '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+  $('clock').textContent='ZONDAG · '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
 }
 function addNote(key,text){
   if(S.noteKeys.has(key))return;
@@ -2099,7 +2107,7 @@ function addNote(key,text){
   const total=3*60+12+S.gameMin, h=Math.floor(total/60)%24, m=total%60;
   S.notes.push({t:String(h).padStart(2,'0')+':'+String(m).padStart(2,'0'),b:text});
   sfx(SFX.NOTEBOOK); renderNotes();
-  toast('NOTED — see notebook','note');
+  toast('GENOTEERD — zie notitieboek','note');
   advanceClock(2);
 }
 function renderNotes(){
@@ -2128,7 +2136,7 @@ function updateGameHud(){
   if($('hudCore')){$('hudCore').textContent=core+'/3'; $('hudCoreBar').style.width=safePct(core,3)+'%';}
   if($('hudRooms')){$('hudRooms').textContent=rooms+'/9'; $('hudRoomsBar').style.width=safePct(rooms,9)+'%';}
   const unlocked=!$('btnAccuse')?.classList.contains('locked');
-  if($('hudStatus')) $('hudStatus').textContent=unlocked?'CHARGE OPEN':'CHARGE LOCKED';
+  if($('hudStatus')) $('hudStatus').textContent=unlocked?'AANKLACHT OPEN':'AANKLACHT DICHT';
   $('stepRooms')?.classList.toggle('done',rooms>=5);
   $('stepEvidence')?.classList.toggle('done',ev>=10);
   $('stepPuzzle')?.classList.toggle('done',puzzles>=2);
@@ -2142,7 +2150,7 @@ function updateGameHud(){
 }
 function showReward(label){
   const r=$('rewardStamp'); if(!r)return;
-  r.innerHTML=(label||'EVIDENCE<br>SECURED');
+  r.innerHTML=(label||'BEWIJS<br>VEILIGGESTELD');
   r.classList.remove('rewardShow'); void r.offsetWidth; r.classList.add('rewardShow');
   if(navigator.vibrate) try{navigator.vibrate([30,40,25]);}catch(e){}
 }
@@ -2172,8 +2180,8 @@ function checkAccuseUnlock(){
     const btn=$('btnAccuse');
     if(btn.classList.contains('locked')){
       btn.classList.remove('locked');
-      toast('<b>THE FILE IS STRONG ENOUGH.</b><br>The charge is available — if you have the nerve.');
-      sfx(SFX.STAMP); showReward('CHARGE<br>OPEN');
+      toast('<b>HET DOSSIER IS ZWAAR GENOEG.</b><br>The charge is available — if you have the nerve.');
+      sfx(SFX.STAMP); showReward('AANKLACHT<br>OPEN');
     }
   }
   updateGameHud();
@@ -2236,12 +2244,12 @@ function renderSuspects(){
       <div class="head"><div class="portrait">${susArt(id)}</div>
         <div><div class="sn">${s.naam}</div><div class="sr">${s.rol}</div><div class="sa">${s.basis}</div></div></div>
       <div class="details"><div class="inner">
-        <div class="dossierRow"><div class="dl">BEHAVIOUR</div><div class="dv">${s.persoonlijkheid}</div></div>
+        <div class="dossierRow"><div class="dl">GEDRAG</div><div class="dv">${s.persoonlijkheid}</div></div>
         <div class="dossierRow"><div class="dl">ALIBI</div><div class="dv">${s.alibi}</div></div>
         ${rows(s.motief,'','MOTIEF')}
         ${rows(s.geheimen,'secret','GEHEIM')}
         ${rows(s.contradicties,'contra','TEGENSTRIJDIGHEID')}
-        ${lockedCount?`<div class="dossierRow"><div class="dl">UNKNOWN</div><div class="dv locked">${lockedCount} detail${lockedCount>1?'s':''} still obscured. Keep searching.</div></div>`:''}
+        ${lockedCount?`<div class="dossierRow"><div class="dl">ONBEKEND</div><div class="dv locked">Nog ${lockedCount} element${lockedCount>1?'en':''} in nevelen gehuld. Blijf zoeken.</div></div>`:''}
       </div></div>
     </div>`;
   }).join('');
@@ -2346,7 +2354,7 @@ function inspectEvidence(id){
   const cfg={title:e.n,cat:e.c,art:evArt(id),desc:e.long||e.d,actions:[]};
   if(id==='dreigbrief'&&S.flags.letterDone)cfg.desc=e.doneLong;
   if(e.uv&&S.flags.uvReady){
-    cfg.actions.push({label:'EXAMINE UNDER UV LIGHT',uv:true,fn:()=>{
+    cfg.actions.push({label:'BEKIJK ONDER UV-LICHT',uv:true,fn:()=>{
       sfx(SFX.UVCLICK);
       openInspect({...cfg,uvview:true,uvtext:e.uv,actions:[]});
       if(id==='beeldje')addNote('uvbeeldje','The statuette is the weapon. Blood in the engraving, and the base fits the dust outline on the study shelf exactly.');
@@ -2370,12 +2378,12 @@ ACTIONS.plaquette=()=>{
     actions:[{label:'SECURE IT',primary:true,fn:()=>{collect('plaquette');closeInspect();}}]});
 };
 ACTIONS.kapstok=()=>{
-  openInspect({title:'The coat stand',cat:'HALL',art:`<line x1="50" y1="10" x2="50" y2="90" stroke="#241c10" stroke-width="6"/><line x1="26" y1="24" x2="74" y2="24" stroke="#241c10" stroke-width="4"/><path d="M32 27 q-8 30 2 52 l12 0 q6 -30 0 -52z" fill="#1a2233"/><path d="M58 27 q8 24 4 44 l10 0 q2 -26 -4 -44z" fill="#252c1e"/>`,
+  openInspect({title:'The coat stand',cat:'HAL',art:`<line x1="50" y1="10" x2="50" y2="90" stroke="#241c10" stroke-width="6"/><line x1="26" y1="24" x2="74" y2="24" stroke="#241c10" stroke-width="4"/><path d="M32 27 q-8 30 2 52 l12 0 q6 -30 0 -52z" fill="#1a2233"/><path d="M58 27 q8 24 4 44 l10 0 q2 -26 -4 -44z" fill="#252c1e"/>`,
     desc:'Two coats of Elias\'s, a raincoat of Marion\'s. All bone dry.',
     detail:'It has poured since ten o\'clock last night. Nobody in this household has been outside since — or somebody left and never came back. In the inside pocket of Elias\'s jacket: a small key.',
     actions:[{label:'TAKE THE KEY',primary:true,fn:()=>{
       S.flags.deskKey=true; sfx(SFX.DRAWER);
-      addNote('sleutel','A small key from Elias\'s jacket. Too small for a door. A drawer, perhaps. Or a box.');
+      addNote('sleutel','Een klein sleuteltje uit Elias\' colbert. Te klein voor een deur. Een la, misschien. Of een kistje.');
       closeInspect();
     }}]});
 };
@@ -2391,7 +2399,7 @@ ACTIONS.salontafel=()=>{
   openInspect({title:'Marion\'s telephone',cat:'SITTING ROOM · LOCKED',art:evArt('smsjes'),
     desc:'The handset wants a four-digit code. Three attempts seems wise — after that these things wipe themselves, in films at any rate.',
     detail:'People choose codes they cannot forget. Birthdays. Wedding days.',
-    puzzle:`<div class="puzzleZone"><div class="pt">PASSCODE</div>
+    puzzle:`<div class="puzzleZone"><div class="pt">TOEGANGSCODE</div>
       <div class="pinRow">${[0,1,2,3].map(i=>`<div class="pinDot" id="pin${i}"></div>`).join('')}</div>
       <div class="keypad">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(k=>k===''?'<span></span>':`<button data-k="${k}">${k}</button>`).join('')}</div>
       <div class="feedback" id="pinFb"></div></div>`,
@@ -2404,11 +2412,11 @@ ACTIONS.salontafel=()=>{
         if(buf.length===4){
           if(buf==='1206'){
             sfx(SFX.PUZZLE); S.flags.phoneOpen=true;
-            document.getElementById('pinFb').textContent='UNLOCKED';
+            document.getElementById('pinFb').textContent='ONTGRENDELD';
             document.getElementById('pinFb').classList.add('ok');
             setTimeout(()=>{collect('smsjes');inspectEvidence('smsjes');},700);
           }else{
-            document.getElementById('pinFb').textContent='INCORRECT CODE';
+            document.getElementById('pinFb').textContent='ONJUISTE CODE';
             buf=''; setTimeout(()=>{for(let i=0;i<4;i++)document.getElementById('pin'+i).classList.remove('fill');},450);
           }
         }
@@ -2418,7 +2426,7 @@ ACTIONS.salontafel=()=>{
 ACTIONS.vastelijn=()=>{
   openInspect({title:'Landline — answering machine',cat:'SITTING ROOM',art:evArt('voicemail'),
     desc:'One new message. The red light has been blinking since last night.',
-    doc:'[ MESSAGE · SATURDAY 22:31 · CALLER ID: R. KESSLER ]\n\n"Elias. Pick up. You cannot just throw away thirty years\nover... [silence] ...I am coming over now.\nWe settle this tonight. Tonight, Elias."\n\n[ END OF MESSAGE ]',
+    doc:'[ BERICHT · ZATERDAG 22:31 · NUMMERHERKENNING: R. KESSLER ]\n\n"Elias. Neem óp. Je kunt dertig jaar niet zomaar\nweggooien om... [stilte] ...Ik kom er nu aan.\nWe lossen dit vanavond op. Vanavond, Elias."\n\n[ EINDE BERICHT ]',
     actions:[{label:'SECURE THE TRANSCRIPT',primary:true,fn:()=>{collect('voicemail');closeInspect();}}]});
 };
 ACTIONS.familiefoto=()=>{
@@ -2437,7 +2445,7 @@ ACTIONS.boekenkast=()=>{
   openInspect({title:'The bookcase',cat:'SITTING ROOM',art:`<rect x="20" y="14" width="60" height="72" fill="#2b2216"/><g>${[0,1,2].map(r=>[0,1,2,3].map(b=>`<rect x="${26+b*13}" y="${20+r*23}" width="10" height="18" fill="${['#2c3547','#3a2b24','#24322a'][(r+b)%3]}"/>`).join('')).join('')}</g>`,
     desc:'Art history, auction catalogues, monographs. One book lies flat: "The False Masterpiece — on forgery and longing".',
     detail:'Full of pencil lines in the margin. Beside the chapter on ageing paper, one word, heavily underlined: "certificates?"',
-    actions:[{label:'NOTE THE OBSERVATION',fn:()=>{addNote('boek','Elias was reading about art forgery and scribbled "certificates?" in the margin. He suspected something — and was looking for proof.');closeInspect();}}]});
+    actions:[{label:'NOTE THE OBSERVATION',fn:()=>{addNote('boek','Elias las over kunstvervalsing en krabbelde "certificaten?" in the margin. He suspected something — and was looking for proof.');closeInspect();}}]});
 };
 
 /* ---- KEUKEN ---- */
@@ -2449,7 +2457,7 @@ ACTIONS.wijnglazen=()=>{
 ACTIONS.kalender=()=>{
   openInspect({title:'Kitchen calendar',cat:'KITCHEN',art:evArt('agenda'),
     desc:'June. Birthdays, the dentist, "M. tennis". And then, Monday:',
-    doc:'MONDAY 09:00\nSOLICITOR DANFORTH — WILL\n(underlined twice, heavily)',
+    doc:'MAANDAG 09:00\nNOTARIS V. DAM — TESTAMENT\n(onderstreept, twee keer, met kracht)',
     actions:[{label:'PHOTOGRAPH & SECURE',primary:true,fn:()=>{collect('agenda');closeInspect();}}]});
 };
 ACTIONS.keukenla=()=>{
@@ -2460,7 +2468,7 @@ ACTIONS.keukenla=()=>{
     actions:[{label:'TAKE THE BATTERIES',primary:true,fn:()=>{
       S.flags.batteries=true;
       addNote('batterijen','Two fresh batteries from the kitchen drawer. You never know what you will need them for.');
-      if(S.flags.uvLamp&&!S.flags.uvReady){S.flags.uvReady=true;$('btnUV').classList.remove('locked');toast('<b>THE UV LAMP WORKS.</b> Switch it on from the toolbar.','uv');sfx(SFX.UVCLICK);showReward('UV LAMP<br>ACTIVE');updateGameHud();showReward('UV LAMP<br>ACTIVE');updateGameHud();}
+      if(S.flags.uvLamp&&!S.flags.uvReady){S.flags.uvReady=true;$('btnUV').classList.remove('locked');toast('<b>DE UV-LAMP WERKT.</b> Schakel hem in via de werkbalk.','uv');sfx(SFX.UVCLICK);showReward('UV-LAMP<br>ACTIEF');updateGameHud();showReward('UV-LAMP<br>ACTIEF');updateGameHud();}
       closeInspect();
     }}]});
 };
@@ -2487,7 +2495,7 @@ ACTIONS.grootboekspot=()=>{
   S.flags.ledgerRead=true;
   openInspect({title:'Meridian Gallery ledger',cat:'STUDY',art:evArt('grootboek'),
     desc:EVIDENCE.grootboek.long,
-    doc:'at the back, in pencil, hurriedly:\n\n"safe = month of the first opening\n + the year it all began"',hand:true,
+    doc:'achterin, potlood, haastig:\n\n"kluis = maand van de eerste opening\n + het jaar waarin alles begon"',hand:true,
     actions:[{label:'SECURE IT',primary:true,fn:()=>{collect('grootboek');closeInspect();}}]});
 };
 ACTIONS.dossierkast=()=>{
@@ -2516,9 +2524,9 @@ ACTIONS.schilderij=()=>{
   openInspect({title:'Behind the painting',cat:'STUDY · WALL SAFE',art:`<rect x="24" y="24" width="52" height="52" rx="6" fill="#39424f" stroke="#12161e" stroke-width="3"/><circle cx="50" cy="50" r="14" fill="#1a2233" stroke="#67718a" stroke-width="2"/><circle cx="50" cy="50" r="3" fill="#67718a"/>`,
     desc:'The painting swings aside like a little door. Behind it: a steel wall safe with six number wheels.',
     detail:'Six digits. No scratches, no signs of forcing. Whoever opened it knew the code.',
-    puzzle:`<div class="puzzleZone"><div class="pt">COMBINATION LOCK — SIX DIALS</div>
+    puzzle:`<div class="puzzleZone"><div class="pt">CIJFERSLOT — ZES WIELEN</div>
       <div class="dialRow">${[0,1,2,3,4,5].map(i=>`<div class="dial"><button class="up" data-d="${i}">▲</button><div class="num" id="dial${i}">0</div><button class="dn" data-d="${i}">▼</button></div>`).join('')}</div>
-      <button class="tryBtn" id="safeTry">TURN THE HANDLE</button>
+      <button class="tryBtn" id="safeTry">DRAAI DE HENDEL</button>
       <div class="feedback" id="safeFb"></div></div>`,
     onOpen:()=>{
       const vals=[0,0,0,0,0,0];
@@ -2528,12 +2536,12 @@ ACTIONS.schilderij=()=>{
       document.getElementById('safeTry').addEventListener('click',()=>{
         if(vals.join('')==='031998'){
           sfx(SFX.PUZZLE); S.flags.safeOpen=true;
-          document.getElementById('safeFb').textContent='THE MECHANISM GIVES.';
+          document.getElementById('safeFb').textContent='HET MECHANIEK GEEFT MEE.';
           document.getElementById('safeFb').classList.add('ok');
           addNote('kluis','Month of the first opening + the year it all began: 03-1998. The safe is open.');
           setTimeout(openSafeContents,800);
         }else{
-          document.getElementById('safeFb').textContent='THE HANDLE WILL NOT MOVE.';
+          document.getElementById('safeFb').textContent='DE HENDEL BLOKKEERT.';
           sfx(SFX.SAFE);
         }
       });
@@ -2567,7 +2575,7 @@ ACTIONS.nachtkastje=()=>{
   sfx(SFX.DRAWER);
   openInspect({title:'The bedside table',cat:'BEDROOM',art:evArt('dagboek'),
     desc:'Hand cream, earplugs, reading glasses. And under a magazine, half hidden: a diary with a ribbon.',
-    doc:'Saturday afternoon —\n\nHe knows something. He looks at me differently.\nThis morning he said: "On Monday everything changes,\nfor everyone who thought they could deceive me."\n\nEveryone. Plural. Who else?',hand:true,
+    doc:'zaterdag, \'s middags —\n\nHij weet iets. Hij kijkt anders naar me.\nVanochtend zei hij: "maandag verandert alles,\nvoor iedereen die dacht mij te kunnen bedriegen."\n\nIedereen. Meervoud. Wie nog meer?',hand:true,
     actions:[{label:'SECURE THE DIARY',primary:true,fn:()=>{collect('dagboek');closeInspect();}}]});
 };
 ACTIONS.kledingkast=()=>{
@@ -2594,7 +2602,7 @@ ACTIONS.wasmand=()=>{
   openInspect({title:'The laundry basket',cat:'BATHROOM',art:`<path d="M30 24 h40 l-6 54 h-28z" fill="#3a3124"/><path d="M36 38 h28 M35 50 h30 M34 62 h30" stroke="#241c10" stroke-width="2"/>`,
     desc:'Shirts, sports clothes. On top, a towel: damp, with pale bleach marks.',
     detail:'Bleach marks. Who was scrubbing with bleach here last night, and why leave it on top of the basket? Haste. No time to remove the traces of removing traces.',
-    actions:[{label:'NOTE THE OBSERVATION',fn:()=>{addNote('wasmand','A towel with fresh bleach marks lies on top of the laundry basket. Somebody cleaned in a hurry last night — and tidied up carelessly.');closeInspect();}}]});
+    actions:[{label:'NOTE THE OBSERVATION',fn:()=>{addNote('wasmand','Handdoek met verse chloorvlekken bovenop de wasmand. Er is gisteravond haastig schoongemaakt — en slordig opgeruimd.');closeInspect();}}]});
 };
 ACTIONS.spiegelkast=()=>{
   openInspect({title:'The mirror cabinet',cat:'BATHROOM',art:`<rect x="22" y="26" width="56" height="44" rx="4" fill="#39424f"/><rect x="27" y="31" width="21" height="34" fill="#1a2436"/><rect x="52" y="31" width="21" height="34" fill="#16202f"/><rect x="30" y="76" width="40" height="10" rx="3" fill="#e8e2d0"/>`,
@@ -2608,10 +2616,10 @@ ACTIONS.zekeringkast=()=>{
   if(S.flags.power){toast('The power is back on.');return;}
   openInspect({title:'The fuse box',cat:'CELLAR',art:`<rect x="26" y="20" width="48" height="60" rx="4" fill="#39424f"/><rect x="32" y="26" width="36" height="40" fill="#12161e"/><circle cx="50" cy="74" r="4" fill="#8a2020"/>`,
     desc:'The main switch is down. On the inside of the little door, in faded marker:',
-    doc:'WARNING — CIRCUITS 3 AND 5 FAULTY\nDO NOT SWITCH ON (SHORT CIRCUIT!)\nSwitch on the good circuits first, then MAIN.',
-    puzzle:`<div class="puzzleZone"><div class="pt">RESTORE POWER</div>
-      <div class="fuseGrid">${[1,2,3,4,5,6].map(i=>`<div class="fuse" data-f="${i}"><div class="fl">CIRCUIT ${i}</div><div class="sw"></div></div>`).join('')}</div>
-      <button class="tryBtn" id="mainSwitch">MAIN SWITCH</button>
+    doc:'LET OP — GROEP 3 EN GROEP 5 DEFECT\nNIET INSCHAKELEN (kortsluiting!)\nEerst de goede groepen, dan pas HOOFD.',
+    puzzle:`<div class="puzzleZone"><div class="pt">HERSTEL DE STROOM</div>
+      <div class="fuseGrid">${[1,2,3,4,5,6].map(i=>`<div class="fuse" data-f="${i}"><div class="fl">GROEP ${i}</div><div class="sw"></div></div>`).join('')}</div>
+      <button class="tryBtn" id="mainSwitch">HOOFDSCHAKELAAR</button>
       <div class="feedback" id="fuseFb"></div></div>`,
     onOpen:()=>{
       const on=new Set();
@@ -2623,18 +2631,18 @@ ACTIONS.zekeringkast=()=>{
       document.getElementById('mainSwitch').addEventListener('click',()=>{
         const fb=document.getElementById('fuseFb');
         if(on.has(3)||on.has(5)){
-          fb.textContent='BANG — SHORT CIRCUIT. EVERYTHING TRIPS.';
+          fb.textContent='KNAL — KORTSLUITING. ALLES SPRINGT ERUIT.';
           fb.classList.remove('ok');
           on.clear();document.querySelectorAll('.fuse').forEach(f=>f.classList.remove('on'));
           sfx(SFX.THUNDER);
         }else if([1,2,4,6].every(i=>on.has(i))){
           S.flags.power=true; sfx(SFX.PUZZLE);
-          fb.textContent='THE FLUORESCENT LIGHTS FLICKER ON.';
+          fb.textContent='DE TL-BUIZEN KNIPPEREN AAN.';
           fb.classList.add('ok');
-          addNote('stroom','Power restored in the cellar. Only now can I see what happened here.');
+          addNote('stroom','Stroom hersteld in de kelder. Nu zie ik pas wat hier gebeurd is.');
           setTimeout(()=>{closeInspect();gotoRoom('kelder');},900);
         }else{
-          fb.textContent='NOTHING HAPPENS. NOT ENOUGH CIRCUITS ARE ON.';
+          fb.textContent='ER GEBEURT NIETS. NIET GENOEG GROEPEN ACTIEF.';
           fb.classList.remove('ok');
         }
       });
@@ -2657,7 +2665,7 @@ ACTIONS.trapbloed=()=>{
     actions:[{label:'PHOTOGRAPH & SECURE',primary:true,fn:()=>{collect('bloedtrap');closeInspect();}}]});
 };
 ACTIONS.ketel=()=>{
-  if(S.found.has('beeldje')){toast('There is nothing else behind the boiler.');return;}
+  if(S.found.has('beeldje')){toast('Achter de ketel is niets meer te vinden.');return;}
   openInspect({title:'Behind the boiler',cat:'CELLAR',art:evArt('beeldje'),
     desc:'You shine the torch into the gap between boiler and wall. Cobwebs, dust — and something that glints. You fish it out: a bronze statuette. "GALLERIST OF THE YEAR 2019".',
     detail:'Heavy. A base of twelve centimetres. Thoroughly wiped — too thoroughly, for something that just happens to be lying behind a boiler.',
@@ -2672,7 +2680,7 @@ ACTIONS.kelderkast=()=>{
     actions:[{label:'TAKE THE UV LAMP',primary:true,fn:()=>{
       S.flags.uvLamp=true;
       addNote('uvlamp','A professional UV lamp in the cellar cupboard — with no batteries. Elias was already gathering evidence himself, I suspect. Find batteries.');
-      if(S.flags.batteries&&!S.flags.uvReady){S.flags.uvReady=true;$('btnUV').classList.remove('locked');toast('<b>THE UV LAMP WORKS.</b> Switch it on from the toolbar.','uv');sfx(SFX.UVCLICK);showReward('UV LAMP<br>ACTIVE');updateGameHud();showReward('UV LAMP<br>ACTIVE');updateGameHud();}
+      if(S.flags.batteries&&!S.flags.uvReady){S.flags.uvReady=true;$('btnUV').classList.remove('locked');toast('<b>DE UV-LAMP WERKT.</b> Schakel hem in via de werkbalk.','uv');sfx(SFX.UVCLICK);showReward('UV-LAMP<br>ACTIEF');updateGameHud();showReward('UV-LAMP<br>ACTIEF');updateGameHud();}
       closeInspect();
     }}]});
 };
@@ -2701,14 +2709,14 @@ ACTIONS.prullenbak=()=>{
     'If you go to the police',
     'on Monday,',
     'you lose everything. Thirty years.',
-    'Everything we built together.',
-    'Think, Elias. I will not',
+    'Alles wat wij samen hebben opgebouwd.',
+    'Denk na, Elias. Ik smeek je',
     'beg you twice. — R.'
   ];
   const order=[3,0,5,2,4,1];
   openInspect({title:'Torn letter',cat:'GARAGE · BIN',art:evArt('dreigbrief'),
     desc:'Six scraps, heavy cream paper, torn with force. The handwriting is agitated but practised. Put the lines back in order.',
-    puzzle:`<div class="puzzleZone"><div class="pt">RECONSTRUCT — CLICK A SCRAP, THEN A SLOT</div>
+    puzzle:`<div class="puzzleZone"><div class="pt">RECONSTRUEER — KLIK EEN SNIPPER, DAN EEN VAK</div>
       <div class="fragSlots">${[0,1,2,3,4,5].map(i=>`<div class="fragSlot" data-s="${i}"><span class="slotNum">${i+1}</span></div>`).join('')}</div>
       <div class="fragPool" id="fragPool">${order.map(fi=>`<div class="frag" data-f="${fi}" style="--r:${(Math.random()*6-3).toFixed(1)}deg">${FRAGS[fi]}</div>`).join('')}</div>
       <div class="feedback" id="fragFb"></div></div>`,
@@ -2737,7 +2745,7 @@ ACTIONS.prullenbak=()=>{
           const fb=document.getElementById('fragFb');
           if(ok){
             sfx(SFX.PUZZLE); S.flags.letterDone=true;
-            fb.textContent='THE LINES FIT. THIS IS ONE LETTER.'; fb.classList.add('ok');
+            fb.textContent='DE ZINNEN SLUITEN. DIT IS ÉÉN BRIEF.'; fb.classList.add('ok');
             setTimeout(()=>{collect('dreigbrief');inspectEvidence('dreigbrief');},900);
           }else{
             fb.textContent='THE LINES DO NOT RUN THAT WAY. TRY AGAIN.'; fb.classList.remove('ok');
@@ -2781,7 +2789,7 @@ function renderBoardTray(){
   const tray=$('boardTray');
   const avail=[...S.found].filter(id=>!S.boardPins[id]);
   tray.innerHTML=avail.length?avail.map(id=>`<button class="trayItem" data-ev="${id}">+ ${EVIDENCE[id].n}</button>`).join(''):
-    (S.found.size?'<span style="font-family:var(--mono);font-size:10px;color:#7a7058;letter-spacing:.2em">ALL EVIDENCE IS ON THE BOARD</span>':'<span style="font-family:var(--mono);font-size:10px;color:#7a7058;letter-spacing:.2em">NO EVIDENCE TO PIN UP YET</span>');
+    (S.found.size?'<span style="font-family:var(--mono);font-size:10px;color:#7a7058;letter-spacing:.2em">AL HET BEWIJS HANGT OP HET BORD</span>':'<span style="font-family:var(--mono);font-size:10px;color:#7a7058;letter-spacing:.2em">NOG GEEN BEWIJS OM OP TE HANGEN</span>');
   tray.querySelectorAll('.trayItem').forEach(b=>b.addEventListener('click',()=>{
     const id=b.dataset.ev;
     S.boardPins[id]={x:12+Math.random()*60,y:14+Math.random()*42,r:(Math.random()*5-2.5)};
@@ -2795,7 +2803,7 @@ function renderBoardPins(){
     const el=document.createElement('div');
     el.className='pin'; el.dataset.ev=id;
     el.style.left=p.x+'%'; el.style.top=p.y+'%'; el.style.setProperty('--pr',p.r+'deg');
-    el.innerHTML=`<div class="pt">${EVIDENCE[id].c}</div><div class="pn">${EVIDENCE[id].n}</div><span class="px" title="Remove from board">✕</span>`;
+    el.innerHTML=`<div class="pt">${EVIDENCE[id].c}</div><div class="pn">${EVIDENCE[id].n}</div><span class="px" title="Van het bord halen">✕</span>`;
     holder.appendChild(el);
     makeDraggable(el,id);
     el.querySelector('.px').addEventListener('click',e=>{
@@ -2956,16 +2964,16 @@ function typewriter(el,text,done){
 function finale(solved){
   $('endScene').innerHTML=''; $('endCaption').innerHTML=''; $('endTag').textContent='';
   const f=$('endFinal'); f.style.display='block';
-  $('efTag').textContent='GRAVEYARD FILE 44-C · THE THORNE CASE';
+  $('efTag').textContent='DOSSIER 44-C · DE ZAAK VERHOEVEN';
   const t=$('efTitle');
-  t.textContent=solved?'CASE CLOSED':'UNSOLVED';
+  t.textContent=solved?'ZAAK GESLOTEN':'ONOPGELOST';
   t.className=solved?'solved':'unsolved';
   const mins=Math.round((Date.now()-S.startTime)/60000);
   $('efStats').innerHTML=solved?
-    `EVIDENCE SECURED: <b>${S.found.size} / ${Object.keys(EVIDENCE).length}</b><br>OBSERVATIONS: <b>${S.notes.length}</b> · THREADS DRAWN: <b>${S.boardLinks.length}</b><br>INVESTIGATION TIME: <b>${mins} MIN</b><br><br>"The truth was there all along. All you did was blow the dust off it."`:
+    `BEWIJS VEILIGGESTELD: <b>${S.found.size} / ${Object.keys(EVIDENCE).length}</b><br>OBSERVATIES: <b>${S.notes.length}</b> · DRADEN GESPANNEN: <b>${S.boardLinks.length}</b><br>ONDERZOEKSTIJD: <b>${mins} MIN</b><br><br>"The truth was there all along. All you did was blow the dust off it."`:
     `The evidence is still there. The rooms are waiting.<br>Look again — above all at what does not fit a fall down the stairs.`;
   const b=$('efBtn');
-  b.textContent=solved?'CREDITS':'RESUME INVESTIGATION';
+  b.textContent=solved?'AFTITELING':'HERVAT HET ONDERZOEK';
   b.onclick=()=>{
     if(solved){location.reload();}
     else{$('ending').classList.remove('open');}
@@ -3001,7 +3009,7 @@ $('btnUV').addEventListener('click',()=>{
   $('btnUV').classList.toggle('uvactive',S.uv);
   $('btnFlash').classList.remove('active');
   sfx(SFX.UVCLICK); applyDarkness();
-  if(S.uv)toast('UV MODE — organic traces light up','uv');
+  if(S.uv)toast('UV-MODUS — organische sporen lichten op','uv');
 });
 $('btnBoard').addEventListener('click',()=>{renderBoardTray();renderBoardPins();$('board').classList.add('open');});
 $('boardClose').addEventListener('click',()=>$('board').classList.remove('open'));
@@ -3021,7 +3029,7 @@ $('knowFab').addEventListener('click',openAccuseGate);
 $('accuseKeepPlaying').addEventListener('click',()=>$('accuseHelp').classList.remove('open'));
 $('accuseTestOpen').addEventListener('click',()=>{
   $('btnAccuse').classList.remove('locked');
-  toast('TEST MODE — charge form opened.');
+  toast('TESTMODUS — aanklachtformulier geopend.');
   openAccuseDirect();
 });
 
@@ -3045,11 +3053,11 @@ document.addEventListener('keydown',e=>{
    ============================================================ */
 const RADIO_LINES=[
   '[22-04] control, we are on scene — meridian house',
-  '[CONTROL] copy, 22-04. victim?',
+  '[CENTRALE] begrepen 22-04. slachtoffer?',
   '[22-04] one casualty. male, 58. doctor\'s on his way but... no.',
-  '[CONTROL] forensics notified. seal the scene.',
+  '[CENTRALE] forensisch is gealarmeerd. scherm alles af.',
   '[22-04] the detective\'s here. let him through.',
-  '[CONTROL] copy. good luck in there.'
+  '[CENTRALE] begrepen. succes daarbinnen.'
 ];
 function introRainFill(){
   const svg=$('introRain'); let s='';
@@ -3078,7 +3086,7 @@ function startGame(){
   updateGameHud();
   gotoRoom('hal');
   setTimeout(()=>{
-    toast('<b>INVESTIGATION STARTED.</b> Nothing points to itself — look, compare, question.');
+    toast('<b>ONDERZOEK GESTART.</b> Niets wijst zichzelf aan — kijk, vergelijk, twijfel.');
     addNote('start','Sunday, 03:12. Elias Thorne, 58, found at the foot of his cellar stairs. It is meant to look like an accident. Meant to.');
   },1600);
 }
@@ -3094,7 +3102,7 @@ function setCoach(msg){ const el=$('coachText'); if(el) el.textContent=msg; cons
 function updateAccuseDockHint(){
   const b=$('btnAccuse'); if(!b) return;
   const h=b.querySelector('.dockHint');
-  if(h) h.textContent=b.classList.contains('locked')?'locked':'open';
+  if(h) h.textContent=b.classList.contains('locked')?'slot':'open';
 }
 const _v6_updateGameHud=updateGameHud;
 updateGameHud=function(){
@@ -3105,7 +3113,7 @@ updateGameHud=function(){
   if($('btnAccuse') && !$('btnAccuse').classList.contains('locked')) setCoach('File strong enough. Open Charge below and set the case down: who, how, when, why and where.');
   else if(ev===0) setCoach('Start in the hall. Tap anything that looks wrong. Exhibits fill your file and unlock further information.');
   else if(core<3) setCoach(`Key evidence ${core}/5. Look above all for the weapon, drag and blood traces, and documents that prove the motive.`);
-  else setCoach(`Good work: ${ev} pieces of evidence found. Check People and Timeline; that is where alibis start to fall apart.`);
+  else setCoach(`Goed bezig: ${ev} bewijsstukken gevonden. Controleer personen en tijdlijn; daar vallen alibi’s om.`);
 };
 const _v6_toast=toast;
 toast=function(msg,type){ _v6_toast(msg,type); if(String(msg).length<150) setCoach(String(msg).replace(/<[^>]+>/g,'')); };
@@ -3423,7 +3431,7 @@ runIntro();
 
     // Bewijsbadge
     if(S.found.size){ const b=$('evBadge'); if(b){b.style.display='flex'; b.textContent=S.found.size;} 
-      $('evSub')&&($('evSub').textContent=S.found.size+' ITEMS SECURED'); }
+      $('evSub')&&($('evSub').textContent=S.found.size+' STUKS VEILIGGESTELD'); }
 
     // Panelen opnieuw opbouwen
     renderEvidence(); renderNotes(); renderTimeline(); renderSuspects(); renderBoardTray();
@@ -3439,7 +3447,7 @@ runIntro();
 
     started=true;
     showSaveUI();
-    toast('<b>CASE RESUMED.</b> Your investigation is exactly as you left it.');
+    toast('<b>ZAAK HERVAT.</b> Your investigation is exactly as you left it.');
   }
 
   /* --- Reset-knop & bevestiging --- */

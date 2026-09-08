@@ -3,13 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>The Graveyard Files — The Night Porter</title>
+<title>The Night Porter – A floor-plan logic puzzle (murdoku) | The Graveyard Files</title>
+<meta name="description" content="Murdoku logic puzzle: five floor plans, 41 witness statements, one killer per plan. Place everyone, put the weapon back, name the porter&#x27;s lie. Free.">
+<link rel="canonical" href="https://graveyardfiles.com/the-night-porter.html">
+<meta property="og:site_name" content="The Graveyard Files">
+<meta property="og:title" content="The Night Porter – The Graveyard Files">
+<meta property="og:description" content="Murdoku logic puzzle: five floor plans, 41 witness statements, one killer per plan. Place everyone, put the weapon back, name the porter&#x27;s lie. Free.">
+<meta property="og:url" content="https://graveyardfiles.com/the-night-porter.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <style>
 :root{
   --nacht:#0a0d12; --nacht2:#131923; --paneel:#171d28; --rand:#2a3345;
   --papier:#e9dfc9; --papier2:#dfd3b8; --inkt:#2b2620; --inktzwak:#5a5044;
   --rood:#a83a2b; --roodd:#7e2b20; --goud:#c9a45c; --groen:#7d8f66;
-  --tekst:#d8d2c4; --tekstzwak:#9a9488;
+  --tekst:#d8d2c4; --tekstzwak:#9a94886;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;padding:0;height:100%}
@@ -116,7 +124,7 @@ h1.groot{font-family:Georgia,serif; font-weight:normal; font-size:34px; letter-s
 }
 .portret.gekozen{border-color:var(--goud); transform:translateY(-3px)}
 .portret.geplaatst .gezicht{opacity:.45}
-.portret.geplaatst:after{content:"on the plan"; position:absolute; left:0; right:0; bottom:44px;
+.portret.geplaatst:after{content:"op de kaart"; position:absolute; left:0; right:0; bottom:44px;
   font-family:"Courier New",monospace; font-size:9.5px; letter-spacing:.06em; color:#6b5f4c}
 .portret .gezicht{width:64px; height:64px; margin:0 auto 6px auto; border-radius:6px; display:block}
 .portret .pnaam{font-family:Georgia,serif; font-size:13.5px; line-height:1.2}
@@ -798,12 +806,12 @@ function bordSVG(z){
   const blad={z1:'I',z2:'II',z3:'III',z4:'IV',z5:'V'}[z.id]||'—';
   s+='<g font-family="Courier New,monospace" fill="#6b5f4c">'+
      '<rect x="'+MARGE+'" y="'+cy+'" width="'+(N*CEL)+'" height="40" fill="none" stroke="#8d8064" stroke-width="1.6"/>'+
-     '<text x="'+(MARGE+12)+'" y="'+(cy+17)+'" font-size="12.5" font-weight="bold" letter-spacing="2">THE LIME TREE</text>'+
+     '<text x="'+(MARGE+12)+'" y="'+(cy+17)+'" font-size="12.5" font-weight="bold" letter-spacing="2">PENSION DE LINDEBOOM</text>'+
      '<text x="'+(MARGE+12)+'" y="'+(cy+32)+'" font-size="10.5" letter-spacing="1">'+((N>=8?(z.locatie||'')+' · '+(z.datum||''):(z.locatie||''))).toUpperCase()+'</text>';
   if(N>=8){
     s+='<line x1="'+(MARGE+N*CEL-150)+'" y1="'+cy+'" x2="'+(MARGE+N*CEL-150)+'" y2="'+(cy+40)+'" stroke="#8d8064" stroke-width="1.2"/>'+
-       '<text x="'+(MARGE+N*CEL-138)+'" y="'+(cy+17)+'" font-size="9.5">SCALE 1:50</text>'+
-       '<text x="'+(MARGE+N*CEL-138)+'" y="'+(cy+31)+'" font-size="9.5">SHEET '+blad+' / V</text>'+
+       '<text x="'+(MARGE+N*CEL-138)+'" y="'+(cy+17)+'" font-size="9.5">SCHAAL 1:50</text>'+
+       '<text x="'+(MARGE+N*CEL-138)+'" y="'+(cy+31)+'" font-size="9.5">BLAD '+blad+' / V</text>'+
        '</g>'+
        '<g transform="translate('+(MARGE+N*CEL-32)+','+(cy+20)+')">'+
        '<circle r="13" fill="none" stroke="#8d8064" stroke-width="1.6"/>'+
@@ -811,8 +819,8 @@ function bordSVG(z){
        '<text y="4" x="0" text-anchor="middle" font-family="Courier New,monospace" font-size="0" fill="#6b5f4c"></text>'+
        '</g>';
   } else {
-    s+='<text x="'+(MARGE+N*CEL-12)+'" y="'+(cy+17)+'" text-anchor="end" font-size="9.5">SHEET '+blad+' / V</text>'+
-       '<text x="'+(MARGE+N*CEL-12)+'" y="'+(cy+31)+'" text-anchor="end" font-size="9.5">SCALE 1:50</text>'+
+    s+='<text x="'+(MARGE+N*CEL-12)+'" y="'+(cy+17)+'" text-anchor="end" font-size="9.5">BLAD '+blad+' / V</text>'+
+       '<text x="'+(MARGE+N*CEL-12)+'" y="'+(cy+31)+'" text-anchor="end" font-size="9.5">SCHAAL 1:50</text>'+
        '</g>';
   }
   // lagen voor kruisjes, tokens en klikvlakken
@@ -848,24 +856,24 @@ function bewijsSVG(i){
     '<path d="M248 116 L212 176 L128 180 Q160 162 192 150 Q226 138 248 116 Z" fill="#221a12"/>'+
     '<path d="M248 116 Q226 138 192 150 Q160 162 128 180" fill="none" stroke="#8a4a22" stroke-width="3" opacity="0.85"/>'+
     '<path d="M244 100 Q220 128 186 142" fill="none" stroke="#b06c2a" stroke-width="1.6" opacity="0.5"/>'+
-    '<text x="70" y="66" '+TIK+' font-size="13.5" fill="'+K+'">the corridor is empty</text>'+
-    '<text x="70" y="88" '+TIK+' font-size="13.5" fill="'+K+'">between 02:30 and 02:45.</text>'+
-    '<text x="70" y="110" '+TIK+' font-size="13.5" fill="'+K+'">return key</text>'+
-    '<text x="70" y="132" '+TIK+' font-size="13.5" fill="'+K+'">under the mat.</text>'+
+    '<text x="70" y="66" '+TIK+' font-size="13.5" fill="'+K+'">de gang is leeg</text>'+
+    '<text x="70" y="88" '+TIK+' font-size="13.5" fill="'+K+'">tussen 02.30 en 02.45.</text>'+
+    '<text x="70" y="110" '+TIK+' font-size="13.5" fill="'+K+'">sleutel retour</text>'+
+    '<text x="70" y="132" '+TIK+' font-size="13.5" fill="'+K+'">onder de mat.</text>'+
     '<text x="82" y="160" '+HAND+' font-size="18" fill="'+K+'">— L.</text></g>';
   if(i===1) return '<g>'+
     '<g transform="rotate(-1.5 116 106)">'+
     '<rect x="26" y="36" width="182" height="142" rx="3" fill="'+PAP+'" stroke="'+K+'" stroke-width="2.4"/>'+
-    '<text x="40" y="60" '+TIK+' font-size="12.5" font-weight="bold" letter-spacing="1" fill="'+K+'">KEY REGISTER</text>'+
+    '<text x="40" y="60" '+TIK+' font-size="12.5" font-weight="bold" letter-spacing="1" fill="'+K+'">SLEUTELREGISTER</text>'+
     '<line x1="40" y1="68" x2="194" y2="68" stroke="'+K+'" stroke-width="1.6"/>'+
-    '<text x="40" y="90" '+TIK+' font-size="10.5" fill="'+K+'">28 MAR — GARDEN GATE — returned</text>'+
-    '<text x="40" y="110" '+TIK+' font-size="10.5" fill="'+K+'">30 MAR — CELLAR — returned</text>'+
+    '<text x="40" y="90" '+TIK+' font-size="10.5" fill="'+K+'">28 MRT — TUINPOORT — retour</text>'+
+    '<text x="40" y="110" '+TIK+' font-size="10.5" fill="'+K+'">30 MRT — KELDER — retour</text>'+
     '<text x="40" y="130" '+TIK+' font-size="10.5" fill="#7e2b20">2 APR — CONSERVATORY — not</text>'+
-    '<text x="40" y="144" '+TIK+' font-size="10.5" fill="#7e2b20">issued</text>'+
-    '<text x="40" y="166" '+HAND+' font-size="12" fill="'+K+'">night duty initials: L.M.</text></g>'+
+    '<text x="40" y="144" '+TIK+' font-size="10.5" fill="#7e2b20">uitgegeven</text>'+
+    '<text x="40" y="166" '+HAND+' font-size="12" fill="'+K+'">paraaf nachtdienst: L.M.</text></g>'+
     '<line x1="252" y1="56" x2="266" y2="32" stroke="'+K+'" stroke-width="1.6"/>'+
     '<rect x="242" y="12" width="50" height="23" rx="3" fill="#f2ead6" stroke="'+K+'" stroke-width="2"/>'+
-    '<text x="267" y="27" '+TIK+' font-size="9.5" text-anchor="middle" fill="'+K+'">CONSERVATORY</text>'+
+    '<text x="267" y="27" '+TIK+' font-size="9.5" text-anchor="middle" fill="'+K+'">SERRE</text>'+
     '<circle cx="252" cy="72" r="16" fill="none" stroke="'+K+'" stroke-width="5.5"/>'+
     '<rect x="247" y="88" width="10" height="58" fill="#c9b48c" stroke="'+K+'" stroke-width="2.4"/>'+
     '<rect x="257" y="126" width="15" height="8" fill="#c9b48c" stroke="'+K+'" stroke-width="2.4"/>'+
@@ -873,11 +881,11 @@ function bewijsSVG(i){
   if(i===2) return '<g>'+
     '<g transform="rotate(1.5 212 90)">'+
     '<rect x="146" y="28" width="134" height="122" rx="3" fill="'+PAP+'" stroke="'+K+'" stroke-width="2.4"/>'+
-    '<text x="158" y="52" '+TIK+' font-size="11.5" font-weight="bold" letter-spacing="1" fill="'+K+'">ENGINEER’S DOCKET</text>'+
+    '<text x="158" y="52" '+TIK+' font-size="11.5" font-weight="bold" letter-spacing="1" fill="'+K+'">MONTEURSBON</text>'+
     '<line x1="158" y1="60" x2="268" y2="60" stroke="'+K+'" stroke-width="1.4"/>'+
-    '<text x="158" y="80" '+TIK+' font-size="10.5" fill="'+K+'">side-door bell —</text>'+
+    '<text x="158" y="80" '+TIK+' font-size="10.5" fill="'+K+'">bel zijdeur —</text>'+
     '<text x="158" y="98" '+TIK+' font-size="10.5" fill="'+K+'">no wear at all.</text>'+
-    '<text x="158" y="116" '+TIK+' font-size="10.5" fill="#7e2b20">wire cut through.</text>'+
+    '<text x="158" y="116" '+TIK+' font-size="10.5" fill="#7e2b20">draad doorgeknipt.</text>'+
     '<text x="158" y="138" '+HAND+' font-size="11" fill="'+K+'">sept. 1951</text></g>'+
     '<path d="M18 172 C 58 150 92 188 122 166" fill="none" stroke="#5a4632" stroke-width="8" stroke-linecap="round"/>'+
     '<path d="M142 160 C 176 140 214 186 268 170" fill="none" stroke="#5a4632" stroke-width="8" stroke-linecap="round"/>'+
@@ -887,22 +895,22 @@ function bewijsSVG(i){
   if(i===3) return '<g transform="rotate(-1.2 150 105)">'+
     '<path d="M42 26 L236 26 L236 92 L214 100 L192 90 L168 100 L146 90 L122 100 L98 90 L74 100 L42 94 Z" fill="'+PAP+'" stroke="'+K+'" stroke-width="2.4"/>'+
     '<path d="M42 128 L66 118 L90 130 L114 118 L138 130 L162 118 L186 130 L210 118 L236 126 L236 186 L42 186 Z" fill="'+PAP+'" stroke="'+K+'" stroke-width="2.4"/>'+
-    '<text x="56" y="50" '+TIK+' font-size="12.5" font-weight="bold" letter-spacing="1" fill="'+K+'">DUTY ROSTER</text>'+
-    '<text x="56" y="66" '+TIK+' font-size="10.5" fill="'+K+'">FEBRUARY 1953</text>'+
+    '<text x="56" y="50" '+TIK+' font-size="12.5" font-weight="bold" letter-spacing="1" fill="'+K+'">DIENSTROOSTER</text>'+
+    '<text x="56" y="66" '+TIK+' font-size="10.5" fill="'+K+'">FEBRUARI 1953</text>'+
     '<line x1="56" y1="76" x2="222" y2="76" stroke="'+K+'" stroke-width="1.3" opacity="0.6"/>'+
-    '<text x="58" y="114" '+TIK+' font-size="11.5" font-weight="bold" fill="#d98a7a" letter-spacing="2">— WEEK 7 MISSING —</text>'+
-    '<text x="56" y="150" '+TIK+' font-size="10.5" fill="'+K+'">week 8 — night duty</text>'+
-    '<text x="56" y="172" '+HAND+' font-size="12" fill="'+K+'">initials: L.M.</text></g>';
+    '<text x="58" y="114" '+TIK+' font-size="11.5" font-weight="bold" fill="#d98a7a" letter-spacing="2">— WEEK 7 ONTBREEKT —</text>'+
+    '<text x="56" y="150" '+TIK+' font-size="10.5" fill="'+K+'">week 8 — nachtdienst</text>'+
+    '<text x="56" y="172" '+HAND+' font-size="12" fill="'+K+'">paraaf: L.M.</text></g>';
   return '<g transform="rotate(1.5 150 105)">'+
     '<rect x="60" y="22" width="180" height="168" rx="6" fill="'+PAP+'" stroke="'+K+'" stroke-width="2.4"/>'+
     '<path d="M60 28 Q60 22 66 22 L234 22 Q240 22 240 28 L240 52 L60 52 Z" fill="#a83a2b"/>'+
-    '<text x="150" y="41" '+TIK+' font-size="10.5" font-weight="bold" letter-spacing="1.5" text-anchor="middle" fill="#f2ead6">SATURDAY 30 OCTOBER</text>'+
+    '<text x="150" y="41" '+TIK+' font-size="10.5" font-weight="bold" letter-spacing="1.5" text-anchor="middle" fill="#f2ead6">ZATERDAG 30 OKTOBER</text>'+
     '<g stroke="#9db4c9" stroke-width="1" opacity="0.7">'+
     '<line x1="72" y1="90" x2="228" y2="90"/><line x1="72" y1="110" x2="228" y2="110"/>'+
     '<line x1="72" y1="130" x2="228" y2="130"/><line x1="72" y1="150" x2="228" y2="150"/></g>'+
-    '<text x="76" y="84" '+HAND+' font-size="14.5" fill="#243447">Speak to M. about</text>'+
-    '<text x="76" y="104" '+HAND+' font-size="14.5" fill="#243447">the keys.</text>'+
-    '<text x="76" y="142" '+HAND+' font-size="14.5" fill="#243447">Then: police.</text>'+
+    '<text x="76" y="84" '+HAND+' font-size="14.5" fill="#243447">M. spreken over</text>'+
+    '<text x="76" y="104" '+HAND+' font-size="14.5" fill="#243447">de sleutels.</text>'+
+    '<text x="76" y="142" '+HAND+' font-size="14.5" fill="#243447">Daarna: politie.</text>'+
     '<text x="206" y="178" '+HAND+' font-size="11" fill="#243447">E.M.</text></g>';
 }
 function bewijsWrap(i){
@@ -952,7 +960,7 @@ function renderBewijsstrook(houderId, klikbaarAltijd){
   });
 }
 function toonBewijs(i){
-  $('bw-titel').textContent='Exhibit '+['I','II','III','IV','V'][i]+' — '+BEWIJS[i].titel;
+  $('bw-titel').textContent='Bewijsstuk '+['I','II','III','IV','V'][i]+' — '+BEWIJS[i].titel;
   $('bw-svg').innerHTML=bewijsWrap(i);
   $('bw-vondst').textContent=BEWIJS[i].vondst;
   $('bw-duiding').textContent=BEWIJS[i].duiding;
@@ -1168,7 +1176,7 @@ function toonBekentenis(z){
   $('bek-bewijskop').textContent='Exhibit '+['I','II','III','IV','V'][i]+' secured — '+BEWIJS[i].titel;
   $('bek-bewijs').innerHTML=bewijsWrap(i);
   $('bek-vondstregel').textContent=BEWIJS[i].vondst;
-  $('bek-draad').textContent=BEWIJS[i].duiding+ ' — File margin: '+z.draad;
+  $('bek-draad').textContent=BEWIJS[i].duiding+' — Kantlijn: '+z.draad;
   openOverlay('ov-bekentenis');
 }
 
@@ -1264,7 +1272,7 @@ function koppel(){
   $('t-zoom').addEventListener('click',()=>{
     bordZoom=!bordZoom; klikGeluid();
     $('t-zoom').classList.toggle('aan',bordZoom);
-    $('t-zoom').textContent=bordZoom?'Reduce':'Enlarge';
+    $('t-zoom').textContent=bordZoom?'Verklein':'Vergroot';
     if(huidigeZaak!==null) zetBordBreedte(ZDATA[huidigeZaak]);
   });
   $('t-wis').addEventListener('click',()=>{

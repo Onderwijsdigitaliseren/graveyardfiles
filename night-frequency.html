@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>NIGHT FREQUENCY — a murder on 92.4 FM</title>
+<title>Night Frequency – An interactive murder mystery | The Graveyard Files</title>
+<meta name="description" content="Interactive murder mystery: a radio host dies live on air – except the city was hearing a tape. Search the studio, question the night crew. Free, in-browser.">
+<link rel="canonical" href="https://graveyardfiles.com/night-frequency.html">
+<meta property="og:site_name" content="The Graveyard Files">
+<meta property="og:title" content="Night Frequency – The Graveyard Files">
+<meta property="og:description" content="Interactive murder mystery: a radio host dies live on air – except the city was hearing a tape. Search the studio, question the night crew. Free, in-browser.">
+<meta property="og:url" content="https://graveyardfiles.com/night-frequency.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
 <style>
 :root{
   --ink:#161f2d; --pane:#263146; --glass:rgba(32,43,62,.90);
@@ -809,9 +817,9 @@ function renderBoard(){
   tray.innerHTML='';
   const unpinned=S.evidence.filter(id=>!S.boardPins[id]);
   if(!S.evidence.length){
-    tray.appendChild(el('div','trayEmpty','NO EVIDENCE TO PIN UP YET'));
+    tray.appendChild(el('div','trayEmpty','NOG GEEN BEWIJS OM OP TE HANGEN'));
   }else if(!unpinned.length){
-    tray.appendChild(el('div','trayEmpty','ALL EVIDENCE IS ON THE BOARD'));
+    tray.appendChild(el('div','trayEmpty','AL HET BEWIJS HANGT OP HET BORD'));
   }else{
     unpinned.forEach(id=>{
       const nm=EV[id]?EV[id].name:id;
@@ -828,7 +836,7 @@ function renderBoard(){
     pinEl.dataset.id=id;
     pinEl.style.left=pos.x+'%';pinEl.style.top=pos.y+'%';
     pinEl.style.transform=`translate(-50%,-50%) rotate(${pos.rot}deg)`;
-    const tag=(EV[id].tags&&EV[id].tags[0])||'evidence';
+    const tag=(EV[id].tags&&EV[id].tags[0])||'bewijs';
     pinEl.innerHTML=`<span class="pinTag">${tag}</span><div class="pinName">${EV[id].name}</div><button class="pinX">✕</button>`;
     layer.appendChild(pinEl);
     makePinDraggable(pinEl,id);
@@ -851,55 +859,55 @@ window.addEventListener('resize',()=>{if($('#board')&&$('#board').classList.cont
 const EV={
  rapport:{ic:'⚰',name:'Preliminary findings, police surgeon',loc:'Studio B — beside the body',
   desc:'Reuben Voss (54), found in his presenter\'s chair. No external injury. Clenched jaw muscles, dilated pupils. Time of death: estimated between 02:30 and 03:00. Cause of death: unknown, post-mortem to follow.',
-  tags:['core question'],rel:['spray','thermos']},
+  tags:['kernvraag'],rel:['spray','thermos']},
  spray:{ic:'💨',name:'Throat spray "VoxClear"',loc:'Studio B — mixing desk, within reach',
   desc:'Reuben\'s unvarying ritual: two puffs before every hour. The bottle is nearly full — odd, since his shift had already run four hours. The label sits just slightly askew.',
-  tags:['suspicious'],rel:['rapport','labuitslag']},
+  tags:['verdacht'],rel:['rapport','labuitslag']},
  thermos:{ic:'☕',name:'Flask of coffee',loc:'Studio B — beside the microphone',
   desc:'Half full, lukewarm. Smells normal. No unusual residue visible. Gareth tops it up at 01:00 every night, according to the strip of tape: "R. — black, no sugar".',
-  tags:['red herring?'],rel:['rapport']},
+  tags:['dwaalspoor?'],rel:['rapport']},
  kabel:{ic:'🔌',name:'Loose microphone cable',loc:'Studio B — on the floor',
   desc:'An XLR cable, cut through. Dramatic — but the break is old and frayed. According to the fault log it has been dead three weeks and was replaced by channel 2.',
-  tags:['red herring'],rel:[]},
+  tags:['dwaalspoor'],rel:[]},
  log:{ic:'📻',name:'Transmission log, 14/15 February',loc:'Control room — printout on the mixing desk',
   desc:'Automatic logging. The striking thing: the 02:30–02:56 block is marked LIVE, but the source channel is DECK 2 — the tape machine. Somebody ran a recording while the whole of Anthracite City believed it was listening live.',
-  tags:['core evidence'],rel:['dat084','badge']},
+  tags:['kernbewijs'],rel:['dat084','badge']},
  dat084:{ic:'📼',name:'Tape DAT-084',loc:'Control room — still loaded in deck 2',
   desc:'Label in pencil: "The Late Line — spare". The tape has run half through, as though somebody let it play out. Whoever loaded it knew both the tape archive and the desk.',
-  tags:['core evidence'],rel:['log']},
+  tags:['kernbewijs'],rel:['log']},
  badge:{ic:'🖥',name:'Night shift access log',loc:'Porter\'s lodge — terminal',
   desc:'A record of every badge tonight. Sandra Crane badged in at 01:47 — while stating she was at home. Eva Lindt is logged in at 22:05 and never badged out at all.',
-  tags:['contradiction'],rel:['log']},
+  tags:['tegenspraak'],rel:['log']},
  brief:{ic:'✉',name:'Reconstructed letter (torn up)',loc:'Newsroom — waste basket',
   desc:'From Reuben to the board of governors: Adrian Hollis\'s award-winning Prague interview was "staged with a hired actor". Reuben threatened to make it public "unless the schedule is reconsidered".',
-  tags:['motive · Adrian'],rel:['telefoon']},
+  tags:['motief · Adrian'],rel:['telefoon']},
  stageverslag:{ic:'📓',name:'Eva Lindt\'s placement report',loc:'Newsroom — desk by the window',
   desc:'Neat, detached, faultless. But on the inside flap, in minute handwriting, one circled number: 2019-117. No context at all. It has been gone over so many times that the paper has nearly torn.',
-  tags:['puzzle'],rel:['band117']},
+  tags:['raadsel'],rel:['band117']},
  dossier4471:{ic:'📁',name:'Grant file "Project 4471"',loc:'Director\'s office — desk',
   desc:'An arts grant for "digital renewal": £240,000. The invoices point to a production company registered at Sandra Crane\'s private address. Project number 4471 turns up everywhere.',
-  tags:['motive · Sandra'],rel:['dreigbrief']},
+  tags:['motief · Sandra'],rel:['dreigbrief']},
  dreigbrief:{ic:'🗝',name:'Letter from the safe',loc:'Director\'s office — safe',
   desc:'Typed, signed "R.": "I know where 4471 really went. So long as The Late Line stays on air, this stays between us. The moment you touch my programme, the board touches you." Blackmail, in black and white.',
-  tags:['motive · Sandra'],rel:['dossier4471','telefoon']},
+  tags:['motief · Sandra'],rel:['dossier4471','telefoon']},
  telefoon:{ic:'📱',name:'Reuben Voss\'s telephone',loc:'Canteen — inside pocket of his coat',
   desc:'Unlocked with 0924. Three messages sent tonight: to Sandra ("4471 stays our secret — for now"), to Adrian ("Prague was theatre and we both know it"), to Gareth ("After tonight our arrangement ends. For good."). One man, three knives on the table.',
-  tags:['motives'],rel:['dreigbrief','brief']},
+  tags:['motieven'],rel:['dreigbrief','brief']},
  band117:{ic:'📼',name:'Archive tape 2019-117',loc:'Archive — card index',
   desc:'"Confession Line, 12 March 2019 — anonymous caller H." A note on the index card: "Extract repeated in Highlights Night, June 2019. Complaint lodged by the Dewitt family. Dismissed by R. Voss." The tape feels heavier than it is.',
-  tags:['core evidence'],rel:['stageverslag']},
+  tags:['kernbewijs'],rel:['stageverslag']},
  schriftje:{ic:'📔',name:'Margery\'s log book',loc:'Control room — drawer under the desk',
   desc:'Margery notes down everything, and has for 31 years. Tonight: "02:40 fire esc." — and then a gap until "02:55 back, deck 2 running??". She left the control room during precisely the quarter of an hour that mattered. And somebody knew she does that every night.',
-  tags:['contradiction'],rel:['log','dat084']},
+  tags:['tegenspraak'],rel:['log','dat084']},
  uvlamp:{ic:'🔦',name:'UV lamp',loc:'Archive — tool cupboard',
   desc:'A hand lamp for checking splicing glue. Ultraviolet light shows up residues the naked eye misses.',
-  tags:['tool'],rel:[]},
+  tags:['gereedschap'],rel:[]},
  labuitslag:{ic:'🧪',name:'Laboratory result, throat spray',loc:'Analysis — after UV examination',
   desc:'Besides menthol, the bottle holds a lethal concentration of nicotine sulphate. Under UV: glue residue from a second, newer label. Somebody swapped the bottle and stuck the original label over the top. The murder was in two puffs.',
-  tags:['core evidence'],rel:['spray','rapport']},
+  tags:['kernbewijs'],rel:['spray','rapport']},
  routing:{ic:'🎛',name:'Control room routing chart',loc:'Control room — patch bay',
   desc:'This is how the city was fooled: DECK 2 (the tape) went to the TRANSMITTER, while the CONTROL MONITOR stayed on the studio. Anyone glancing up tonight saw normal studio meters — and was hearing a tape all the while. The monitor lied along with it. This takes somebody who knows the control room in their fingers.',
-  tags:['technical'],rel:['log','dat084']},
+  tags:['techniek'],rel:['log','dat084']},
  rooster:{ic:'📌',name:'Night rota (notice board)',loc:'Canteen — notice board',
   desc:'Regular crew tonight: Voss (studio), Deakin (control), Noll (lodge), Hollis (editing), Lindt (newsroom, "sitting in on the archive — M.D."). Somebody has pencilled a question mark against that last line.',
   tags:['context'],rel:['schriftje']}
@@ -980,118 +988,118 @@ const CHAPTERS={
    VERDACHTEN & VERHOREN
    ===================================================================== */
 const SUS={
- marja:{name:'Margery Deakin',age:58,role:'Engineer & night control',hue:'linear-gradient(160deg,#3b4a5e,#1a222e)',
-  bio:'31 years at Radio Clarion. Knows every switch, every tape, every secret. Her job is disappearing in the "digital renewal".',
+ marja:{name:'Margery Deakin',age:58,role:'Technicus & nachtregie',hue:'linear-gradient(160deg,#3b4a5e,#1a222e)',
+  bio:'31 jaar bij Radio Clarion. Kent elke schakelaar, elke band, elk geheim. Haar functie verdwijnt bij de "digitale vernieuwing".',
   body:'Arms folded. Watches the meters, not you. Hands that shake the moment deck 2 comes up.',
   motive:'Reuben backed the reorganisation that makes her redundant.',
-  alibi:'"In the control room all night." — demonstrably false.',
+  alibi:'"In the control room all night." — aantoonbaar onwaar.',
   open:'"I sat beside that man for thirty years, Inspector. Every night. Ask what you must, but be quick — there is a breakfast programme to get on air at six. The night waits for nobody."',
   topics:[
-   {id:'m1',mode:'question',lbl:'Where were you between 02:30 and 03:00?',
+   {id:'m1',mode:'doorvragen',lbl:'Where were you between 02:30 and 03:00?',
     txt:'"In the control room. Where else? I sit there every night, twelve till six. Reuben talks— <em>talked</em>, and I put the callers through. That is how it has gone for a hundred years." <em>She rubs her thumb, as though a cigarette belonged there.</em>'},
-   {id:'m2',mode:'question',lbl:'What did you notice about the broadcast around half past two?',
+   {id:'m2',mode:'doorvragen',lbl:'What did you notice about the broadcast around half past two?',
     txt:'"Nothing in particular. Reuben took a long block with a caller. I... I had my eye on the meters." <em>For the first time she falters. Somebody who has read meters for thirty years knows exactly what was on them.</em>'},
-   {id:'m3',mode:'confront',lbl:'The reorganisation costs you your job. And Reuben backed it.',
+   {id:'m3',mode:'confronteren',lbl:'The reorganisation costs you your job. And Reuben backed it.',
     txt:'"Reuben backed Reuben. That was his talent." <em>A short, bitter laugh.</em> "Do you know what <em>he</em> said? Tape is nostalgia, Margery. It all becomes a file. As though thirty years of voices in the night were an attachment you mislay in a house move."',
     fx:()=>note('Margery is bitter about the digitisation — but speaks of Reuben in the past tense without a stumble. Used to loss, or prepared for it?')},
-   {id:'m4',mode:'question',lbl:'Who can work the tape archive?',cond:()=>S.evidence.includes('dat084'),
+   {id:'m4',mode:'doorvragen',lbl:'Who can work the tape archive?',cond:()=>S.evidence.includes('dat084'),
     txt:'"I can. Only I can, these days." <em>Silence.</em> "...And the placement girl. Eva. She asked about it, weeks ago. Wanted to learn the old system before it went. I found it... rather moving. Somebody who thought it was worth something at last."',
     fx:()=>{note('Margery taught Eva both the tape archive and how to work the decks. "She wanted to learn it before it went."');flag('evaKanBanden');}}
   ],
   react:{
    schriftje:{txt:'<em>She goes grey when she sees her own handwriting.</em> "Very well. I smoke. Every night at 02:40, on the fire escape, one cigarette, a quarter of an hour. Reuben knew. <em>Everybody</em> here knows." <em>She hesitates, as though weighing something, and then goes on anyway.</em> "And to be honest — that evening I was away a little earlier as well. I nipped down to the canteen for coffee around half past two, two minutes at most, you don\'t even write that down, everyone does it constantly. When I came back deck 2 was running and I assumed <em>Reuben</em> had started a tape. He never did. I should have checked. I should have <em>checked</em>."',
-    fx:()=>{note('Margery admits to two gaps: a quick coffee around 02:29 (unlogged, everybody does it) and her usual cigarette break, 02:40–02:55. From 02:29 the control room was already unwatched.');tl('02:29','Margery slips down to the canteen for coffee — two minutes, recorded nowhere.','Interview — Margery');tl('02:40','Margery leaves the control room for her usual cigarette — the building knew about it.','Interview — Margery');tl('02:55','Margery is back in the control room; deck 2 is already running.','Interview — Margery');flag('marjaGat');}},
+    fx:()=>{note('Margery admits to two gaps: a quick coffee around 02:29 (unlogged, everybody does it) and her usual cigarette break, 02:40–02:55. From 02:29 the control room was already unwatched.');tl('02:29','Margery slips down to the canteen for coffee — two minutes, recorded nowhere.','Verhoor Margery');tl('02:40','Margery leaves the control room for her usual cigarette — the building knew about it.','Verhoor Margery');tl('02:55','Margery terug in de regie; deck 2 draait al.','Verhoor Margery');flag('marjaGat');}},
    log:{txt:'"DECK 2 as the source, marked live..." <em>She stares at the printout.</em> "This is no mistake. This is <em>craft</em>. Whoever did it knew the desk. And knew exactly when <em>I</em> would not be there."'},
    dat084:{txt:'"I don\'t know that tape. And I know every one of them, Inspector. DAT-084 is a spare number — blank, it is meant to be blank. Somebody has put an old Late Line on it. On <em>my</em> equipment."'}
   }},
- ilias:{name:'Adrian Hollis',age:33,role:'Podcast producer — "the new guard"',hue:'linear-gradient(160deg,#5e4a3b,#2e2018)',
+ ilias:{name:'Adrian Hollis',age:33,role:'Podcastmaker — "de vernieuwing"',hue:'linear-gradient(160deg,#5e4a3b,#2e2018)',
   bio:'Winner of the Golden Aerial for his Prague interview. Takes over Reuben\'s slot from the first of March. Too much espresso, too little sleep.',
   body:'Talks fast, smiles at the wrong moments. Works a headphone cable through his fingers like a rosary.',
   motive:'Reuben blocked his promotion — and knew his award-winning interview was faked.',
   alibi:'"In editing booth 3, with the door shut and the headphones on."',
   open:'"This is appalling. <em>Appalling.</em> Reuben was an institution, a legend, I learned <em>everything</em> from him— sorry, I\'m gabbling. I do that when I... Do go on, ask."',
   topics:[
-   {id:'i1',mode:'question',lbl:'What was your relationship with Reuben like?',
+   {id:'i1',mode:'doorvragen',lbl:'Hoe was uw verhouding met Reuben?',
     txt:'"Complicated. He saw me as the barbarian at the gate. I saw him as... the past. With respect, though! One does not replace a legend without respect." <em>The smile does not agree with the eyes.</em>'},
-   {id:'i2',mode:'press',lbl:'A shut door and a pair of headphones. That is not an alibi, that is a curtain.',
+   {id:'i2',mode:'druk',lbl:'A shut door and a pair of headphones. That is not an alibi, that is a curtain.',
     txt:'"What would you have me say? That I lay on witnesses for every night shift? I <em>was</em> there. Booth 3. Export logs — go and look at them!" <em>He shifts his chair back an inch.</em>',
     fx:()=>note('Adrian points to the export logs from booth 3 — checkable, and he knows it.')},
-   {id:'i3',mode:'bluff',lbl:'[BLUFF] We have already spoken to the actor from Prague.',bluff:true,
+   {id:'i3',mode:'bluffen',lbl:'[BLUF] We hebben de acteur uit Prague al gesproken.',bluff:true,
     txt:'"Actor? What act—" <em>He stops dead. Too late.</em> "...I want a solicitor before I say one more word about this." <em>He shuts like a laptop.</em>',
-    fx:()=>{flag('iliasDicht');note('The bluff half worked: Adrian lets slip about "the actor", but now refuses to say more without hard evidence.');}}
+    fx:()=>{flag('iliasDicht');note('The bluff half worked: Adrian lets slip about "de acteur", but now refuses to say more without hard evidence.');}}
   ],
   react:{
    brief:{txt:'<em>He reads his own death sentence in Reuben\'s words. The gabbling stops.</em> "One scene. <em>One!</em> The man wouldn\'t go on the record, so we had his words read out. Everybody does it, nobody <em>says</em> it. Reuben was going to destroy me. On the night I got the slot. But destroying is not the same as murdering — when he died I was rendering, and that log does not lie."',
     fx:()=>{note('Adrian admits faking the Prague interview. Motive confirmed — his alibi (the render log) still stands.');flag('iliasBekent');}},
    telefoon:{txt:'"Prague was theatre and we both know it." <em>He reads the message aloud, flatly.</em> "He sent that at 01:52. I did not reply. What does one reply to an execution?"',
-    fx:()=>tl('01:52','Reuben threatens Adrian by message with exposing the faked interview.','Reuben\'s telephone')}
+    fx:()=>tl('01:52','Reuben threatens Adrian by message with exposing the faked interview.','Telefoon Reuben')}
   }},
- sandra:{name:'Sandra Crane',age:51,role:'Director — Reuben’s ex-wife',hue:'linear-gradient(160deg,#4a3b5e,#201a2e)',
+ sandra:{name:'Sandra Crane',age:51,role:'Directeur — Reubens ex-vrouw',hue:'linear-gradient(160deg,#4a3b5e,#201a2e)',
   bio:'Twelve years married to Reuben, six years his employer. Saved the station from bankruptcy — on paper, at least.',
   body:'Perfect composure, like freshly pressed linen. Only her wedding finger, bare for years now, she rubs warm.',
   motive:'Reuben was blackmailing her over grant fraud — Project 4471.',
   alibi:'"I was at home. Alone. As I always am since the divorce."',
   open:'"Inspector. You shall have every latitude, every co-operation, everything. But understand: in two hours I have to explain a dead presenter to this city. So please be efficient."',
   topics:[
-   {id:'s1',mode:'question',lbl:'Where were you tonight?',
+   {id:'s1',mode:'doorvragen',lbl:'Where were you tonight?',
     txt:'"At home. I read the annual plan, had one glass of wine too many and was asleep by one. When Gareth telephoned I came straight in." <em>Immaculate. Too immaculate — like a statement that has been rehearsed.</em>'},
-   {id:'s2',mode:'confront',lbl:'You run the station. Your ex-husband was the station. That creates friction.',
+   {id:'s2',mode:'confronteren',lbl:'U leidt de omroep. Uw ex-man wás de omroep. Dat schuurt.',
     txt:'"Reuben was a monument, and monuments are expensive to maintain. Yes, we clashed. Over money, over direction, over everything. But one does not build a station in order to murder its principal act."'},
-   {id:'s3',mode:'bluff',lbl:'[BLUFF] We have found your fingerprints on the spray bottle.',bluff:true,
+   {id:'s3',mode:'bluffen',lbl:'[BLUFF] We have found your fingerprints on the spray bottle.',bluff:true,
     txt:'"Impossible." <em>Ice cold, without a flicker.</em> "I have not set foot in that studio for six months, and you bluff badly, Inspector. This conversation is over until you come to me with <em>real</em> evidence." <em>She saw through you without effort — and now the door is shut.</em>',
     fx:()=>{flag('sandraDicht');note('The bluff failed: Sandra has shut down. Only hard evidence will open her now.');sfx('wrong');}}
   ],
   react:{
    badge:{txt:'<em>The composure takes its first crack.</em> "...Very well. I was here. At 01:47, as your log says. Reuben had sent me a message — about 4471. I came to talk; he refused to leave the studio during the broadcast. I sat waiting in my office for forty minutes and left at half past two. Ask Gareth. <em>Ask</em> Gareth."',
-    fx:()=>{note('Sandra revises her alibi: in at 01:47, says she left around 02:30. There is no badge-out in the log.');tl('01:47','Sandra Crane badges into the building — contradicting her first statement.','Access log');flag('sandraBinnen');}},
+    fx:()=>{note('Sandra revises her alibi: in at 01:47, says she left around 02:30. There is no badge-out in the log.');tl('01:47','Sandra Crane badges into the building — contradicting her first statement.','Toegangslog');flag('sandraBinnen');}},
    dreigbrief:{txt:'"So you have found the safe." <em>She pours water without spilling a drop.</em> "Yes. Reuben was blackmailing me. For eighteen months. 4471 was not theft — it was a tourniquet to keep this place standing, and he knew it. He held my one mistake at my throat like a knife, to protect his programme. But <em>think</em>, Inspector: his death wakes up the auditors. Reuben dead costs me more than Reuben alive."',
     fx:()=>{note('Sandra admits both the fraud and the blackmail — but her reasoning holds: the murder does her harm, not good.');flag('sandraBekent');}},
    dossier4471:{txt:'"Paper is patient, Inspector, and auditors are not. If you understand this file, you also understand that I am the last person who wanted this night to happen."'}
   }},
- kasper:{name:'Gareth Noll',age:46,role:'Night porter',hue:'linear-gradient(160deg,#3b5e4a,#182e20)',
+ kasper:{name:'Gareth Noll',age:46,role:'Nachtportier',hue:'linear-gradient(160deg,#3b5e4a,#182e20)',
   bio:'Eighteen years the gatekeeper of the night. Sees everyone, greets everyone, remembers everything. Makes a little on the side in ways daylight knows nothing about.',
   body:'Friendly as a publican, but his eyes are always doing the rounds: door, monitor, you, door.',
   motive:'Reuben paid him for information about callers and visitors — and meant to end the "arrangement" tonight.',
   alibi:'"In the lodge. Bar ten minutes, my three o\'clock round. That\'s when I found him."',
   open:'"Eighteen years I\'ve done the nights here. Eighteen years, no bodies. And then <em>this</em>. Ask me anything you like, Inspector — I see everything in this building. Usually."',
   topics:[
-   {id:'k1',mode:'question',lbl:'Tell me about finding the body.',
+   {id:'k1',mode:'doorvragen',lbl:'Tell me about finding the body.',
     txt:'"Three o\'clock round. The studio\'s meant to be live then, so normally I walk straight past. But the sound feed in the corridor... it wasn\'t <em>right</em>. Same caller as earlier in the night, I <em>thought</em>. So I looked through the glass. And there he was, sitting. Crooked."',
-    fx:()=>{tl('03:04','Gareth starts his round; something about the sound in the corridor "did not sound right".','Interview — Gareth');tl('03:12','Gareth finds Reuben and raises the alarm.','Interview — Gareth');note('Gareth noticed a caller seeming to repeat himself. He heard the tape — without knowing it.');}},
-   {id:'k2',mode:'question',lbl:'Who was in the building tonight?',
+    fx:()=>{tl('03:04','Gareth starts his round; something about the sound in the corridor "klopte niet".','Verhoor Gareth');tl('03:12','Gareth vindt Reuben en slaat alarm.','Verhoor Gareth');note('Gareth noticed a caller seeming to repeat himself. He heard the tape — without knowing it.');}},
+   {id:'k2',mode:'doorvragen',lbl:'Who was in the building tonight?',
     txt:'"The regular crew: Reuben, Margery, the podcast lad, the placement girl. And..." <em>Half a second too long.</em> "...that\'s about the lot. The log is gospel, look at it if you like."',
     fx:()=>note('Gareth hesitates over who was in the building — then points to the log himself. As though he knows what is in it.')},
-   {id:'k3',mode:'confront',lbl:'The archive key is not on the board. Who has it?',cond:()=>has('sleutelWeg'),
+   {id:'k3',mode:'confronteren',lbl:'The archive key is not on the board. Who has it?',cond:()=>has('sleutelWeg'),
     txt:'"That\'s meant to be—" <em>He turns, counts the hooks, counts again.</em> "That can\'t be right. Nobody <em>ever</em> asks about the archive. Except..." <em>He does not finish the sentence, and that says enough.</em>',
     fx:()=>note('The archive key was taken without Gareth knowing — by somebody who knew where it hung.')}
   ],
   react:{
    telefoon:{txt:'"After tonight our arrangement ends. For good." <em>He reads it and ages ten years in one breath.</em> "All right. Reuben paid me. For... ears. Who rang that confession line of his, which numbers, which names. The caller display is here in the lodge, you see? He liked to know <em>who</em> was being anonymous. Tonight he said it was finished. That something \'out of the past\' was after him and he was going to clear the decks. A clean sweep. Starting with me."',
-    fx:()=>{note('Gareth admits it: he sold Reuben the identities of anonymous callers. Reuben felt "something out of the past" closing in and wanted to clear the decks.');flag('kasperBekent');tl('02:10','Reuben tells Gareth their "arrangement" is over: something out of the past is after him.','Interview — Gareth');}},
+    fx:()=>{note('Gareth admits it: he sold Reuben the identities of anonymous callers. Reuben felt "something out of the past" naderen en wilde schoon schip maken.');flag('kasperBekent');tl('02:10','Reuben kondigt bij Gareth aan te stoppen met hun "afspraak": er zit something out of the past achter hem aan.','Verhoor Gareth');}},
    badge:{txt:'"That log\'s sound as a bell. Mrs Crane at 01:47 — I let her in myself and said nothing about it. She\'s the director, isn\'t she. And the placement girl... she never badges out before six. Practically lives here at night. Says she finds the night restful."'}
   }},
- eva:{name:'Eva Lindt',age:24,role:'Newsroom intern',hue:'linear-gradient(160deg,#5e5a3b,#2e2b18)',
+ eva:{name:'Eva Lindt',age:24,role:'Stagiaire redactie',hue:'linear-gradient(160deg,#5e5a3b,#2e2b18)',
   bio:'Journalism student, four months into her placement. Impeccable, invisible, always first in and last out. Asked for the night shift <em>herself</em>.',
   body:'Perfectly still. Answers questions the way she writes her report: faultlessly and without one unnecessary letter. Only her thumb moves, across the back of her hand, to and fro.',
   motive:'Unknown. As yet.',
   alibi:'"The newsroom. I was working on the anniversary file."',
   open:'"Inspector." <em>Nothing more. She waits. The silence belongs to her, not to you.</em>',
   topics:[
-   {id:'e1',mode:'question',lbl:'Why does a placement student volunteer for night shifts?',
+   {id:'e1',mode:'doorvragen',lbl:'Why does a placement student volunteer for night shifts?',
     txt:'"By day, radio is an office. At night it is what it promises to be: one voice, and everybody who cannot sleep." <em>It sounds like a poem she has known for years.</em>'},
-   {id:'e2',mode:'question',lbl:'What was Reuben like as a teacher?',
+   {id:'e2',mode:'doorvragen',lbl:'What was Reuben like as a teacher?',
     txt:'"Generous, to anybody who could reflect him back at himself." <em>A pause.</em> "He used my research in three programmes. My name was never mentioned. That is normal here, one is told. One gets used to it, one is told." <em>The thumb, across the hand, to and fro.</em>'},
-   {id:'e3',mode:'confront',lbl:'You asked Margery to teach you the tape archive. Why?',cond:()=>has('evaKanBanden'),
+   {id:'e3',mode:'confronteren',lbl:'You asked Margery to teach you the tape archive. Why?',cond:()=>has('evaKanBanden'),
     txt:'"Because it is going. Somebody ought to know what is down in that cellar before it becomes a file. Thirty years of people who found the courage to telephone at three in the morning — you do not throw that away." <em>For the first time something sounds beneath the glass. Something old.</em>',
-    fx:()=>note('Eva on the archive: "thirty years of people who found the courage to call." She does not speak of it as a member of staff. She speaks of it as one of the bereaved.')},
-   {id:'e4',mode:'press',lbl:'You never badged out tonight. Where were you between 02:30 and 03:00?',cond:()=>S.evidence.includes('badge'),
+    fx:()=>note('Eva on the archive: "dertig jaar mensen die de moed vonden om te bellen." She does not speak of it as a member of staff. She speaks of it as one of the bereaved.')},
+   {id:'e4',mode:'druk',lbl:'You never badged out tonight. Where were you between 02:30 and 03:00?',cond:()=>S.evidence.includes('badge'),
     txt:'"The newsroom. Headphones on, anniversary file open. I heard nothing and saw nobody." <em>The same alibi as Adrian\'s, word for word the same construction. As though she had heard his — or he hers.</em>'}
   ],
   react:{
    stageverslag:{txt:'<em>You set the report down, open at the inside flap. 2019-117. The thumb stops.</em> "That is a catalogue number." <em>Nothing further. But she does not look at it — she deliberately does not look at it, the way one does not look at a scar.</em>',
-    fx:()=>{note('Eva recognises 2019-117 immediately — and refuses to look at it.');flag('evaNummer');}},
+    fx:()=>{note('Eva herkent 2019-117 onmiddellijk — en weigert ernaar te kijken.');flag('evaNummer');}},
    band117:{txt:'<em>You set the tape on the table. "Anonymous caller H." Complaint from the Dewitt family — dismissed by R. Voss. The silence lasts seventeen seconds. Then, very quietly:</em> "My mother\'s name was Helen. Dewitt was her name; Lindt is my father\'s. She telephoned a radio programme once in her life. Anonymous, the announcement said. <em>Anonymous.</em>" <em>The thumb has stopped moving.</em> "Three months later he played the extract again. Highlights Night. Somebody in our street recognised her voice." <em>She looks at you, fully, for the first time.</em> "I expect you have more questions, Inspector."',
-    fx:()=>{note('A CONFESSION IN EVERYTHING BUT WORDS — Eva is the daughter of "anonymous caller H." (Helen Dewitt). Reuben repeated the confession; the anonymity was broken; three weeks later her mother took her own life. Motive: revenge.');flag('evaMoeder');tl('12 Mar 2019','Helen Dewitt telephones The Late Line anonymously. Reuben later repeats the extract in Highlights Night.','Tape 2019-117');}},
+    fx:()=>{note('BEKENTENIS IN ALLES BEHALVE WOORDEN — Eva is de dochter van "anonieme beller H." (Helen Dewitt). Reuben repeated the confession; the anonymity was broken; three weeks later her mother took her own life. Motive: revenge.');flag('evaMoeder');tl('12 mrt 2019','Helen Dewitt telephones The Late Line anonymously. Reuben later repeats the extract in Highlights Night.','Band 2019-117');}},
    labuitslag:{txt:'"Nicotine sulphate." <em>She pronounces it like a word she learned by heart a long time ago.</em> "What do you think, Inspector — is that a painful death? I ask out of... journalistic interest."',
     fx:()=>note('Eva knows the substance. Her question is not a question — it is a wish being checked aloud.')},
    dat084:{txt:'"A tape in deck 2? Then the broadcast was not live." <em>Precisely the right conclusion, drawn precisely a little too fast.</em>'}
@@ -1113,12 +1121,12 @@ window.note=note;window.tl=tl;
 function addEvidence(id){
   if(S.evidence.includes(id))return false;
   S.evidence.push(id);save();
-  sfx('found');toast('◈ Evidence added — <b>'+EV[id].name+'</b>');
+  sfx('found');toast('◈ Bewijs toegevoegd — <b>'+EV[id].name+'</b>');
   renderDossier();bump('bDossier');checkChapter();
   return true;
 }
 window.addEvidence=addEvidence;
-function addInv(id,lbl){if(S.inv.some(i=>i.id===id))return;S.inv.push({id,lbl});save();renderInv();toast('Item collected — <b>'+lbl+'</b>');}
+function addInv(id,lbl){if(S.inv.some(i=>i.id===id))return;S.inv.push({id,lbl});save();renderInv();toast('Voorwerp opgeraapt — <b>'+lbl+'</b>');}
 
 function bump(id){const b=$('#'+id);if(!b)return;b.textContent=(parseInt(b.textContent||'0',10)+1);b.classList.add('on');}
 function clearBump(id){const b=$('#'+id);if(b){b.textContent='';b.classList.remove('on');}}
@@ -1131,11 +1139,11 @@ $('#btnNotes').addEventListener('click',()=>{openPanel('pNotes');clearBump('bNot
 $('#btnDossier').addEventListener('click',()=>{openPanel('pDossier');clearBump('bDossier');});
 $('#btnSus').addEventListener('click',()=>{openPanel('pSus');clearBump('bSus');});
 $('#btnSnd').addEventListener('click',function(){S.muted=!S.muted;save();this.textContent=S.muted?'♪̸':'♪';
-  toast(S.muted?'Sound off':'Sound on');});
+  toast(S.muted?'Geluid uit':'Geluid aan');});
 $('#btnReset').addEventListener('click',()=>{
-  ovl(`<div class="ovlHead"><div class="ovlKick">SYSTEM</div><div class="ovlTitle">Reset investigation?</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Systeem</div><div class="ovlTitle">Onderzoek wissen?</div></div>
   <div class="ovlBody"><div class="ovlTxt">All progress — evidence, notes, interviews — will be permanently deleted. The case begins again at 03:12.</div>
-  <div class="ovlBtns"><button class="gBtn red" id="doReset">WIPE EVERYTHING</button><button class="gBtn dim" id="noReset">CANCEL</button></div></div>`);
+  <div class="ovlBtns"><button class="gBtn red" id="doReset">Wis alles</button><button class="gBtn dim" id="noReset">Annuleer</button></div></div>`);
   $('#doReset').addEventListener('click',()=>{wipe();location.reload();});
   $('#noReset').addEventListener('click',closeOvl);
 });
@@ -1148,12 +1156,12 @@ function renderNotes(){
   const b=$('#notesBody');b.innerHTML='';
   if(noteTab==='notes'){
     if(!S.notes.length){b.appendChild(el('div','noteLine','<span class="t">—</span>No notes yet. Everything you discover writes itself down here.'));return;}
-    [...S.notes].reverse().forEach(n=>b.appendChild(el('div','noteLine','<span class="t">'+n.t+' — NOTED</span>'+n.txt)));
+    [...S.notes].reverse().forEach(n=>b.appendChild(el('div','noteLine','<span class="t">'+n.t+' — GENOTEERD</span>'+n.txt)));
   }else{
     if(!S.timeline.length){b.appendChild(el('div','noteLine','<span class="t">—</span>The timeline is still empty. Reconstruct the night, minute by minute.'));return;}
     S.timeline.forEach(t=>{const d=el('div','tlItem'+(t.unsure?' unsure':''));
       d.appendChild(el('div','tlTime',t.time));d.appendChild(el('div','tlTxt',t.txt));
-      if(t.src)d.appendChild(el('div','tlSrc','source: '+t.src));b.appendChild(d);});
+      if(t.src)d.appendChild(el('div','tlSrc','bron: '+t.src));b.appendChild(d);});
   }
 }
 function renderDossier(){
@@ -1179,7 +1187,7 @@ function renderSus(){
     i.appendChild(el('div','susRole',s.role));
     i.appendChild(el('div','susBio',s.bio));
     const motiveKnown=(id!=='eva')||has('evaMoeder');
-    i.appendChild(el('div','susStat','MOTIVE · <b>'+(motiveKnown?s.motive:'unknown — as yet')+'</b><br>ALIBI · '+s.alibi+(S.talked[id]?'<br>STATUS · interviewed':'')));
+    i.appendChild(el('div','susStat','MOTIEF · <b>'+(motiveKnown?s.motive:'unknown — as yet')+'</b><br>ALIBI · '+s.alibi+(S.talked[id]?'<br>STATUS · verhoord':'')));
     c.appendChild(i);
     c.addEventListener('click',()=>{closePanels();startDialog(id);});
     b.appendChild(c);});
@@ -1188,7 +1196,7 @@ function renderInv(){
   const w=$('#invItems');w.innerHTML='';
   S.inv.forEach(it=>{const b=el('button','invItem'+(S.sel===it.id?' sel':''),it.lbl);
     b.addEventListener('click',()=>{S.sel=(S.sel===it.id?null:it.id);save();renderInv();
-      if(S.sel)toast('<b>'+it.lbl+'</b> selected — click something in the room to use it');});
+      if(S.sel)toast('<b>'+it.lbl+'</b> geselecteerd — klik op iets in de ruimte om te gebruiken');});
     w.appendChild(b);});
 }
 
@@ -1204,7 +1212,7 @@ function renderDoors(){
   const d=$('#doors');d.innerHTML='';
   ROOMORDER.forEach(id=>{const r=ROOMS[id];const locked=r.locked&&r.locked();
     const b=el('button','door'+(S.room===id?' cur':'')+(locked?' locked':''),r.name);
-    b.addEventListener('click',()=>{if(locked){sfx('wrong');toast('🔒 Locked. '+(id==='archief'?'The archive key is missing from the board in the lodge.':''));if(id==='archief')flag('sleutelWeg');renderDoors();return;}goRoom(id);});
+    b.addEventListener('click',()=>{if(locked){sfx('wrong');toast('🔒 Op slot. '+(id==='archief'?'The archive key is missing from the board in the lodge.':''));if(id==='archief')flag('sleutelWeg');renderDoors();return;}goRoom(id);});
     d.appendChild(b);});
 }
 function goRoom(id){
@@ -1281,13 +1289,13 @@ function bodyFigSVG(){
   <g font-family="monospace" font-size="7.5" fill="#7d2620" stroke="none">
    <circle cx="56" cy="34" r="3.2" fill="none" stroke="#7d2620" stroke-width="1.3"/>
    <line x1="53" y1="37" x2="20" y2="56" stroke="#7d2620" stroke-width=".8"/>
-   <text x="4" y="66">jaw: clenched</text>
+   <text x="4" y="66">kaak: verkrampt</text>
    <circle cx="70" cy="24" r="3.2" fill="none" stroke="#7d2620" stroke-width="1.3"/>
    <line x1="73" y1="21" x2="100" y2="12" stroke="#7d2620" stroke-width=".8"/>
-   <text x="66" y="9">pupils: dilated</text>
+   <text x="66" y="9">pupillen: verwijd</text>
    <circle cx="64" cy="38" r="3.2" fill="none" stroke="#7d2620" stroke-width="1.3"/>
    <line x1="67" y1="41" x2="102" y2="74" stroke="#7d2620" stroke-width=".8"/>
-   <text x="76" y="84">lips:</text><text x="76" y="94">cyanose</text>
+   <text x="76" y="84">lippen:</text><text x="76" y="94">cyanose</text>
   </g></svg>`;
 }
 function sprayBottleSVG(mode){
@@ -1302,112 +1310,112 @@ function sprayBottleSVG(mode){
     ${uv?'<rect x="25" y="58" width="44" height="62" fill="none" stroke="#e0c9ff" stroke-width="1.2" stroke-dasharray="3 3" class="uvGlow"/>':''}
     <rect x="28" y="62" width="38" height="54" fill="${uv?'#0d0620':'#efe7d2'}" stroke="${uv?'#8f6cff':'#3a3226'}" stroke-width="1.4" ${uv?'class="uvGlow"':''}/>
     <text x="47" y="81" text-anchor="middle" font-size="9.5" font-family="Georgia" fill="${uv?'#b48cff':'#3a3226'}">VoxClear</text>
-    <text x="47" y="95" text-anchor="middle" font-size="6" font-family="monospace" fill="${uv?'#8f6cff':'#6b5f49'}">throat spray 30 ml</text>
-    ${uv?'<text x="47" y="134" text-anchor="middle" font-size="6.5" font-family="monospace" fill="#e0c9ff">glue edge: 2nd label</text>':''}
+    <text x="47" y="95" text-anchor="middle" font-size="6" font-family="monospace" fill="${uv?'#8f6cff':'#6b5f49'}">keelspray 30ml</text>
+    ${uv?'<text x="47" y="134" text-anchor="middle" font-size="6.5" font-family="monospace" fill="#e0c9ff">lijmrand: 2e etiket</text>':''}
    </g></svg>`;
 }
 const HOT={};
 
 /* ---- Studio B ---- */
 HOT.lichaam=function(){
-  paperOvl('CRIME SCENE','Police surgeon’s report — Reuben Voss (54)',
-`<h3>Preliminary findings</h3><span class="stamp">Confidential</span><div class="docGrid"><div class="docLbl">aangetroffen</div><div class="docVal">presenter\'s chair, headphones still on</div><div class="docLbl">external injury</div><div class="docVal">none · no signs of a struggle</div><div class="docLbl">estimated time of death</div><div class="docVal"><b>02:30 — 03:00</b></div><div class="docLbl">last sign of life</div><div class="docVal">aankondiging caller block, 02:28</div></div><div class="bodyRow">${bodyFigSVG()}<div style="flex:1;min-width:150px"><div class="docChecks"><span class="cb x"></span>clenched jaw muscles<br><span class="cb x"></span>dilated pupils<br><span class="cb x"></span>cyanosis around the lips<br><span class="cb"></span>heart failure — ruled out</div><div class="hand" style="margin-top:10px">"This was not his heart.<br>Something caused this."</div></div></div>`);
+  paperOvl('Plaats delict','Schouwrapport — Reuben Voss (54)',
+`<h3>Eerste bevindingen</h3><span class="stamp">Vertrouwelijk</span><div class="docGrid"><div class="docLbl">aangetroffen</div><div class="docVal">presenter\'s chair, headphones still on</div><div class="docLbl">uitwendig letsel</div><div class="docVal">none · no signs of a struggle</div><div class="docLbl">overlijden (schatting)</div><div class="docVal"><b>02:30 — 03:00</b></div><div class="docLbl">laatste levensteken</div><div class="docVal">aankondiging bellersblok, 02:28</div></div><div class="bodyRow">${bodyFigSVG()}<div style="flex:1;min-width:150px"><div class="docChecks"><span class="cb x"></span>verkrampte kaakspieren<br><span class="cb x"></span>verwijde pupillen<br><span class="cb x"></span>cyanose rond de lippen<br><span class="cb"></span>hartfalen — uitgesloten</div><div class="hand" style="margin-top:10px">"This was not his heart.<br>Dit kwam ergens vandaan."</div></div></div>`);
   addEvidence('rapport');
-  tl('02:28','Reuben\'s last verified live words: he announces a block of callers.','Police surgeon\'s report');
-  tl('03:12','Gareth Noll finds the body and telephones the police.','Emergency call',false);
+  tl('02:28','Reuben\'s last verified live words: he announces a block of callers.','Schouwrapport');
+  tl('03:12','Gareth Noll finds the body and telephones the police.','Melding',false);
 };
 HOT.paneel=function(){
   if(S.sel==='uvlamp'){
-    if(!S.evidence.includes('spray')){toast('Aim the lamp at something you have already examined first.');return;}
-    if(has('uvGedaan')){toast('The spray has already been analysed.');return;}
+    if(!S.evidence.includes('spray')){toast('Richt de lamp eerst op iets dat u onderzocht heeft.');return;}
+    if(has('uvGedaan')){toast('De spray is al geanalyseerd.');return;}
     flag('uvGedaan');S.sel=null;renderInv();
-    ovl(`<div class="ovlHead"><div class="ovlKick">UV EXAMINATION</div><div class="ovlTitle">Throat spray under ultraviolet</div></div>
-    <div class="ovlBody"><div class="uvScene">${sprayBottleSVG('uv')}<div style="color:#cbb8ff;font-size:12.5px;line-height:1.7;margin-top:10px;max-width:320px;margin-inline:auto">Under the label a rectangle of fresh glue lights up.<br>A <b>second label</b> — this bottle is a copy in disguise.</div></div>
+    ovl(`<div class="ovlHead"><div class="ovlKick">UV-onderzoek</div><div class="ovlTitle">Keelspray onder ultraviolet</div></div>
+    <div class="ovlBody"><div class="uvScene">${sprayBottleSVG('uv')}<div style="color:#cbb8ff;font-size:12.5px;line-height:1.7;margin-top:10px;max-width:320px;margin-inline:auto">Under the label a rectangle of fresh glue lights up.<br>Een <b>tweede etiket</b> — this bottle is a copy in disguise.</div></div>
     <div class="ovlBtns"><button class="gBtn" id="labBtn">Send to the laboratory → result</button></div></div>`);
     $('#labBtn').addEventListener('click',()=>{
       addEvidence('labuitslag');
-      tl('±02:35','Reuben takes his throat spray as usual — two puffs of nicotine sulphate.','Laboratory result',true);
-      paperOvl('FORENSIC LABORATORY','Result F-2291',
-`<h3>Toxicology — urgent</h3><span class="stamp">Positive</span><div class="docGrid"><div class="docLbl">sample</div><div class="docVal">spray bottle "VoxClear", 30 ml</div><div class="docLbl">aangetroffen</div><div class="docVal"><b>nicotinesulfaat — 11,4%</b></div><div class="docLbl">lethality</div><div class="docVal">well above a lethal dose when absorbed through mucous membranes</div><div class="docLbl">UV examination</div><div class="docVal">glue residue from a replaced label</div></div>Conclusion: the original bottle was swapped for a
-prepared copy. The killer knew the victim’s ritual
-down to the minute.`);
+      tl('±02:35','Reuben takes his throat spray as usual — two puffs of nicotine sulphate.','Labuitslag',true);
+      paperOvl('Forensisch laboratorium','Uitslag F-2291',
+`<h3>Toxicologie — spoed</h3><span class="stamp">Positief</span><div class="docGrid"><div class="docLbl">monster</div><div class="docVal">spuitflacon "VoxClear", 30 ml</div><div class="docLbl">aangetroffen</div><div class="docVal"><b>nicotinesulfaat — 11,4%</b></div><div class="docLbl">letaliteit</div><div class="docVal">ruimschoots letaal bij mucosale toediening</div><div class="docLbl">uv-onderzoek</div><div class="docVal">glue residue from a replaced label</div></div>Conclusie: de originele flacon is verwisseld voor een
+geprepareerde kopie. De dader kende het ritueel van
+het slachtoffer tot op de minuut.`);
     });
     return;
   }
   paperOvl('Mixing desk','Within reach of the dead man',
-`<h3>The throat spray</h3><div class="bodyRow">${sprayBottleSVG()}<div style="flex:1;min-width:150px;padding-top:6px">Among notes and throat lozenges: <b>"VoxClear"</b>.<br><br>Two puffs before every hour — for thirty years. Half the building could set its clock by it.<br><br>The bottle is almost full.<br>His shift had already been running for four hours.<br><br>And the label sits <em>a fraction askew</em>.</div></div>`);
+`<h3>De keelspray</h3><div class="bodyRow">${sprayBottleSVG()}<div style="flex:1;min-width:150px;padding-top:6px">Tussen aantekeningen en keelpastilles: <b>"VoxClear"</b>.<br><br>Two puffs before every hour — for thirty years. Half the building could set its clock by it.<br><br>Het flesje is vrijwel vol.<br>Zijn dienst liep al vier uur.<br><br>And the label sits <em>a fraction askew</em>.</div></div>`);
   addEvidence('spray');
 };
 HOT.thermos=function(){
   paperOvl('Studio B','Flask',
-`Half full. Lukewarm. Black, no sugar — just as the label
-from Gareth says: "R. — bijgeschonken 01:00."
+`Halfvol. Lauw. Zwart, geen suiker — zoals het plakbandje
+van Gareth voorschrijft: "R. — bijgeschonken 01:00."
 
-You smell it. Coffee. Nothing but coffee.
+U ruikt eraan. Koffie. Alleen maar koffie.
 
-Sometimes a flask is just a flask.
-But you only know that for certain when the lab says so — or the killer does.`);
+Soms is een thermoskan gewoon een thermoskan.
+Maar dat weet u pas zeker als het lab het zegt — of de dader.`);
   addEvidence('thermos');
-  tl('01:00','Gareth tops up Reuben’s coffee — a fixed nightly ritual.','Label on the flask');
+  tl('01:00','Gareth schenkt Reubens koffie bij — vast nachtritueel.','Plakbandje thermoskan');
 };
 HOT.kabel=function(){
   paperOvl('Studio B','Doorgesneden kabel',
-`An XLR cable on the floor, cut through.
-Your eye immediately wants to see a weapon in it. Or sabotage.
+`Een XLR-kabel op de vloer, doorgesneden.
+Het oog wil er meteen een wapen in zien. Of sabotage.
 
-But the break is dull, frayed, weeks old.
-Fault log: "channel 1 defective since 24 Jan, switched
-to channel 2. Replacement ordered."
+Maar het breukvlak is dof, gerafeld, wékén oud.
+Storingslog: "kanaal 1 defect sinds 24 jan, uitgeweken
+naar kanaal 2. Vervanging besteld."
 
-Some clues point only to themselves.`);
+Sommige aanwijzingen wijzen alleen naar zichzelf.`);
   addEvidence('kabel');
 };
 HOT.studioFoon=function(){
   flag('foonGehoord');sfx('phone');
-  ovl(`<div class="ovlHead"><div class="ovlKick">INCOMING CALL — ANONYMOUS</div><div class="ovlTitle">The studio telephone rings</div></div>
-  <div class="ovlBody"><div class="dlgText" id="foonTxt"></div><div class="ovlBtns" id="foonBtns" style="display:none"><button class="gBtn" id="foonOk">The line goes dead</button></div></div>`);
-  typeInto($('#foonTxt'),'A voice, distorted, hurried — but the urgency is real:\n\n"You are looking in the wrong night, Inspector.\nThis did not begin tonight. It began in 2019.\n\nAsk for tape one hundred and seventeen.\nAnd ask <em>her</em>."\n\nClick.',18,()=>{$('#foonBtns').style.display='flex';$('#foonOk').addEventListener('click',()=>{closeOvl();note('Anonymous caller: "This began in 2019. Ask for tape one hundred and seventeen. And ask <em>her</em>." The voice came in on the internal line — this came from inside the building.');});});
+  ovl(`<div class="ovlHead"><div class="ovlKick">Inkomend gesprek — anoniem</div><div class="ovlTitle">De studiotelefoon rinkelt</div></div>
+  <div class="ovlBody"><div class="dlgText" id="foonTxt"></div><div class="ovlBtns" id="foonBtns" style="display:none"><button class="gBtn" id="foonOk">De lijn valt dood</button></div></div>`);
+  typeInto($('#foonTxt'),'A voice, distorted, hurried — but the urgency is real:\n\n"U zoekt in de verkeerde nacht, rechercheur.\nDit begon niet vannacht. Dit begon in 2019.\n\nVraag naar band honderd-zeventien.\nEn ask <em>her</em>."\n\nKlik.',18,()=>{$('#foonBtns').style.display='flex';$('#foonOk').addEventListener('click',()=>{closeOvl();note('Anonieme beller: "This began in 2019. Ask for tape one hundred and seventeen. And ask <em>her</em>." The voice came in on the internal line — this came from inside the building.');});});
   renderRoom();
 };
 
-/* ---- CONTROL ROOM ---- */
+/* ---- Regiekamer ---- */
 HOT.mengtafel=function(){
-  ovl(`<div class="ovlHead"><div class="ovlKick">CONTROL ROOM</div><div class="ovlTitle">Transmission log — 14/15 February</div></div>
-  <div class="ovlBody"><div class="terminal">RADIO CLARION · AUTOMATIC LOG
+  ovl(`<div class="ovlHead"><div class="ovlKick">Regiekamer</div><div class="ovlTitle">Uitzendlog 14/15 februari</div></div>
+  <div class="ovlBody"><div class="terminal">RADIO HELDER · AUTOMATISCHE REGISTRATIE
 ──────────────────────────────────────────
-00:00  THE LATE LINE          source: STUDIO B [LIVE]
-01:14  caller block           source: STUDIO B [LIVE]
-02:12  music + talk      source: STUDIO B [LIVE]
-<span style="color:#ffdf80">02:30  caller block           source: DECK 2   [LIVE]  ◄◄◄
-02:56  end of block            source: DECK 2   [LIVE]  ◄◄◄</span>
-02:56  music bed (auto)      source: SERVER
-03:14  EMERGENCY PROCEDURE — transmission stopped
+00:00  DE LATE LIJN          bron: STUDIO B [LIVE]
+01:14  bellersblok           bron: STUDIO B [LIVE]
+02:12  muziek + gesprek      bron: STUDIO B [LIVE]
+<span style="color:#ffdf80">02:30  bellersblok           bron: DECK 2   [LIVE]  ◄◄◄
+02:56  einde blok            bron: DECK 2   [LIVE]  ◄◄◄</span>
+02:56  muziekbed (auto)      bron: SERVER
+03:14  NOODPROCEDURE — uitzending gestaakt
 ──────────────────────────────────────────
-<span class="dim">DECK 2 = tape deck. A tape marked LIVE
-has been manually configured that way.</span></div>
+<span class="dim">DECK 2 = bandspeler. Een band die als LIVE
+gemarkeerd staat, is met de hand zo ingesteld.</span></div>
   <div class="ovlBtns"><button class="gBtn" id="logBtn">Add the log to the file</button></div></div>`);
   $('#logBtn').addEventListener('click',()=>{addEvidence('log');
-    tl('02:30','The "live" transmission secretly switches to tape deck 2.','Transmission log');
-    tl('02:56','End of the taped extract; automation takes over.','Transmission log');closeOvl();});
+    tl('02:30','De "live"-uitzending schakelt heimelijk over op bandspeler DECK 2.','Uitzendlog');
+    tl('02:56','End of the taped extract; automation takes over.','Uitzendlog');closeOvl();});
 };
 HOT.deck2=function(){
   paperOvl('Control room','Tape machine — deck 2',
-`The tape is still in the machine. Played out.
+`De band staat nog in de machine. Uitgedraaid.
 
-Label, pencil: "DAT-084 — The Late Line, reserve."
-According to the archive list, this number should be BLANK.
+Etiket, potlood: "DAT-084 — The Late Line, reserve."
+Volgens de archieflijst hoort dit nummer LEEG te zijn.
 
-Someone recorded an old programme onto a spare tape,
-loaded it into deck 2, and marked the source as LIVE.
+Iemand nam een oude uitzending op een reserveband op,
+laadde hem in deck 2, en markeerde de bron als LIVE.
 
-For twenty-six minutes a dead man — or a tape — spoke
-to a city that noticed nothing.`);
+Zesentwintig minuten lang praatte een dode — of een
+band — tegen een stad die niets doorhad.`);
   addEvidence('dat084');
 };
 HOT.regieLa=function(){
-  ovl(`<div class="ovlHead"><div class="ovlKick">CONTROL ROOM — DRAWER</div><div class="ovlTitle">Margery\'s log book · volume 31</div></div>
-  <div class="ovlBody"><div class="notebook">night of 14/15 Feb<br>01:14&nbsp;&nbsp;callers quiet<br>02:12&nbsp;&nbsp;R. hoarse, spray again<br><span class="ring">02:40&nbsp;&nbsp;fire esc.</span><br>──────&nbsp;(blank)&nbsp;──────<br>02:55&nbsp;&nbsp;back. <b>deck 2 running??</b><br>03:14&nbsp;&nbsp;sirens</div>
-  <div class="ovlTxt" style="font-size:12.5px;margin-top:10px">"02:40 fire esc." — fire escape. Margery was away during exactly the quarter-hour in which the radio lied. And at 02:55 she writes down the question that opens everything.</div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Regiekamer — la</div><div class="ovlTitle">Margery\'s log book · volume 31</div></div>
+  <div class="ovlBody"><div class="notebook">night of 14/15 Feb<br>01:14&nbsp;&nbsp;bellers rustig<br>02:12&nbsp;&nbsp;R. hees, spray weer<br><span class="ring">02:40&nbsp;&nbsp;br.trap</span><br>──────&nbsp;(leeg)&nbsp;──────<br>02:55&nbsp;&nbsp;terug. <b>deck 2 loopt??</b><br>03:14&nbsp;&nbsp;sirenes</div>
+  <div class="ovlTxt" style="font-size:12.5px;margin-top:10px">"02:40 br.trap" — brandtrap. Margery was weg, precies het kwartier waarin de radio loog. En om 02:55 noteert ze zelf de vraag die alles opent.</div>
   <div class="ovlBtns" id="paperBtns"></div></div>`);
   addEvidence('schriftje');
 };
@@ -1417,49 +1425,49 @@ HOT.patchveld=function(){patchPuzzle();};
 /* ---- Portiersloge ---- */
 HOT.terminal=function(){
   const rows=[
-   ['21:58','NOL, K.','IN','main entrance'],
-   ['22:05','LINDT, E.','IN','main entrance'],
-   ['23:31','VOSS, R.','IN','artists entrance'],
-   ['23:52','DEKKER, M.','IN','main entrance'],
-   ['00:47','VERHOEVEN, I.','IN','main entrance'],
-   ['01:47','KROON, S.','IN','main entrance'],
-   ['03:19','POLICE','IN','main entrance']
+   ['21:58','NOL, K.','IN','hoofdingang'],
+   ['22:05','LINDT, E.','IN','hoofdingang'],
+   ['23:31','VOSS, R.','IN','artiesteningang'],
+   ['23:52','DEKKER, M.','IN','hoofdingang'],
+   ['00:47','VERHOEVEN, I.','IN','hoofdingang'],
+   ['01:47','KROON, S.','IN','hoofdingang'],
+   ['03:19','POLITIE','IN','hoofdingang']
   ];
-  let filter='ALL';
+  let filter='ALLE';
   function draw(){
-    const names=['ALL','KROON','LINDT','DEKKER','VERHOEVEN','NOL','VOSS'];
+    const names=['ALLE','KROON','LINDT','DEKKER','VERHOEVEN','NOL','VOSS'];
     const btns=names.map(n=>`<button class="termBtn${filter===n?' cur':''}" data-f="${n}">${n}</button>`).join(' ');
-    const body=rows.filter(r=>filter==='ALL'||r[1].indexOf(filter)>-1)
+    const body=rows.filter(r=>filter==='ALLE'||r[1].indexOf(filter)>-1)
       .map(r=>`${r[0]}  ${r[1].padEnd(14,' ')} ${r[2].padEnd(4,' ')} ${r[3]}`).join('\n');
     ovl(`<div class="ovlHead"><div class="ovlKick">Portiersloge</div><div class="ovlTitle">Toegangsterminal</div></div>
     <div class="ovlBody"><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">${btns}</div>
-    <div class="terminal">BADGE LOG · NIGHT 14/15 FEB
+    <div class="terminal">BADGE-REGISTRATIE · NACHT 14/15 FEB
 ──────────────────────────────────────────
 ${body}
 ──────────────────────────────────────────
-<span class="dim">No OUT registration before 03:19.
-Everyone who came in was still there.</span></div>
+<span class="dim">Geen enkele UIT-registratie vóór 03:19.
+Iedereen die binnenkwam, was er nog.</span></div>
     <div class="ovlBtns"><button class="gBtn" id="badgeBtn">Add the log to the file</button></div></div>`);
     $$('#ovlContent [data-f]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.f;draw();}));
     $('#badgeBtn').addEventListener('click',()=>{addEvidence('badge');
-      tl('22:05','Eva Lindt badges in — and does not badge out all night.','Access log');
-      tl('23:31','Reuben Voss arrives through the artists entrance.','Access log');
-      tl('01:47','Sandra Crane badges in — while stating that she is at home.','Access log');closeOvl();});
+      tl('22:05','Eva Lindt badges in — and does not badge out all night.','Toegangslog');
+      tl('23:31','Reuben Voss arriveert via de artiesteningang.','Toegangslog');
+      tl('01:47','Sandra Crane badges in — while stating that she is at home.','Toegangslog');closeOvl();});
   }
   draw();
 };
 HOT.sleutelbord=function(){
   flag('sleutelWeg');
   paperOvl('Porter\'s lodge','Key board',
-`Eighteen hooks, eighteen labels in Gareth’s block capitals.
-Seventeen keys.
+`Achttien haken, achttien labels in Gareths blokletters.
+Zeventien sleutels.
 
-The empty hook: "ARCHIVE — BASEMENT."
+De lege haak: "ARCHIEF — KELDER."
 
-The dust around the hook is untouched except for one
-finger-wide smear. Recent. Somebody took the key
-without asking — somebody who knew exactly
-where it hung.`);
+Het stof rondom de haak is onaangeroerd, op één
+vingerbrede veeg na. Recent. Iemand nam de sleutel
+zonder iets te vragen — iemand die precies wist
+waar hij hing.`);
   note('The archive key is off the board — the smear in the dust is fresh. Who in this building wants something from the cellar?');
 };
 
@@ -1467,69 +1475,69 @@ where it hung.`);
 HOT.prullenbak=function(){scrapPuzzle();};
 HOT.evaBureau=function(){
   paperOvl('Newsroom','Eva Lindt\'s desk',
-`Everything squared. Pens sorted by colour. A placement report,
-printed and bound — faultless, detached,
-impeccable like everything about her.
+`Alles haaks. Pennen op kleur. Een stageverslag,
+uitgeprint en gebonden — foutloos, afstandelijk,
+onberispelijk zoals alles aan haar.
 
-On the inside flap, in pencil, tiny:
+Op de binnenflap, in potlood, piepklein:
 
         ╭───────────╮
         │  2019-117 │
         ╰───────────╯
 
-One number. Gone over so many times that the paper
-has worn thin. Like a wound that
-will not be left alone.`);
+Eén nummer. Zó vaak overgetrokken dat het papier
+er dun van is geworden. Als een wond die
+niet met rust gelaten wordt.`);
   addEvidence('stageverslag');
 };
 HOT.jas=function(){
   if(has('sleutelGevonden')){toast('The coat has already given up its secret.');return;}
   flag('sleutelGevonden');flag('archiefOpen');
   paperOvl('Newsroom','Coat on the stand',
-`A dark green raincoat. Size S. Eva’s —
-her name is sewn into the collar, old-fashioned and neat.
+`Een donkergroene regenjas. Maat S. Van Eva —
+haar naam staat in de kraag genaaid, ouderwets net.
 
-In the right pocket: a key on a wooden tag.
+In de rechterzak: een sleutel aan een houten hanger.
 
-The label, in Gareth’s block capitals:
-"ARCHIVE — BASEMENT."
+Het label, in Gareths blokletters:
+"ARCHIEF — KELDER."
 
-The key nobody ever asks for,
-in the coat of the quietest person in the building.`);
-  addInv('sleutel','🗝 Archive key');
-  note('The missing archive key was in Eva’s coat pocket. The archive is now accessible.');
+De sleutel die niemand ooit vraagt,
+in de jas van de stilste persoon van het gebouw.`);
+  addInv('sleutel','🗝 Archiefsleutel');
+  note('De vermiste archiefsleutel zat in Eva\'s jaszak. Het archief is nu toegankelijk.');
   renderDoors();
 };
 
-/* ---- DIRECTOR'S OFFICE ---- */
+/* ---- Directiekantoor ---- */
 HOT.bureau=function(){
   paperOvl('Director\'s office','Sandra Crane\'s desk',
-`<h3>Project 4471 — "Digital Renewal"</h3>Arts Council grant: € 240.000.
+`<h3>Project 4471 — "Digitale Vernieuwing"</h3>Cultuurfonds-subsidie: € 240.000.
 
-Invoices from "Mediahuis Boreas BV" for consultancy,
-software, migration. Address of Boreas BV:
-Lindenkade 11 — S. Crane's private address.
+Facturen van "Mediahuis Boreas BV" voor advies,
+software, migratie. Adres van Boreas BV:
+Lindenkade 11 — het privéadres van S. Crane.
 
-The project number appears everywhere: 4471.
-On every invoice, every memo, every stamp.
-A number like a fingerprint.`);
+Het projectnummer keert overal terug: 4471.
+Op elke factuur, elke memo, elk stempel.
+Een getal als een vingerafdruk.`);
   addEvidence('dossier4471');
 };
 HOT.kluis=function(){kluisPuzzle();};
 
-/* ---- Canteen ---- */
+/* ---- Kantine ---- */
 HOT.kapstok=function(){phonePuzzle();};
 HOT.prikbord=function(){
-  paperOvl('Canteen','Notice board — night rota',
+  paperOvl('Canteen','Prikbord — nachtrooster',
 `<h3>Crew, night of 14/15 Feb</h3>VOSS, R.      — Studio B, The Late Line
-DEKKER, M.    — Night control
-NOL, K.       — Lodge / rounds
-VERHOEVEN, I. — Editing booth 3
-LINDT, E.     — Newsroom <em>"sitting in on archive — M.D."</em>
+DEKKER, M.    — Nachtregie
+NOL, K.       — Loge / rondes
+VERHOEVEN, I. — Montagecel 3
+LINDT, E.     — Redactie <em>"loopt mee met archief — M.D."</em>
 
-Somebody has put a question mark in ballpoint
-beside that final line. Hard enough to press
-through the paper.`);
+Bij die laatste regel heeft iemand met balpen
+een vraagteken gezet. Hard genoeg om door
+het papier te drukken.`);
   addEvidence('rooster');
 };
 
@@ -1537,38 +1545,38 @@ through the paper.`);
 HOT.kaartenbak=function(){kaartenbakPuzzle();};
 HOT.reelspeler=function(){reelPuzzle();};
 HOT.gereedschap=function(){
-  if(S.inv.some(i=>i.id==='uvlamp')){toast('The cupboard is otherwise empty — apart from dust and spiders.');return;}
+  if(S.inv.some(i=>i.id==='uvlamp')){toast('De kast is verder leeg — op stof en spinnen na.');return;}
   paperOvl('Archive','Tool cupboard',
-`Splicing tape, cotton swabs, isopropanol —
-the maintenance kit of an analogue age.
+`Splitstape, wattenstaafjes, isopropanol —
+het onderhoudsgerei van een analoog tijdperk.
 
-And a UV hand lamp, for checking splicing glue.
+En een UV-handlamp, voor het keuren van bandlijm.
 
-Ultraviolet light reveals what the
-naked eye misses. Glue. Residue.
-Replaced labels.`);
+Ultraviolet licht maakt zichtbaar wat het
+blote oog moet missen. Lijm. Residuen.
+Vervangen etiketten.`);
   addInv('uvlamp','🔦 UV-lamp');
   note('UV lamp found. Select it in your inventory and use it on anything suspect — the mixing desk in Studio B, for instance.');
 };
 HOT.stellingen=function(){
   paperOvl('Archive','Tape racks',
-`Rows to the ceiling. Thirty years of nights,
-catalogued by year and number.
+`Rijen tot aan het plafond. Dertig jaar nacht,
+gecatalogiseerd per jaar en nummer.
 
 1994. 2001. 2008. 2019.
 
-In the 2019 section the dust on the shelf
-has been disturbed. One box sits half a centimetre
-out of line — in this archive, that is a scream.
+Bij de sectie 2019 is het stof op de plank
+verstoord. Eén doos staat een halve centimeter
+verkeerd — voor dit archief is dat geschreeuw.
 
-The card index knows which tape belongs here.`);
+De kaartenbak weet welke band hier hoort.`);
   note('In the 2019 section of the archive something has recently been taken out, or put back.');
 };
 
 /* ---- stroomuitval bij eerste archiefbezoek ---- */
 function archiefBlackout(){
   const b=$('#blackout');b.style.opacity=1;sfx('thunder');
-  setTimeout(()=>{toast('The strip lights go out. Somewhere above you: footsteps. Fast. Light.');},700);
+  setTimeout(()=>{toast('De tl-buizen vallen uit. Ergens boven u: voetstappen. Snel. Licht.');},700);
   setTimeout(()=>{b.style.opacity=0;lightning();
     note('The power fails as you enter the archive — and there are footsteps above your head. You are not the only one looking for something tonight.');},2600);
 }
@@ -1581,10 +1589,10 @@ function archiefBlackout(){
 
 /* ---- kluis (code 4471) ---- */
 function kluisPuzzle(){
-  if(S.evidence.includes('dreigbrief')){toast('The safe is open and empty.');return;}
+  if(S.evidence.includes('dreigbrief')){toast('De kluis staat open en is leeg.');return;}
   let d=[0,0,0,0];
-  ovl(`<div class="ovlHead"><div class="ovlKick">DIRECTOR'S OFFICE</div><div class="ovlTitle">Safe behind the seascape</div></div>
-  <div class="ovlBody"><div class="ovlTxt">The painting swings aside like a little door. Behind it: steel, and four number wheels. Sandra Crane looks like somebody who picks codes she could never forget.<br><em>One number keeps appearing throughout this office.</em></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Directiekantoor</div><div class="ovlTitle">Safe behind the seascape</div></div>
+  <div class="ovlBody"><div class="ovlTxt">The painting swings aside like a little door. Behind it: steel, and four number wheels. Sandra Crane looks like somebody who picks codes she could never forget.<br><em>Ergens in dit kantoor keert één getal telkens terug.</em></div>
   <div class="dial" id="dialWrap"></div>
   <div class="ovlBtns"><button class="gBtn" id="tryKluis">Turn the handle</button></div></div>`);
   const wrap=$('#dialWrap');
@@ -1599,15 +1607,15 @@ function kluisPuzzle(){
     if(d.join('')==='4471'){
       sfx('unlock');$('#ovlBox').classList.add('glowOk');
       setTimeout(()=>{addEvidence('dreigbrief');
-        paperOvl('FROM THE SAFE','Typed letter, signed "R."',
-`<h3>No salutation</h3><span class="stamp">Evidence</span>I know where 4471 really went.
-I have known for eighteen months.
+        paperOvl('Uit de kluis','Getypte brief, ondertekend "R."',
+`<h3>Zonder aanhef</h3><span class="stamp">Bewijs</span>Ik weet waar 4471 werkelijk heen ging.
+Ik weet het al anderhalf jaar.
 
-As long as The Late Line stays on air, this stays
-between us. My programme, my hours, my night.
+Zolang The Late Line blijft bestaan, blijft dit
+tussen ons. Mijn programma, mijn uren, mijn nacht.
 
-The moment you touch my programme,
-the board comes after you.
+Zodra je aan mijn programma komt,
+komt de omroepraad aan jou.
 <br><span class="sig">— R.</span>`);
         note('The safe code was 4471 — the project number of the fraud. Sandra kept the evidence of her own blackmailing. Why does anyone keep such a thing? Because throwing it away is more dangerous.');
       },500);
@@ -1619,21 +1627,21 @@ window.kluisPuzzle=kluisPuzzle;
 /* ---- telefoon (pincode 0924) ---- */
 function phonePuzzle(){
   if(S.evidence.includes('telefoon')){toast('The coat is empty; the telephone is in the file.');return;}
-  ovl(`<div class="ovlHead"><div class="ovlKick">CANTEEN — COAT STAND</div><div class="ovlTitle">Reuben’s coat, Reuben’s telephone</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Kantine — kapstok</div><div class="ovlTitle">Reubens jas, Reubens telefoon</div></div>
   <div class="ovlBody"><div class="ovlTxt">Inside pocket: a telephone, locked with four digits. On the screen, a photograph of the transmitter mast in the rain.<br><em>What does a radio man of thirty years never forget? It is on every wall in this building.</em></div>
   <div class="dial" style="justify-content:center"><input id="pinInp" maxlength="4" inputmode="numeric" autocomplete="off" style="width:150px;text-align:center;font-family:var(--mono);font-size:28px;letter-spacing:.4em;background:rgba(0,0,0,.45);border:1px solid var(--linehi);color:var(--cream);padding:10px 0 10px .4em;border-radius:2px" placeholder="····"></div>
-  <div class="ovlBtns"><button class="gBtn" id="tryPin">Unlock</button></div></div>`);
+  <div class="ovlBtns"><button class="gBtn" id="tryPin">Ontgrendel</button></div></div>`);
   $('#tryPin').addEventListener('click',()=>{
     const v=($('#pinInp').value||'').trim();
     if(v==='0924'||v==='924'){
       sfx('unlock');addEvidence('telefoon');
-      ovl(`<div class="ovlHead"><div class="ovlKick">UNLOCKED — 0924, THE FREQUENCY</div><div class="ovlTitle">Sent tonight</div></div>
-      <div class="ovlBody"><div class="phoneFrame"><div class="smsHead">TO: S. CRANE</div><div class="sms">4471 stays our secret — for now. We talk tonight. Come in if you like.<time>01:41 ✓✓</time></div><div class="smsHead">TO: A. HOLLIS</div><div class="sms">Prague was theatre and we both know it. Tomorrow the board will know it too.<time>01:52 ✓✓</time></div><div class="smsHead">TO: G. NOLL</div><div class="sms">After tonight our arrangement ends. For good. Something out of the past is after me. I am clearing everything out. Everything.<time>02:10 ✓</time></div></div>
-      <div class="ovlTxt" style="text-align:center;font-size:12px;margin-top:8px"><em>Three messages, three knives on the table — and one phrase that keeps catching: "something out of the past".</em></div>
-      <div class="ovlBtns"><button class="gBtn" id="telOk">Close the telephone</button></div></div>`);
-      tl('01:41','Reuben summons Sandra: "4471 stays our secret — for now."','Reuben\'s telephone');
-      tl('01:52','Reuben threatens to expose Adrian to the board.','Reuben\'s telephone');
-      tl('02:10','Reuben ends his "arrangement" with Gareth: something out of the past is after him.','Reuben\'s telephone');
+      ovl(`<div class="ovlHead"><div class="ovlKick">Ontgrendeld — 0924, de frequentie</div><div class="ovlTitle">Verzonden vannacht</div></div>
+      <div class="ovlBody"><div class="phoneFrame"><div class="smsHead">AAN: S. KROON</div><div class="sms">4471 stays our secret — for now. We talk tonight. Come in if you like.<time>01:41 ✓✓</time></div><div class="smsHead">AAN: I. VERHOEVEN</div><div class="sms">Prague was theatre and we both know it. Tomorrow the board will know it too.<time>01:52 ✓✓</time></div><div class="smsHead">AAN: K. NOL</div><div class="sms">Na vannacht stopt onze afspraak. Definitief. Er zit something out of the past achter me aan. Ik ruim op. Alles.<time>02:10 ✓</time></div></div>
+      <div class="ovlTxt" style="text-align:center;font-size:12px;margin-top:8px"><em>Drie berichten, drie messen op tafel — en één zin die blijft haken: "something out of the past".</em></div>
+      <div class="ovlBtns"><button class="gBtn" id="telOk">Sluit de telefoon</button></div></div>`);
+      tl('01:41','Reuben ontbiedt Sandra: "4471 blijft ons geheim — voorlopig."','Telefoon Reuben');
+      tl('01:52','Reuben dreigt Adrian te ontmaskeren bij de omroepraad.','Telefoon Reuben');
+      tl('02:10','Reuben beëindigt de "afspraak" met Gareth: er zit something out of the past achter hem aan.','Telefoon Reuben');
       $('#telOk').addEventListener('click',closeOvl);
     }else{sfx('wrong');$('#ovlBox').classList.add('shake');setTimeout(()=>$('#ovlBox').classList.remove('shake'),450);}
   });
@@ -1642,19 +1650,19 @@ window.phonePuzzle=phonePuzzle;
 
 /* ---- verscheurde brief ---- */
 const SCRAPS=[
- 'To the board of governors —\nwhat I report below,\nI report with reluctance.',
+ 'Aan de omroepraad —\nwat ik u hieronder meld,\nmeld ik met tegenzin.',
  'Mr Hollis\'s award-\nwinning Prague interview\nis in part',
  'STAGED, with a hired\nactor in the role of\nthe source.',
  'I hold the booking\nconfirmation and the\ncall script.',
- 'Unless the schedule\nis reconsidered, I shall be\ncompelled to make this',
- 'public.\n— R. Voss,\n14 February'
+ 'Tenzij de programmering\nwordt herzien, zie ik mij\ngenoodzaakt dit',
+ 'openbaar te maken.\n— R. Voss,\n14 februari'
 ];
 function scrapPuzzle(){
-  if(S.evidence.includes('brief')){toast('The letter has already been reconstructed and added to the file.');return;}
-  ovl(`<div class="ovlHead"><div class="ovlKick">NEWSROOM — WASTE BASKET</div><div class="ovlTitle">A torn letter</div></div>
+  if(S.evidence.includes('brief')){toast('De brief is al hersteld en opgenomen in het dossier.');return;}
+  ovl(`<div class="ovlHead"><div class="ovlKick">Redactiecel — prullenbak</div><div class="ovlTitle">Een verscheurde brief</div></div>
   <div class="ovlBody"><div class="ovlTxt">Six scraps, torn with force. Drag them into reading order — top left to bottom right.</div>
   <div id="scraps"></div>
-  <div class="ovlBtns"><span style="font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em" id="scrapStat">0 / 6 in place</span></div></div>`);
+  <div class="ovlBtns"><span style="font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em" id="scrapStat">0 / 6 op hun plaats</span></div></div>`);
   const box=$('#scraps');
   const slots=[];const placed=new Array(6).fill(null);
   function slotPos(i){const col=i%3,row=Math.floor(i/3);
@@ -1679,26 +1687,26 @@ function scrapPuzzle(){
       if(dx<55&&dy<45&&placed[i2]===null){
         s.style.left=p.x+'px';s.style.top=p.y+'px';s.style.transform='rotate(0)';
         s.classList.add('lockd');placed[i2]=true;sfx('click');
-        const n=placed.filter(Boolean).length;$('#scrapStat').textContent=n+' / 6 in place';
+        const n=placed.filter(Boolean).length;$('#scrapStat').textContent=n+' / 6 op hun plaats';
         if(n===6)finishScrap();
       }});
   });
   function finishScrap(){
     sfx('unlock');
     setTimeout(()=>{addEvidence('brief');
-      paperOvl('RECONSTRUCTED DOCUMENT','Letter to the board of governors',
-`<h3>Reconstruction complete</h3><span class="stamp">Evidence</span>To the board of governors — what I report below,
-I report with reluctance.
+      paperOvl('Hersteld document','Brief aan de omroepraad',
+`<h3>Herstel voltooid</h3><span class="stamp">Bewijs</span>Aan de omroepraad — wat ik u hieronder meld,
+meld ik met tegenzin.
 
-Mr Hollis’s award-winning Prague interview
-is partly STAGED, with a hired actor
-in the role of the source. I have the
-booking confirmation and the call script.
+Het bekroonde Prague-interview van de heer Hollis
+is deels GEËNSCENEERD, met een ingehuurde acteur
+in de rol van de bron. Ik beschik over de
+boekingsbevestiging en het belscript.
 
-Unless the schedule is reconsidered,
-I shall be compelled to make this public.
-<br><span class="sig">R. Voss</span> <span style="font-size:11px;color:rgba(43,36,26,.6)">— 14 February</span>`);
-      note('The torn letter: Reuben was about to expose Adrian’s faked interview. Torn up — but by whom? The writer or the target?');
+Tenzij de programmering wordt herzien,
+zie ik mij genoodzaakt dit openbaar te maken.
+<br><span class="sig">R. Voss</span> <span style="font-size:11px;color:rgba(43,36,26,.6)">— 14 februari</span>`);
+      note('The torn letter: Reuben was on the point of\' vervalste interview te onthullen. Verscheurd — maar door wie? De schrijver of het doelwit?');
     },600);
   }
 }
@@ -1711,48 +1719,48 @@ function kaartenbakPuzzle(){
   ovl(`<div class="ovlHead"><div class="ovlKick">Archief</div><div class="ovlTitle">Card index — thirty years of nights</div></div>
   <div class="ovlBody"><div class="ovlTxt">Thousands of index cards, by year and sequence number. To search without a number is to look for one voice in thirty years of hiss.<br><em>Somebody in this building is carrying a number about with them.</em></div>
   <div class="dial" style="justify-content:center"><input id="bakInp" autocomplete="off" style="width:220px;text-align:center;font-family:var(--mono);font-size:20px;letter-spacing:.2em;background:rgba(0,0,0,.45);border:1px solid var(--linehi);color:var(--cream);padding:10px;border-radius:2px" placeholder="JJJJ-NNN"></div>
-  <div class="ovlBtns"><button class="gBtn" id="tryBak">Search for the card</button></div></div>`);
+  <div class="ovlBtns"><button class="gBtn" id="tryBak">Zoek de kaart</button></div></div>`);
   $('#tryBak').addEventListener('click',()=>{
     const v=($('#bakInp').value||'').replace(/\s/g,'');
     if(v==='2019-117'||v==='2019117'){
       sfx('unlock');addEvidence('band117');
-      tl('12 Mar 2019','"Anonymous caller H." makes a confession on The Late Line.','Index card 2019-117');
-      tl('Jun 2019','Reuben repeats the extract in Highlights Night. Complaint from the Dewitt family — dismissed by him.','Index card 2019-117');
-      paperOvl('ARCHIVE — DRAWER 2019','Index card & tape 2019-117',
-`<h3>2019-117 · Confession Line</h3><span class="stamp">Found</span>Date: 12 March 2019, 02:40.
-Caller: anonymous — "H."
-Subject: [removed by editorial staff]
+      tl('12 mrt 2019','"Anonieme beller H." doet een bekentenis in The Late Line.','Steekkaart 2019-117');
+      tl('jun 2019','Reuben repeats the extract in Highlights Night. Complaint from the Dewitt family — dismissed by him.','Steekkaart 2019-117');
+      paperOvl('Archief — lade 2019','Steekkaart & band 2019-117',
+`<h3>2019-117 · Bekentenislijn</h3><span class="stamp">Gevonden</span>Datum: 12 maart 2019, 02:40.
+Beller: anoniem — "H."
+Onderwerp: [door red. verwijderd]
 
-Note (handwriting of M. Deakin):
-"Extract repeated in Highlights Night, June 2019.
- Complaint lodged by the Dewitt family.
- Dismissed by R. Voss: 'anonymous is anonymous'."
+Aantekening (hand van M. Deakin):
+"Fragment herhaald in Hoogtepuntennacht, juni 2019.
+ Klacht ingediend door the Dewitt family.
+ Afgewezen door R. Voss: 'anoniem is anoniem'."
 
-The tape is still there. The dust around it is not.
-Somebody handled this card recently —
-and put it back perfectly straight.`);
-      note('Tape 2019-117 found: an anonymous confession, later repeated by Reuben despite a complaint from "the Dewitt family". Who is H.? And who in this building is actually called Dewitt?');
+De band ligt er nog. Het stof eromheen niet meer.
+Iemand heeft deze kaart recent vastgehouden —
+en teruggelegd, precies recht.`);
+      note('Tape 2019-117 found: an anonymous confession, later repeated by Reuben despite a complaint from "the Dewitt family". Wie is H.? En wie in dit gebouw heet eigenlijk Dewitt?');
     }else{sfx('wrong');$('#ovlBox').classList.add('shake');setTimeout(()=>$('#ovlBox').classList.remove('shake'),450);}
   });
 }
 window.kaartenbakPuzzle=kaartenbakPuzzle;
 
 /* =====================================================================
-   PATCHVELD — "how did the tape get on air?"
+   PATCHVELD — "hoe kwam de band op de lucht?"
    ===================================================================== */
 const PATCH_SRC=[['mic','STUDIO MIC'],['deck1','DECK 1'],['deck2','DECK 2'],['tel','TELEFOONLIJN']];
-const PATCH_DST=[['zender','TRANSMITTER · broadcast'],['monitor','CONTROL MONITOR'],['rec','ARCHIVE REC']];
+const PATCH_DST=[['zender','ZENDER · uitzending'],['monitor','REGIE-MONITOR'],['rec','ARCHIEF-REC']];
 function patchPuzzle(){
   if(has('routingGevonden')){toast('The patch bay stands as the killer left it: deck 2 to the transmitter, studio to the monitor.');return;}
   let link={zender:null,monitor:null,rec:null}, selSrc=null;
-  ovl(`<div class="ovlHead"><div class="ovlKick">CONTROL ROOM · PATCH BAY</div><div class="ovlTitle">How did the tape get on air?</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Regiekamer · patchveld</div><div class="ovlTitle">Hoe kwam de band op de lucht?</div></div>
   <div class="ovlBody"><div class="ovlTxt">The patch bay routes every sound in this building. Reconstruct how the killer put a <b>band</b> out live <em>without</em> anybody noticing.<br><em>Choose a source, then a destination. Think who was in the control room that night — and what she was <em>looking</em> at.</em></div>
   <div class="patchWrap"><div class="patchCol" id="patchSrc"></div><svg class="patchCables" id="patchSvg" viewBox="0 0 240 220" preserveAspectRatio="none"></svg><div class="patchCol" id="patchDst"></div></div>
   <div class="patchHint" id="patchHint">Drag the signal: source → destination.</div>
-  <div class="ovlBtns"><button class="gBtn" id="patchClear">Disconnect everything</button><button class="gBtn red" id="patchGo">Check the routing</button></div></div>`);
+  <div class="ovlBtns"><button class="gBtn" id="patchClear">Alles loskoppelen</button><button class="gBtn red" id="patchGo">Controleer de routering</button></div></div>`);
   const srcC=$('#patchSrc'),dstC=$('#patchDst');
   PATCH_SRC.forEach(([id,lbl])=>{const b=el('button','patchJack src','<span class="jackDot"></span>'+lbl);b.dataset.src=id;
-    b.addEventListener('click',()=>{selSrc=id;$$('#patchSrc .patchJack').forEach(x=>x.classList.toggle('sel',x===b));$('#patchHint').textContent='Source selected: '+lbl+'. Now choose a destination.';});
+    b.addEventListener('click',()=>{selSrc=id;$$('#patchSrc .patchJack').forEach(x=>x.classList.toggle('sel',x===b));$('#patchHint').textContent='Bron gekozen: '+lbl+'. Now choose a destination.';});
     srcC.appendChild(b);});
   PATCH_DST.forEach(([id,lbl])=>{const b=el('button','patchJack dst',lbl+'<span class="jackDot"></span>');b.dataset.dst=id;
     b.addEventListener('click',()=>{
@@ -1771,7 +1779,7 @@ function patchPuzzle(){
       svg.innerHTML+=`<path d="M4 ${y1} C110 ${y1} 130 ${y2} 236 ${y2}" stroke="${col}" stroke-width="3" fill="none" opacity=".85"/><circle cx="4" cy="${y1}" r="4" fill="${col}"/><circle cx="236" cy="${y2}" r="4" fill="${col}"/>`;});
     $$('#patchDst .patchJack').forEach((b)=>{b.classList.toggle('wired',!!link[b.dataset.dst]);});
   }
-  $('#patchClear').addEventListener('click',()=>{link={zender:null,monitor:null,rec:null};selSrc=null;$$('#patchSrc .patchJack').forEach(x=>x.classList.remove('sel'));drawCables();$('#patchHint').textContent='Everything disconnected.';});
+  $('#patchClear').addEventListener('click',()=>{link={zender:null,monitor:null,rec:null};selSrc=null;$$('#patchSrc .patchJack').forEach(x=>x.classList.remove('sel'));drawCables();$('#patchHint').textContent='Alles losgekoppeld.';});
   $('#patchGo').addEventListener('click',()=>{
     window._patchLink=link;
     if(link.zender==='deck2'&&link.monitor==='mic'){
@@ -1779,24 +1787,24 @@ function patchPuzzle(){
       const box=$('#ovlBox');if(box)box.classList.add('glowOk');
       setTimeout(()=>{
         addEvidence('routing');
-        tl('02:30','The killer patches DECK 2 to the TRANSMITTER and keeps the monitor on the studio — the control room sees nothing odd.','Patch bay');
+        tl('02:30','The killer patches DECK 2 to the TRANSMITTER and keeps the monitor on the studio — the control room sees nothing odd.','Patchveld');
         note('Routing reconstructed: the tape went to the transmitter, the control monitor stayed on the studio. Whoever did this knew the patch bay inside out — no outsider, no guesswork.');
-        paperOvl('CONTROL ROOM · PATCH BAY','The monitor that lied',
-`<h3>Reconstructed routing</h3><span class="stamp">Evidence</span>TRANSMITTER ← DECK 2      (the tape, "live")
-MONITOR     ← STUDIO MIC  (what control saw)
-ARCHIVE     ← —
+        paperOvl('Regiekamer · patchveld','De monitor die loog',
+`<h3>Gereconstrueerde routering</h3><span class="stamp">Bewijs</span>ZENDER  ← DECK 2      (de band, "live")
+MONITOR ← STUDIO MIC  (wat de regie zag)
+ARCHIEF ← —
 
-While Anthracite City listened to a tape,
-every meter in the control room simply read "studio".
-Margery had no reason to notice — and noticed nothing.
+Terwijl Anthracite City naar een band luisterde,
+wees elke meter in de regie gewoon "studio" aan.
+Margery hoefde niets te merken — en merkte niets.
 
-This is not an act of panic. It was prepared by
-somebody who knew exactly how this room works.`);
+Dit is geen paniekdaad. Dit is voorbereid door
+iemand die precies wist hoe deze kamer werkt.`);
       },500);
     }else{
       sfx('wrong');const box=$('#ovlBox');if(box){box.classList.add('shake');setTimeout(()=>box.classList.remove('shake'),450);}
       let h='That is not right yet. ';
-      if(link.zender!=='deck2')h+='The broadcast sounded "live" — but what was that signal <em>really</em> feeding? ';
+      if(link.zender!=='deck2')h+='De uitzending klonk "live" — but what was that signal <em>really</em> feeding? ';
       else if(link.monitor!=='mic')h+='The tape goes to the transmitter. But <em>why</em> did the control room not notice? What did the monitor have to show? ';
       $('#patchHint').textContent=h;
     }
@@ -1811,10 +1819,10 @@ window._patchSolve=function(){flag('routingGevonden');addEvidence('routing');};
    ===================================================================== */
 function reelPuzzle(){
   if(!S.evidence.includes('band117')){toast('You have no tape to play yet.');return;}
-  if(has('band117Beluisterd')){toast('You have heard the tape. Some voices stay with you.');return;}
+  if(has('band117Beluisterd')){toast('U heeft de band gehoord. Sommige stemmen blijven hangen.');return;}
   let idx=0;const TARGET=117;
-  ovl(`<div class="ovlHead"><div class="ovlKick">ARCHIVE · TAPE MACHINE</div><div class="ovlTitle">Tape 2019-117 — "ask <em>her</em>"</div></div>
-  <div class="ovlBody"><div class="ovlTxt">You put the tape up on the machine. The counter reads zero. Somewhere on this reel is one extract — you must wind to the right count to hear it.<br><em>The index card carried only one number. That same number stood, gone over again and again, in Eva’s placement report.</em></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Archief · bandspeler</div><div class="ovlTitle">Band 2019-117 — "ask <em>her</em>"</div></div>
+  <div class="ovlBody"><div class="ovlTxt">You put the tape up on the machine. The counter reads zero. Somewhere on this reel is one extract — you must wind to the right count to hear it.<br><em>The index card carried only one number. That same number stood, gone over again and again, in Eva's stageverslag.</em></div>
   <canvas class="reelCv" id="reelCv" width="360" height="120"></canvas>
   <div class="reelCounter" id="reelCounter">000</div>
   <div class="reelBtns">
@@ -1836,18 +1844,18 @@ function reelPuzzle(){
   $$('#reelBtns .termBtn,[data-step]').forEach(b=>b.addEventListener('click',()=>setIdx(idx+parseInt(b.dataset.step))));
   $('#reelPlay').addEventListener('click',()=>{
     if(idx!==TARGET){sfx('wrong');const box=$('#ovlBox');if(box){box.classList.add('shake');setTimeout(()=>box.classList.remove('shake'),400);}
-      toast(idx<TARGET?'Only hiss and old commercials. Wind further on.':'You have gone past it. Wind back a little.');return;}
+      toast(idx<TARGET?'Alleen ruis en oude reclames. Verder spoelen.':'U bent er voorbij. Spoel iets terug.');return;}
     flag('band117Beluisterd');sfx('unlock');
     // vervormde stem: lage toonsequentie
     [196,220,175,208,165,180].forEach((f,i)=>setTimeout(()=>sfx('tone',f),i*260));
-    ovl(`<div class="ovlHead"><div class="ovlKick">Tape 2019-117 · 02:40 · 12 March 2019</div><div class="ovlTitle">A voice out of the night</div></div>
+    ovl(`<div class="ovlHead"><div class="ovlKick">Band 2019-117 · 02:40 · 12 maart 2019</div><div class="ovlTitle">A voice out of the night</div></div>
     <div class="ovlBody"><div class="dlgText" id="reelTxt" style="min-height:180px"></div>
-    <div class="ovlBtns" id="reelBtns2" style="display:none"><button class="gBtn" id="reelOk">Let the tape run out</button></div></div>`);
+    <div class="ovlBtns" id="reelBtns2" style="display:none"><button class="gBtn" id="reelOk">Laat de band uitlopen</button></div></div>`);
     typeInto($('#reelTxt'),
-'Hiss. Then a woman\'s voice, quiet, close to the mouthpiece:\n\n"...I have never dared tell anybody what I did back then. I am ringing because you said it was anonymous. That nobody would ever know. Only tonight. Just this once I want to say it out loud."\n\nA short silence. Reuben’s voice, warm, practised:\n\n"That is exactly what this line is for, madam. Here you are nobody. Here you are safe."\n\nThe tape runs on. Somewhere in the margin of the index card, in a hand that is not Margery\'s, somebody has added later:\n\n"Repeated in Highlights Night — June. Without permission. She heard herself played back. Three weeks later she was gone."\n\nIt is a mother\'s voice. And somebody in this building has wound it back a hundred times.',13,
+'Hiss. Then a woman\'s voice, quiet, close to the mouthpiece:\n\n"...I have never dared tell anybody what I did back then. I am ringing because you said it was anonymous. That nobody would ever know. Alleen vannacht. Alleen deze ene keer wil ik het hardop zeggen."\n\nEen korte stilte. Reubens stem, warm, geoefend:\n\n"That is exactly what this line is for, madam. Here you are nobody. Here you are safe."\n\nThe tape runs on. Somewhere in the margin of the index card, in a hand that is not Margery\'s, somebody has added later:\n\n"Herhaald in de Hoogtepuntennacht — juni. Zonder toestemming. Zij hoorde zichzelf terug. Drie weken daarna was ze er niet meer."\n\nIt is a mother\'s voice. And somebody in this building has wound it back a hundred times.',13,
     ()=>{const b=$('#reelBtns2');if(b)b.style.display='flex';sfx('found');});
-    tl('12 Mar 2019','Helen Dewitt telephones The Late Line anonymously — Reuben promises that nobody will ever know.','Tape 2019-117');
-    tl('Jun 2019','Reuben broadcasts the extract again. She hears her own voice.','Tape 2019-117');
+    tl('12 mrt 2019','Helen Dewitt telephones The Late Line anonymously — Reuben promises that nobody will ever know.','Band 2019-117');
+    tl('jun 2019','Reuben broadcasts the extract again. She hears her own voice.','Band 2019-117');
     note('Tape 2019-117 played: the anonymous caller was a mother who trusted Reuben. He repeated her confession in public; she died shortly afterwards. <em>This</em> is the motive — and it explains why Eva of all people knew the night in such detail.');
     flag('evaMoeder');
     $('#reelOk').addEventListener('click',()=>{closeOvl();checkChapter();});
@@ -1876,9 +1884,9 @@ function playSeq(key){const seq=key==='LIVE'?TAPETONES.C:TAPETONES[key];
   seq.forEach((f,i)=>setTimeout(()=>sfx('tone',f),i*320));}
 function tapePuzzle(){
   if(has('tapeOpgelost')){toast('The comparison is done: the quarter of an hour was tape.');return;}
-  ovl(`<div class="ovlHead"><div class="ovlKick">CONTROL ROOM — COMPARISON BENCH</div><div class="ovlTitle">Was the broadcast really live?</div></div>
-  <div class="ovlBody"><div class="ovlTxt">Above: the transmitted audio from <b>02:37 tonight</b>, stored by the logger. Below: four extracts from tape <b>DAT-084</b>. Listen and compare the waveforms. If one extract is <em>identical</em>, the city was listening to a tape — and not to a living man.</div>
-  <div class="waveBox"><div class="waveLabel">BROADCAST · 02:37 · "LIVE" <button class="termBtn" id="playLive" style="float:right;margin-top:-4px">► listen</button></div><canvas class="waveCv" id="wvLive"></canvas></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Regiekamer — vergelijkingsbank</div><div class="ovlTitle">Was de uitzending wel live?</div></div>
+  <div class="ovlBody"><div class="ovlTxt">Above: the transmitted audio from <b>02:37 vannacht</b>, stored by the logger. Below: four extracts from tape <b>DAT-084</b>. Beluister en vergelijk de golfvormen. Als één fragment <em>identiek</em> is, the city was listening to a tape — and not to a living man.</div>
+  <div class="waveBox"><div class="waveLabel">UITZENDING · 02:37 · "LIVE" <button class="termBtn" id="playLive" style="float:right;margin-top:-4px">► beluister</button></div><canvas class="waveCv" id="wvLive"></canvas></div>
   <div id="wvSegs"></div>
   <div class="ovlBtns" style="font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.1em">choose the extract that is identical to the broadcast</div></div>`);
   drawWave($('#wvLive'),seededWave(TAPESEED_LIVE),'#ffdf80');
@@ -1886,7 +1894,7 @@ function tapePuzzle(){
   const wrap=$('#wvSegs');
   ['A','B','C','D'].forEach(k=>{
     const b=el('div','waveBox');
-    b.innerHTML=`<div class="waveLabel">DAT-084 · EXTRACT ${k} <span style="float:right;margin-top:-4px"><button class="termBtn" data-play="${k}">► listen</button> <button class="termBtn" data-pick="${k}">= identical</button></span></div><canvas class="waveCv" id="wv${k}"></canvas>`;
+    b.innerHTML=`<div class="waveLabel">DAT-084 · FRAGMENT ${k} <span style="float:right;margin-top:-4px"><button class="termBtn" data-play="${k}">► beluister</button> <button class="termBtn" data-pick="${k}">= identiek</button></span></div><canvas class="waveCv" id="wv${k}"></canvas>`;
     wrap.appendChild(b);
     drawWave($('#wv'+k),seededWave(TAPESEEDS[k]),'#5fc57e');
   });
@@ -1894,17 +1902,17 @@ function tapePuzzle(){
   $$('#wvSegs [data-pick]').forEach(b=>b.addEventListener('click',()=>{
     if(b.dataset.pick==='C'){
       flag('tapeOpgelost');sfx('unlock');
-      ovl(`<div class="ovlHead"><div class="ovlKick">COMPARISON COMPLETE</div><div class="ovlTitle">The quarter-hour was tape</div></div>
+      ovl(`<div class="ovlHead"><div class="ovlKick">Vergelijking voltooid</div><div class="ovlTitle">Het kwartier was band</div></div>
       <div class="ovlBody"><div class="ovlTxt">Fragment C dekt de "live" broadcast of 02:37 down to the waveform. No coincidence, no echo — the same recording.<br><br>
       Van <b>02:30 tot 02:56</b> Radio Clarion put out an old night as though it were this one. For those twenty-six minutes the killer had Studio B alone — and an entire city as the unwitting witness to an alibi.<br><br>
       <em>Whoever built this needed three things: to find tapes in the archive, to work the decks in the control room, and to know that the control room would be briefly unwatched around half past two anyway — coffee, a cigarette, it made no difference which. Who in this building learned all of that — and from whom?</em></div>
-      <div class="ovlBtns"><button class="gBtn" id="tapeOk">Record the conclusion</button></div></div>`);
+      <div class="ovlBtns"><button class="gBtn" id="tapeOk">Noteer de conclusie</button></div></div>`);
       $('#tapeOk').addEventListener('click',()=>{
         note('BREAKTHROUGH — the 02:30–02:56 broadcast was tape DAT-084. The killer created a 26-minute window and a false alibi for an entire city.');
-        tl('02:30','The murder window opens: the city listens to a tape and believes Reuben is alive.','Tape comparison');
+        tl('02:30','The murder window opens: the city listens to a tape and believes Reuben is alive.','Tape-vergelijking');
         closeOvl();checkChapter();
       });
-    }else{sfx('wrong');toast('The waveforms look alike — but they lie. Compare more carefully.');}
+    }else{sfx('wrong');toast('De golfvormen lijken — maar liegen. Vergelijk nauwkeuriger.');}
   }));
 }
 window.tapePuzzle=tapePuzzle;
@@ -1916,7 +1924,7 @@ let dlgSus=null;
 function startDialog(id){
   dlgSus=id;S.talked[id]=1;save();renderSus();maybeAccuseDoor();
   const s=SUS[id];
-  ovl(`<div class="ovlHead"><div class="ovlKick">INTERVIEW · ${s.role}</div><div class="ovlTitle">${s.name}</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Verhoor · ${s.role}</div><div class="ovlTitle">${s.name}</div></div>
   <div class="dlgWrap"><div class="dlgStage"><div class="dlgSpeaker">${s.name}</div><div class="dlgText" id="dlgText"></div>
   <div style="font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:12px;letter-spacing:.08em">◦ ${s.body}</div></div>
   <div class="dlgOpts" id="dlgOpts"></div></div>`);
@@ -1939,12 +1947,12 @@ function drawOpts(){
       b.addEventListener('click',()=>{flag('asked_'+dlgSus+'_'+t.id);say(t.txt,t.fx);});
       w.appendChild(b);});
   }else{
-    if(advo)w.appendChild(el('div','dlgOpt used','<span class="mode">solicitor</span>'+SUS[dlgSus].name+' was wrongly accused and is now staying silent on a solicitor’s advice.'));
-    else w.appendChild(el('div','dlgOpt used','<span class="mode">closed</span>'+(dlgSus==='sandra'?'Sandra will say nothing until you come with hard evidence.':'Adrian will say nothing until you come with hard evidence.')));
+    if(advo)w.appendChild(el('div','dlgOpt used','<span class="mode">advocaat</span>'+SUS[dlgSus].name+' is vals beschuldigd en zwijgt nu op advies van een advocaat.'));
+    else w.appendChild(el('div','dlgOpt used','<span class="mode">gesloten</span>'+(dlgSus==='sandra'?'Sandra will say nothing until you come with hard evidence.':'Adrian will say nothing until you come with hard evidence.')));
   }
   const ev=el('button','dlgOpt','<span class="mode tonen">show evidence</span>Put something from the file on the table.');
   ev.addEventListener('click',showEvidencePicker);w.appendChild(ev);
-  const bye=el('button','dlgOpt','<span class="mode">finish</span>End the interview.');
+  const bye=el('button','dlgOpt','<span class="mode">afronden</span>Het gesprek beëindigen.');
   bye.addEventListener('click',()=>{closeOvl();dlgSus=null;});w.appendChild(bye);
 }
 function say(txt,fx){
@@ -1957,21 +1965,21 @@ function showEvidencePicker(){
   const w=$('#dlgOpts');w.innerHTML='';
   if(!S.evidence.length){w.appendChild(el('div','dlgOpt used','The file is still empty.'));}
   S.evidence.forEach(id=>{
-    const b=el('button','dlgOpt',`<span class="mode tonen">show</span>${EV[id].ic} ${EV[id].name}`);
+    const b=el('button','dlgOpt',`<span class="mode tonen">tonen</span>${EV[id].ic} ${EV[id].name}`);
     b.addEventListener('click',()=>{
       const r=SUS[dlgSus].react[id];
       if(r){say(r.txt,r.fx);}
-      else say('"'+defaultReact(dlgSus)+'" <em>The evidence says '+(dlgSus==='eva'?'her':'him or her')+' nothing — or that is what they want you to believe.</em>');
+      else say('"'+defaultReact(dlgSus)+'" <em>The evidence says '+(dlgSus==='eva'?'haar':'him or her')+' niets — of dat wil men u laten geloven.</em>');
     });
     w.appendChild(b);});
-  const back=el('button','dlgOpt','<span class="mode">back</span>Close the file.');
+  const back=el('button','dlgOpt','<span class="mode">terug</span>Dossier dichtslaan.');
   back.addEventListener('click',drawOpts);w.appendChild(back);
 }
 function defaultReact(id){
   return {marja:'I can tell you nothing technical about that, and rather less about the rest.',
     ilias:'And...? I fail to see what this has to do with me.',
     sandra:'Interesting. And irrelevant to me, I\'m afraid.',
-    kasper:'Means nothing to me, Inspector. And I see almost everything in this building.',
+    kasper:'Zegt me niks, rechercheur. En ik zie toch alles hier.',
     eva:'I see.'}[id]||'...';
 }
 </script>
@@ -1986,7 +1994,7 @@ function setChapter(n){
   const c=CHAPTERS[n];
   $('#chapterTag').textContent=c.tag;
   const card=$('#chapterCard');
-  $('#chapterNum').textContent='Chapter '+n;
+  $('#chapterNum').textContent='Hoofdstuk '+n;
   $('#chapterName').textContent=c.name;
   $('#chapterSub').textContent=c.sub;
   card.classList.add('on');sfx('thunder');
@@ -2015,11 +2023,11 @@ function maybeAccuseDoor(){
   const d=$('#doors');if(!d)return;
   if(!accuseUnlocked()){const ex=$('#accuseDoor');if(ex)ex.remove();return;}
   if($('#accuseDoor'))return;
-  const b=el('button','by new','▸ CHARGE');b.id='accuseDoor';
+  const b=el('button','by new','▸ AANKLACHT');b.id='accuseDoor';
   b.style.borderColor='var(--red)';b.style.color='var(--redhi)';
   b.addEventListener('click',finale);
   d.appendChild(b);
-  if(S.chapter>=5)toast('You know the whole night. The <b>CHARGE</b> is waiting.');
+  if(S.chapter>=5)toast('U kent de hele nacht. De <b>AANKLACHT</b> wacht.');
   else toast('You have spoken to everybody. You <em>may</em> charge now — but without the whole night accounted for, it is a gamble.');
 }
 window.maybeAccuseDoor=maybeAccuseDoor;
@@ -2043,14 +2051,14 @@ function finale(){
   const evPool=S.evidence.filter(e=>KEYEV.includes(e));
   const evBtns=evPool.map(e=>`<button class="accPick" data-ev="${e}">${EV[e].ic} ${EV[e].name}</button>`).join('');
   const marge=DAWN-S.clockMin;
-  ovl(`<div class="ovlHead"><div class="ovlKick">Unmasking · the night is running out</div><div class="ovlTitle">The charge</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Unmasking · the night is running out</div><div class="ovlTitle">De aanklacht</div></div>
   <div class="ovlBody"><div class="ovlTxt">The night crew stand under the strip lights of the canteen. It is <b class="accClock">${clockStr(S.clockMin)}</b>. At 06:00 the breakfast programme opens — and whoever you have not got by then gets away.<br><em>Every miss costs half an hour of the night. Reconstruct the whole night: who, why, how <em>and</em> when — and carry it on three watertight exhibits.</em></div>
-  <div class="accLbl">Who murdered Reuben Voss?</div><div class="accSusRow" id="accSus">${susBtns}</div>
-  <div class="accLbl">Why?</div><div class="accSusRow" id="accMot">${motBtns}</div>
-  <div class="accLbl">How?</div><div class="accSusRow" id="accHow">${howBtns}</div>
-  <div class="accLbl">When?</div><div class="accSusRow" id="accWhen">${whenBtns}</div>
+  <div class="accLbl">Wie vermoordde Reuben Voss?</div><div class="accSusRow" id="accSus">${susBtns}</div>
+  <div class="accLbl">Waarom?</div><div class="accSusRow" id="accMot">${motBtns}</div>
+  <div class="accLbl">Hoe?</div><div class="accSusRow" id="accHow">${howBtns}</div>
+  <div class="accLbl">Wanneer?</div><div class="accSusRow" id="accWhen">${whenBtns}</div>
   <div class="accLbl">Which three exhibits carry your case? (choose exactly three)</div><div class="accSusRow" id="accEv">${evBtns}</div>
-  <div class="ovlBtns"><button class="gBtn red" id="accGo" disabled>FILE THE CHARGE</button></div></div>`);
+  <div class="ovlBtns"><button class="gBtn red" id="accGo" disabled>Spreek de aanklacht uit</button></div></div>`);
   const pick=(row,key,val,b)=>{acc[key]=val;$$('#'+row+' .accPick').forEach(x=>x.classList.toggle('sel',x===b));chkAcc();};
   $$('#accSus [data-sus]').forEach(b=>b.addEventListener('click',()=>pick('accSus','sus',b.dataset.sus,b)));
   $$('#accMot [data-mot]').forEach(b=>b.addEventListener('click',()=>pick('accMot','mot',b.dataset.mot,b)));
@@ -2060,7 +2068,7 @@ function finale(){
     const id=b.dataset.ev;
     if(acc.ev.includes(id)){acc.ev=acc.ev.filter(x=>x!==id);b.classList.remove('sel');}
     else if(acc.ev.length<3){acc.ev.push(id);b.classList.add('sel');}
-    else{sfx('wrong');toast('Three exhibits. No more — a case can drown in too much paper.');}
+    else{sfx('wrong');toast('Drie bewijzen. Niet meer — een zaak verdrinkt in te veel papier.');}
     chkAcc();}));
   function chkAcc(){$('#accGo').disabled=!(acc.sus&&acc.mot&&acc.how&&acc.when&&acc.ev.length===3);}
   $('#accGo').addEventListener('click',verdict);
@@ -2080,21 +2088,21 @@ function verdict(){
   advanceClock(30);
   // bepaal de meest fundamentele zwakte (onthul er één, als een echte aanwijzing)
   let reason,tag;
-  if(decoy){tag='red herring';
-    reason=`The defence immediately seizes on your <b>${EV[decoy].name.toLowerCase()}</b>. In two minutes counsel shows that it has nothing to do with the death — a false trail. The whole charge is thrown out of true by it.`;}
-  else if(!whoOK){tag='person';
+  if(decoy){tag='dwaalspoor';
+    reason=`De verdediging pakt meteen uw <b>${EV[decoy].name.toLowerCase()}</b>. In two minutes counsel shows that it has nothing to do with the death — a false trail. The whole charge is thrown out of true by it.`;}
+  else if(!whoOK){tag='persoon';
     flag(acc.sus+'Advocaat');
     reason=`${SUS[acc.sus].name} has an answer for every exhibit you produce — the evidence does not point at this person. And ${SUS[acc.sus].name.split(' ')[0]} is taking a solicitor now: you will get nothing further out of that interview.`;}
-  else if(!evOK){tag='evidence';
+  else if(!evOK){tag='bewijs';
     reason='Your suspect <em>might</em> be the one — but no judge convicts on this evidence. You are missing the core: the hard forensic footing that rivets the death to the killer.';}
-  else if(!howOK){tag='method';
+  else if(!howOK){tag='methode';
     reason='You have the right person, but not the method. The cause of death you set out will not survive the police surgeon. <em>How</em> exactly did Reuben die?';}
-  else if(!whenOK){tag='timing';
+  else if(!whenOK){tag='tijd';
     reason='Killer and method are right — but your timeline will not hold. In the window you name, the killer had an alibi. <em>When</em> could this really have happened, unseen?';}
-  else {tag='motive';
+  else {tag='motief';
     reason='Everything points the right way except the why. Without a watertight motive the defence pleads chance or madness — and on half a story they win it.';}
   window._lastFeedback=tag;
-  note('Charge failed ('+tag+'). The night has moved on to '+clockStr(S.clockMin)+'.');
+  note('Aanklacht mislukt ('+tag+'). The night has moved on to '+clockStr(S.clockMin)+'.');
   if(S.clockMin>=DAWN)return dawnScene();
   feedbackScene(reason,tag);
 }
@@ -2104,10 +2112,10 @@ function feedbackScene(reason,tag){
   sfx('wrong');
   const marge=DAWN-S.clockMin;
   const b=$('#ovlBox');if(b){b.classList.add('shake');setTimeout(()=>b.classList.remove('shake'),450);}
-  ovl(`<div class="ovlHead"><div class="ovlKick">THE CASE WOBBLES · NOW ${clockStr(S.clockMin)}</div><div class="ovlTitle">Not watertight yet</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">De zaak wankelt · nu ${clockStr(S.clockMin)}</div><div class="ovlTitle">Not watertight yet</div></div>
   <div class="ovlBody"><div class="ovlTxt">${reason}</div>
-  <div class="accWarn">The night has moved on. <b>${marge} minutes</b> left until the breakfast programme at 06:00.${has(acc.sus+'Advocaat')&&tag==='person'?'<br>⚖ '+SUS[acc.sus].name+' will say nothing from now on.':''}</div>
-  <div class="ovlBtns"><button class="gBtn" id="fbBack">Back to the investigation</button><button class="gBtn red" id="fbAgain">File another charge</button></div></div>`);
+  <div class="accWarn">The night has moved on. <b>${marge} minutes</b> left until the breakfast programme at 06:00.${has(acc.sus+'Advocaat')&&tag==='persoon'?'<br>⚖ '+SUS[acc.sus].name+' will say nothing from now on.':''}</div>
+  <div class="ovlBtns"><button class="gBtn" id="fbBack">Back to the investigation</button><button class="gBtn red" id="fbAgain">Opnieuw aanklagen</button></div></div>`);
   $('#fbBack').addEventListener('click',()=>{closeOvl();renderSus();});
   $('#fbAgain').addEventListener('click',finale);
 }
@@ -2116,13 +2124,13 @@ window.feedbackScene=feedbackScene;
 function dawnScene(){
   const bl=$('#blackout');if(bl){bl.style.opacity=1;}
   setTimeout(()=>{if(bl)bl.style.opacity=0;
-  ovl(`<div class="ovlHead"><div class="ovlKick">06:00 — THE BREAKFAST SHOW BEGINS</div><div class="ovlTitle">The killer makes it to morning</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">06:00 — de ochtenduitzending begint</div><div class="ovlTitle">De dader haalt de ochtend</div></div>
   <div class="ovlBody"><div class="dlgText" id="endTxt" style="min-height:170px"></div>
-  <div class="ovlBtns" id="endBtns" style="display:none"><button class="gBtn red" id="endReopen">Reopen the case</button><button class="gBtn dim" id="endStay2">Stay in the building</button></div></div>`);
+  <div class="ovlBtns" id="endBtns" style="display:none"><button class="gBtn red" id="endReopen">Heropen de zaak</button><button class="gBtn dim" id="endStay2">Stay in the building</button></div></div>`);
   typeInto($('#endTxt'),
-'Outside it is turning grey. On the stroke of six, Radio Clarion opens the morning with one minute\'s silence for "a valued colleague".\n\nYou have used up the night on charges that would not hold. One by one the suspects walk out into the rain — free, and warned.\n\nSomewhere in the building, somebody calmly tidies a desk. Neat. Square. Faultless. Exactly like someone who planned this a long time ago.\n\nThe night is over. But the file is still here — and sometimes a second night is all a case needs.',13,
+'Outside it is turning grey. On the stroke of six, Radio Clarion opens the morning with one minute\'s silence for "a valued colleague".\n\nU heeft de nacht opgebruikt aan aanklachten die niet sloten. De verdachten lopen één voor één de regen in — vrij, en gewaarschuwd.\n\nErgens in het gebouw ruimt iemand heel rustig een bureau op. Keurig. Haaks. Foutloos. Precies zoals iemand die dit lang geleden al had uitgedacht.\n\nDe nacht is voorbij. Maar het dossier ligt er nog — en een tweede nacht is soms alles wat een zaak nodig heeft.',13,
   ()=>{const eb=$('#endBtns');if(eb)eb.style.display='flex';sfx('wrong');});
-  $('#endReopen').addEventListener('click',()=>{S.clockMin=192;save();paintClock();closeOvl();toast('The case has been reopened. The clock is back at 03:12.');});
+  $('#endReopen').addEventListener('click',()=>{S.clockMin=192;save();paintClock();closeOvl();toast('De zaak is heropend. De klok staat terug op 03:12.');});
   $('#endStay2').addEventListener('click',closeOvl);
   },900);sfx('thunder');
 }
@@ -2131,12 +2139,12 @@ window.dawnScene=dawnScene;
 function winScene(){
   const b=$('#blackout');if(b)b.style.opacity=1;
   setTimeout(()=>{if(b)b.style.opacity=0;
-  ovl(`<div class="ovlHead"><div class="ovlKick">The night closes — ${clockStr(S.clockMin)}</div><div class="ovlTitle">Unmasking</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">The night closes — ${clockStr(S.clockMin)}</div><div class="ovlTitle">Ontmaskering</div></div>
   <div class="ovlBody"><div class="dlgText" id="endTxt" style="min-height:200px"></div>
   <div class="ovlBtns" id="endBtns" style="display:none">
-    <button class="gBtn" id="endEpi">Epilogue</button></div></div>`);
+    <button class="gBtn" id="endEpi">Epiloog</button></div></div>`);
   typeInto($('#endTxt'),
-'You lay three exhibits on the table. The laboratory result. The tape from deck 2. And tape 2019-117.\\n\\nEva does not look at them. She looks at you.\\n\\n"Do you know what anonymous means, Inspector? It means you are allowed to exist without being seen. That is what he promised, every night, to everyone who called.\\n\\nMy mother believed him once.\\n\\nHe sold her voice for a repeat broadcast. Gareth sold him her name. And when it went wrong, he dismissed the complaint with three words: anonymous is anonymous.\\n\\nFor four months I fetched that man’s coffee. I learned his archive, his decks, his rituals, Margery’s cigarette quarter-hour. I learned how to edit a night.\\n\\nAnd then I gave him one back.\\n\\nTwenty-six minutes. I did not need any longer. Neither did he."\\n\\nShe puts her wrists forward before anybody asks.\\n\\nThe ON AIR lamp above Studio B flickers once — and goes out.',14,
+'You lay three exhibits on the table. The laboratory result. The tape from deck 2. And tape 2019-117.\\n\\nEva does not look at them. She looks at you.\\n\\n"Weet u wat anoniem betekent, rechercheur? Het betekent: je mag bestaan zonder gezien te worden. Dat beloofde hij, elke nacht, aan iedereen die belde.\\n\\nMijn moeder geloofde hem één keer.\\n\\nHij verkocht haar stem voor een herhalingsavond. Gareth verkocht hem haar naam. En toen het misging, wees hij de klacht af met drie woorden: anoniem is anoniem.\\n\\nIk heb vier maanden lang koffie gehaald voor die man. Ik heb zijn archief leren kennen, zijn decks, zijn rituelen, het rookkwartier van Margery. Ik heb geleerd hoe je een nacht monteert.\\n\\nEn toen heb ik hem er één teruggegeven.\\n\\nZesentwintig minuten. Langer had ik niet nodig. Hij ook niet."\\n\\nShe puts her wrists forward before anybody asks.\\n\\nThe ON AIR lamp above Studio B flickers once — and goes out.',14,
   ()=>{const eb=$('#endBtns');if(eb)eb.style.display='flex';sfx('found');});
   $('#endBtns').addEventListener('click',e=>{if(e.target.id==='endEpi')epilogue(true);});
   },900);sfx('thunder');
@@ -2144,16 +2152,16 @@ function winScene(){
 window.winScene=winScene;
 
 function epilogue(){
-  ovl(`<div class="ovlHead"><div class="ovlKick">Epilogue</div><div class="ovlTitle">What the night kept</div></div>
+  ovl(`<div class="ovlHead"><div class="ovlKick">Epiloog</div><div class="ovlTitle">What the night kept</div></div>
   <div class="ovlBody"><div class="ovlTxt">
   <b>Eva Lindt</b> confesses in full and then never speaks to the press again. Her counsel pleads diminished responsibility; the judge listens for longer than is usual.<br><br>
   <b>Sandra Crane</b> reports the fraud to the board herself, one day ahead of the auditors. It saves the station. Not her.<br><br>
   <b>Adrian Hollis</b> returns the Golden Aerial in a fourteen-line press release in which the word "sorry" does not appear.<br><br>
-  <b>Gareth Noll</b> is dismissed and tells his story to a podcast. Episode one is called "The Gatekeeper".<br><br>
+  <b>Gareth Noll</b> is dismissed and tells his story to a podcast. Episode one is called "De Poortwachter".<br><br>
   <b>Margery Deakin</b> digitises the entire archive — all but one tape, which one morning in March she carries out to a grave on the edge of the city, and leaves there in the rain.<br><br>
   <em>Radio Clarion still broadcasts on 92.4 FM. The Late Line never came back. At 02:40 there is music now — and just occasionally, night workers say, a quarter of an hour that is logged nowhere at all.</em><br><br>
-  <span style="font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.2em">— THE END —</span></div>
-  <div class="ovlBtns"><button class="gBtn" id="endNew">New investigation</button><button class="gBtn dim" id="endStay">Stay in the building</button></div></div>`);
+  <span style="font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.2em">— EINDE —</span></div>
+  <div class="ovlBtns"><button class="gBtn" id="endNew">Nieuw onderzoek</button><button class="gBtn dim" id="endStay">Stay in the building</button></div></div>`);
   $('#endNew').addEventListener('click',()=>{wipe();location.reload();});
   $('#endStay').addEventListener('click',closeOvl);
 }
