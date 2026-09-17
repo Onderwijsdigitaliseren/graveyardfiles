@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Graveyard Files – Interactive Murder Mystery &amp; Cold Case Games</title>
-<meta name="description" content="Free online murder mystery and cold case games. Examine the evidence, question the suspects and solve nine fictional noir cases in your browser.">
+<meta name="description" content="Free online murder mystery and cold case games. Examine the evidence, question the suspects and solve thirteen fictional noir cases in your browser.">
 <link rel="canonical" href="https://graveyardfiles.com/">
 <meta property="og:site_name" content="The Graveyard Files">
 <meta property="og:title" content="The Graveyard Files – Interactive Murder Mystery Games">
-<meta property="og:description" content="Examine the evidence, question the suspects and solve immersive fictional cold cases online. Free, single-player, in your browser.">
+<meta property="og:description" content="Examine the evidence, question the suspects and solve immersive fictional cold cases online. Free, single-player, in your browser — including 3D escape rooms.">
 <meta property="og:url" content="https://graveyardfiles.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
@@ -456,11 +456,11 @@ body.lamp-aan #koffiekas{opacity:1}
   <header id="kaart">
     <div class="sub">Unsolved Cases Division &mdash; Graveyard Shift</div>
     <h1 class="kop">Interactive Murder Mystery &amp; Cold Case Games</h1>
-    <p class="regel">Enter the Graveyard Files and investigate nine fictional cold cases, free and online. Examine the evidence, uncover hidden clues, question the suspects and decide what really happened. The lamp is on. Open a folder and the case is yours &mdash; along with everything it carries.</p>
+    <p class="regel">Enter the Graveyard Files and investigate thirteen fictional cold cases, free and online. Examine the evidence, uncover hidden clues, question the suspects and decide what really happened. The lamp is on. Open a folder and the case is yours &mdash; along with everything it carries.</p>
     <dl class="briefing">
-      <div><dt>What this is</dt><dd>Nine self-contained detective puzzles for one player. Free, no account, no download &mdash; everything runs in your browser. Written for adults and older teens who like a fair mystery.</dd></div>
-      <div><dt>How it works</dt><dd>Read the statements, work the board, name the killer. A case takes 45 minutes to a few hours; your progress is saved in this browser between visits.</dd></div>
-      <div><dt>Where to start</dt><dd>New to the night shift? Take <b>The Switch Room</b> &mdash; one evening, one answer. The murdokus in Drawer I are the deep end.</dd></div>
+      <div><dt>What this is</dt><dd>Thirteen self-contained detective cases for one player. Free, no account, no download &mdash; everything runs in your browser. Written for adults and older teens who like a fair mystery.</dd></div>
+      <div><dt>How it works</dt><dd>Read the statements, search the rooms, name the killer. The 3D Locked Rooms take about twenty minutes; the longer files run from an hour to an evening. Your progress is saved in this browser.</dd></div>
+      <div><dt>Where to start</dt><dd>New to the night shift? Open <b>The Stopped Clock</b> in Drawer IV &mdash; one room, twenty minutes, three dials. The murdokus in Drawer II are the deep end.</dd></div>
       <div><dt>Why tonight</dt><dd>Every case has exactly one solution, and the clues give you exactly enough. Nobody is coming to help. That is the appeal.</dd></div>
     </dl>
   </header>
@@ -569,6 +569,22 @@ const CASES = [
     stamp: "Series"
   },
   {
+    type: "locked",
+    number: "Locked Rooms No. 1",
+    title: "The Stopped Clock",
+    description: "Blackwood Manor, and the door is shut behind you. Search the room in 3D, crack the safe, raise the fingerprint and set the three dials.",
+    file: "the-stopped-clock.html",
+    stamp: "Unsolved"
+  },
+  {
+    type: "locked",
+    number: "Locked Rooms No. 2",
+    title: "The Empty Barrel",
+    description: "The wine merchant lies among his own casks. Find the right bottle, open the iron cabinet, follow the tracks by lantern light and drain the barrel.",
+    file: "the-empty-barrel.html",
+    stamp: "Unsolved"
+  },
+  {
     type: "grid",
     number: "Three nights \u00b7 November 1958",
     title: "The Black Column",
@@ -583,7 +599,8 @@ const DRAWERS = [
   { type: "story", label: "Drawer I \u00b7 Homicides", blurb: "For those who want the story: question the suspects, find the evidence, file your charge." },
   { type: "murdoku", label: "Drawer II \u00b7 Murdokus", blurb: "Floor-plan files: place everyone in the right room, row by row and column by column \u2014 until only the killer is left standing." },
   { type: "puzzle", label: "Drawer III \u00b7 Puzzle Rooms", blurb: "For those who\u2019d rather crack than question: codes, documents, and doors that don\u2019t open just like that." },
-  { type: "grid", label: "Drawer IV \u00b7 Deduction Grids", blurb: "Grid files: every suspect matches exactly one object and one place. Cross out what can\u2019t be true until one name remains." }
+  { type: "locked", label: "Drawer IV \u00b7 Locked Rooms", blurb: "Short cases in three dimensions: you are shut in with the body. Search the room, force the locks, set the three dials \u2014 who, with what, at what hour." },
+  { type: "grid", label: "Drawer V \u00b7 Deduction Grids", blurb: "Grid files: every suspect matches exactly one object and one place. Cross out what can\u2019t be true until one name remains." }
 ];
 
 function makeFolder(c){
@@ -600,17 +617,6 @@ function makeFolder(c){
   a.querySelector(".zaakomschrijving").textContent = c.description;
   a.querySelector(".stempel").textContent = c.stamp || "Unsolved";
   return a;
-}
-
-function makeEmptyFolder(){
-  const d = document.createElement("div");
-  d.className = "dossier leeg";
-  d.setAttribute("aria-hidden","true");
-  d.innerHTML =
-    '<div class="zaaknr">Case \u2014\u2014</div>' +
-    '<div class="zaaktitel">Pending</div>' +
-    '<div class="zaakomschrijving">This folder is empty for now. The archive grows.</div>';
-  return d;
 }
 
 function makeDrawer(drawer, cases){
@@ -638,8 +644,6 @@ function renderArchive(){
     if (!cases.length) return;
     holder.appendChild(makeDrawer(drawer, cases));
   });
-  const last = holder.querySelector(".lade:last-of-type .ladeBak");
-  if (last) last.appendChild(makeEmptyFolder());
 }
 
 window.renderArchive = renderArchive;
