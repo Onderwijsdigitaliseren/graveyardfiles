@@ -273,7 +273,7 @@ function build(){
  $('view').appendChild(renderer.domElement);
  scene=new THREE.Scene();scene.background=new THREE.Color(0x040305);scene.fog=new THREE.Fog(0x040305,5,14);
  camera=new THREE.PerspectiveCamera(70,innerWidth/innerHeight,.05,50);
- M.wood=new THREE.MeshStandardMaterial({map:woodTex(),roughness:.75});M.brick=new THREE.MeshStandardMaterial({map:brickTex(),roughness:1});M.brick.bumpMap=M.brick.map;M.brick.bumpScale=.03;M.flag=new THREE.MeshStandardMaterial({map:flagTex(),roughness:.9});M.barrel=new THREE.MeshStandardMaterial({map:woodTex(),roughness:.8,color:0x9a7a5a});
+ M.wood=new THREE.MeshStandardMaterial({side:THREE.DoubleSide,map:woodTex(),roughness:.75});M.brick=new THREE.MeshStandardMaterial({side:THREE.DoubleSide,map:brickTex(),roughness:1});M.brick.bumpMap=M.brick.map;M.brick.bumpScale=.03;M.flag=new THREE.MeshStandardMaterial({side:THREE.DoubleSide,map:flagTex(),roughness:.9});M.barrel=new THREE.MeshStandardMaterial({map:woodTex(),roughness:.8,color:0x9a7a5a});
  // lights: candles + lantern + faint cold light from stairs
  scene.add(new THREE.AmbientLight(0x30281f,.35));scene.add(new THREE.HemisphereLight(0x4a4a5a,0x201510,.25));
  G.candle=new THREE.PointLight(0xffa040,1.5,7,2);G.candle.position.set(0,1.35,-.2);G.candle.castShadow=!MOBILE;G.candle.shadow.mapSize.set(512,512);scene.add(G.candle);
@@ -313,12 +313,80 @@ function build(){
  scene.add(tb);reg(tb,'table',null);
  const bottleHit=new THREE.Group();bottleHit.position.copy(G.bottleMesh.position);const bh=box(.16,.4,.16,new THREE.MeshBasicMaterial({visible:false}),0,.15,0,bottleHit);tb.add(bottleHit);reg(bottleHit,'bottle',{pos:[.45,1.15,.35],look:[.45,.95,-.35]});G.bottleHit=bottleHit;
  // body (west of table) with pocket watch
- const body=new THREE.Group();const bm=new THREE.Mesh(new THREE.SphereGeometry(.28,16,12),M.leather);bm.scale.set(2.6,.5,.85);bm.position.set(0,.14,0);bm.castShadow=true;body.add(bm);const head=new THREE.Mesh(new THREE.SphereGeometry(.15,14,10),new THREE.MeshStandardMaterial({color:0xd9c0a8}));head.position.set(.9,.12,0);body.add(head);const hairM=new THREE.Mesh(new THREE.SphereGeometry(.15,14,10,0,7,0,1.4),new THREE.MeshStandardMaterial({color:0x777}));hairM.position.set(.9,.13,0);body.add(hairM);
- const hand=new THREE.Mesh(new THREE.SphereGeometry(.06,10,8),new THREE.MeshStandardMaterial({color:0xd9c0a8}));hand.scale.set(1.6,.5,1);hand.position.set(.2,.03,.42);body.add(hand);
- [[-.85,-.08],[-.87,.1]].forEach(([x,z])=>{const s=box(.14,.09,.11,M.dark,x,.05,z,body)});
+ const body=new THREE.Group();
+ const SKIN=new THREE.MeshStandardMaterial({color:0xcbab90,roughness:.75});
+ const SKIN_P=new THREE.MeshStandardMaterial({color:0xc2a289,roughness:.8});
+ const SHIRT=new THREE.MeshStandardMaterial({color:0xcfc6ae,roughness:.95});
+ const VEST=new THREE.MeshStandardMaterial({color:0x3d2b20,roughness:.85});
+ const TROUS=new THREE.MeshStandardMaterial({color:0x2e2a26,roughness:.9});
+ const APRON=new THREE.MeshStandardMaterial({color:0x6b5334,roughness:.95});
+ const HAIR=new THREE.MeshStandardMaterial({color:0x554b44,roughness:1});
+ // limb between two local points, radius r1->r2
+ const limb=(mat,a,b,r1,r2,seg)=>{
+   const A=new THREE.Vector3(a[0],a[1],a[2]),B=new THREE.Vector3(b[0],b[1],b[2]);
+   const d=new THREE.Vector3().subVectors(B,A),len=d.length();
+   const m=new THREE.Mesh(new THREE.CylinderGeometry(r2,r1,len,seg||10),mat);
+   m.position.copy(A).addScaledVector(d,.5);
+   m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.clone().normalize());
+   m.castShadow=true;body.add(m);return m};
+ const joint=(mat,p,r)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(r,10,8),mat);
+   m.position.set(p[0],p[1],p[2]);m.castShadow=true;body.add(m);return m};
+ // he lies on his back, head east (+x), slumped slightly to his right
+ // torso: ribcage + belly, tapering to the hips
+ const chest=new THREE.Mesh(new THREE.SphereGeometry(.22,16,12),VEST);
+ chest.scale.set(1.5,.62,1.05);chest.position.set(.34,.155,.02);chest.castShadow=true;body.add(chest);
+ const belly=new THREE.Mesh(new THREE.SphereGeometry(.2,16,12),VEST);
+ belly.scale.set(1.5,.58,.95);belly.position.set(-.02,.14,.01);belly.castShadow=true;body.add(belly);
+ const hips=new THREE.Mesh(new THREE.SphereGeometry(.18,14,10),TROUS);
+ hips.scale.set(1.15,.6,1);hips.position.set(-.33,.135,0);hips.castShadow=true;body.add(hips);
+ // cellarman's apron, creased over the belly
+ const apron=new THREE.Mesh(new THREE.PlaneGeometry(.52,.34,6,4),APRON);
+ apron.rotation.x=-Math.PI/2;apron.rotation.z=.06;apron.position.set(-.02,.245,.01);
+ apron.material.side=THREE.DoubleSide;body.add(apron);
+ // shoulders
+ joint(VEST,[.52,.17,-.17],.085);joint(VEST,[.5,.17,.19],.085);
+ // neck + head, rolled to his left
+ limb(SKIN_P,[.58,.16,.01],[.68,.15,.03],.055,.05,10);
+ const head=new THREE.Mesh(new THREE.SphereGeometry(.115,16,12),SKIN);
+ head.scale.set(1.15,.95,.9);head.position.set(.79,.145,.05);head.rotation.z=.25;head.castShadow=true;body.add(head);
+ const jaw=new THREE.Mesh(new THREE.SphereGeometry(.07,10,8),SKIN);
+ jaw.scale.set(1.1,.7,.85);jaw.position.set(.74,.105,.06);body.add(jaw);
+ const hair=new THREE.Mesh(new THREE.SphereGeometry(.118,16,12,0,Math.PI*2,0,1.5),HAIR);
+ hair.scale.set(1.12,.95,.92);hair.position.set(.8,.15,.05);hair.rotation.z=.25;hair.rotation.x=-.5;body.add(hair);
+ const brow=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),HAIR);
+ brow.scale.set(1.3,.35,.5);brow.position.set(.87,.19,.09);body.add(brow);
+ // right arm flung out toward the barrel he was bleeding beside
+ limb(SHIRT,[.5,.16,.21],[.3,.09,.46],.06,.05);
+ joint(SHIRT,[.3,.09,.46],.05);
+ limb(SHIRT,[.3,.09,.46],[.16,.05,.66],.05,.042);
+ const handR=new THREE.Mesh(new THREE.SphereGeometry(.052,10,8),SKIN);
+ handR.scale.set(1.5,.55,1.05);handR.position.set(.11,.04,.72);handR.rotation.y=.5;handR.castShadow=true;body.add(handR);
+ // left arm folded under him
+ limb(SHIRT,[.5,.15,-.19],[.29,.1,-.36],.06,.05);
+ joint(SHIRT,[.29,.1,-.36],.05);
+ limb(SHIRT,[.29,.1,-.36],[.07,.07,-.24],.05,.042);
+ const handL=new THREE.Mesh(new THREE.SphereGeometry(.05,10,8),SKIN);
+ handL.scale.set(1.4,.55,1);handL.position.set(.03,.055,-.2);handL.rotation.y=-.9;body.add(handL);
+ // legs: right straight, left bent at the knee
+ limb(TROUS,[-.4,.14,-.11],[-.72,.1,-.14],.095,.075);
+ joint(TROUS,[-.72,.1,-.14],.072);
+ limb(TROUS,[-.72,.1,-.14],[-1.02,.075,-.16],.072,.055);
+ limb(TROUS,[-.4,.14,.12],[-.7,.115,.26],.095,.075);
+ joint(TROUS,[-.7,.115,.26],.072);
+ limb(TROUS,[-.7,.115,.26],[-.94,.07,.1],.072,.055);
+ // boots
+ const bootR=box(.2,.1,.115,M.leather,-1.11,.055,-.165,body);bootR.rotation.y=-.12;bootR.rotation.z=-.15;
+ const bootL=box(.2,.1,.115,M.leather,-1.03,.055,.06,body);bootL.rotation.y=.55;bootL.rotation.z=.1;
+ box(.07,.035,.1,M.dark,-1.185,.02,-.17,body);
+ box(.07,.035,.1,M.dark,-1.09,.02,.09,body);
+ // collar + waistcoat buttons, so the figure reads as dressed
+ const collar=new THREE.Mesh(new THREE.TorusGeometry(.062,.018,6,14),SHIRT);
+ collar.rotation.x=Math.PI/2;collar.rotation.z=.1;collar.position.set(.6,.175,.02);body.add(collar);
+ for(let b=0;b<4;b++){const bt=new THREE.Mesh(new THREE.CylinderGeometry(.011,.011,.008,8),M.brass);
+   bt.rotation.x=Math.PI/2;bt.rotation.z=Math.PI/2;bt.position.set(.4-b*.14,.245,.03);body.add(bt)}
  G.mark=new THREE.Mesh(new THREE.PlaneGeometry(.6,.6),new THREE.MeshBasicMaterial({transparent:true,depthWrite:false}));G.mark.rotation.x=-Math.PI/2;G.mark.position.set(.15,.012,.62);body.add(G.mark);
  const marker=(()=>{const [c,x]=cv(128,128);x.fillStyle='#edc667';x.fillRect(0,0,128,128);x.fillStyle='#302618';x.textAlign='center';x.font='bold 78px Georgia';x.fillText('1',64,88);const m=new THREE.Mesh(new THREE.PlaneGeometry(.10,.12),new THREE.MeshBasicMaterial({map:tex(c),side:THREE.DoubleSide}));m.position.set(-.2,.074,.78);m.rotation.x=-Math.PI/5;return m})();body.add(marker);
- body.position.set(-1.3,0,.9);body.rotation.y=.4;scene.add(body);reg(body,'body',{pos:[-.7,1.8,2.0],look:[-1.2,.1,.9]});
+ body.scale.setScalar(.83);body.position.set(-1.3,0,.9);body.rotation.y=.4;scene.add(body);reg(body,'body',{pos:[-.7,1.8,2.0],look:[-1.2,.1,.9]});
  G.watch=new THREE.Group();const wc=cyl(.045,.045,.012,M.brass,0,0,0,G.watch,32);G.watchFace=new THREE.Mesh(new THREE.CircleGeometry(.04,32),new THREE.MeshStandardMaterial({roughness:.6}));G.watchFace.rotation.x=-Math.PI/2;G.watchFace.position.y=.007;G.watch.add(G.watchFace);const chain=new THREE.Mesh(new THREE.TorusGeometry(.012,.003,6,12),M.brass);chain.rotation.x=Math.PI/2;chain.position.set(.055,0,0);G.watch.add(chain);
  G.watch.position.set(-.85,.02,1.45);G.watch.rotation.y=.6;scene.add(G.watch);reg(G.watch,'watch',{pos:[-.85,.45,1.62],look:[-.85,.02,1.45]});
  // west wall: big wine rack with year labels; the hidden drawer under it
