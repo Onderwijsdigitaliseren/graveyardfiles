@@ -362,13 +362,80 @@ function build(){
  // chair
  const ch=new THREE.Group();box(.5,.06,.5,M.leather,.3,.48,-1.3,ch);box(.5,.6,.06,M.leather,.3,.8,-1.55,ch);[[.1,-1.1],[.5,-1.1],[.1,-1.5],[.5,-1.5]].forEach(([x,z])=>box(.04,.46,.04,M.dark,x,.23,z,ch));scene.add(ch);
  // body
- const body=new THREE.Group();const bodyM=new THREE.Mesh(new THREE.SphereGeometry(.28,16,12),M.white);bodyM.scale.set(2.7,.5,.85);bodyM.position.set(0,.14,0);bodyM.castShadow=true;body.add(bodyM);
- const head=new THREE.Mesh(new THREE.SphereGeometry(.16,14,10),M.white);head.position.set(.95,.12,0);body.add(head);
- const hand=new THREE.Mesh(new THREE.SphereGeometry(.06,10,8),new THREE.MeshStandardMaterial({color:0xd9c0a8}));hand.scale.set(1.6,.5,1);hand.position.set(.1,.03,.4);body.add(hand);
- const shoes=[new THREE.Mesh(new THREE.BoxGeometry(.12,.08,.1),M.dark),new THREE.Mesh(new THREE.BoxGeometry(.12,.08,.1),M.dark)];shoes[0].position.set(-.9,.05,-.08);shoes[1].position.set(-.92,.05,.1);body.add(shoes[0]);body.add(shoes[1]);
+ const body=new THREE.Group();
+ const bd_SKIN=new THREE.MeshStandardMaterial({color:0xc9a98c,roughness:.8});
+ const bd_SKIN_D=new THREE.MeshStandardMaterial({color:0xa98a70,roughness:.85});
+ const bd_SHIRT=new THREE.MeshStandardMaterial({color:0xd8d3c6,roughness:.85});
+ const bd_VEST=new THREE.MeshStandardMaterial({color:0xd8d3c6,roughness:.85});
+ const bd_TROUS=new THREE.MeshStandardMaterial({color:0xcfc9ba,roughness:.9});
+ const bd_APRON=new THREE.MeshStandardMaterial({color:0x6a5236,roughness:.97,side:THREE.DoubleSide});
+ const bd_HAIR=new THREE.MeshStandardMaterial({color:0x8e8780,roughness:1});
+ const bd_EYE=new THREE.MeshStandardMaterial({color:0x2a1e18,roughness:.6});
+ // bd_limb between two local points, radius r1->r2
+ const bd_limb=(mat,a,bd_b,r1,r2,seg)=>{const bd_A=new THREE.Vector3(...a),B=new THREE.Vector3(...bd_b);const bd_dd=new THREE.Vector3().subVectors(B,bd_A),len=bd_dd.length();
+   const bd_m=new THREE.Mesh(new THREE.CylinderGeometry(r2,r1,len,seg||12),mat);bd_m.position.copy(bd_A).addScaledVector(bd_dd,.5);
+   bd_m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),bd_dd.clone().normalize());bd_m.castShadow=true;body.add(bd_m);return bd_m};
+ const bd_joint=(mat,p,r)=>{const bd_m=new THREE.Mesh(new THREE.SphereGeometry(r,12,10),mat);bd_m.position.set(...p);bd_m.castShadow=true;body.add(bd_m);return bd_m};
+ // ---- bd_torso: one smooth lathe from hips (x=-.45) to neck (x=.58) ----
+ const bd_prof=[[0,0],[.01,.10],[.08,.13],[.2,.15],[.38,.165],[.55,.16],[.72,.155],[.85,.14],[.94,.1],[.99,.05],[1,0]];
+ const bd_pts=bd_prof.map(([t,r])=>new THREE.Vector2(r,t));
+ const bd_torso=new THREE.Mesh(new THREE.LatheGeometry(bd_pts,22),bd_VEST);
+ bd_torso.rotation.z=-Math.PI/2;bd_torso.position.set(-.45,.12,0);bd_torso.scale.set(.72,1.03,1);bd_torso.castShadow=true;body.add(bd_torso);
+ // waistcoat front: darker band over the chest, and a bd_tie
+ const bd_aprof=bd_prof.filter(([t])=>t>=.45&&t<=.92).map(([t,r])=>new THREE.Vector2(r+.01,t));
+ const bd_apron=new THREE.Mesh(new THREE.LatheGeometry(bd_aprof,22,Math.PI*.55,Math.PI*.9),new THREE.MeshStandardMaterial({color:0x5a5560,roughness:.85,side:THREE.DoubleSide}));
+ bd_apron.rotation.z=-Math.PI/2;bd_apron.position.set(-.45,.12,0);bd_apron.scale.set(.72,1.03,1);body.add(bd_apron);
+ const bd_tie=new THREE.Mesh(new THREE.BoxGeometry(.22,.012,.045),new THREE.MeshStandardMaterial({color:0x5a1c22,roughness:.7}));bd_tie.position.set(.4,.245,.01);bd_tie.rotation.y=.06;body.add(bd_tie);
+ // shirt at the neck opening
+ const bd_shirtV=new THREE.Mesh(new THREE.SphereGeometry(.08,12,10),bd_SHIRT);bd_shirtV.scale.set(1.2,.5,1.2);bd_shirtV.position.set(.52,.19,0);body.add(bd_shirtV);
+ // ---- shoulders + neck + bd_head (rolled to his left, i.bd_e. toward +z) ----
+ bd_joint(bd_VEST,[.54,.145,-.16],.075);bd_joint(bd_VEST,[.53,.145,.17],.075);
+ bd_limb(bd_SKIN_D,[.6,.13,.01],[.7,.13,.04],.05,.048,10);
+ const bd_head=new THREE.Group();bd_head.position.set(.82,.135,.07);bd_head.rotation.z=.18;bd_head.rotation.y=.35;
+ const bd_skull=new THREE.Mesh(new THREE.SphereGeometry(.115,18,14),bd_SKIN);bd_skull.scale.set(1.12,.98,.94);bd_skull.castShadow=true;bd_head.add(bd_skull);
+ const bd_jaw=new THREE.Mesh(new THREE.SphereGeometry(.075,12,10),bd_SKIN);bd_jaw.scale.set(1,.72,.9);bd_jaw.position.set(-.035,-.055,.03);bd_head.add(bd_jaw);
+ // bd_hair: hemisphere over the crown and back (pole toward +x, -y)
+ const bd_hair=new THREE.Mesh(new THREE.SphereGeometry(.122,18,14,0,Math.PI*2,0,Math.PI*.55),bd_HAIR);
+ bd_hair.scale.set(1.12,.98,.94);bd_hair.rotation.z=-Math.PI*.7;bd_head.add(bd_hair);
+ // face: closed eyes, bd_nose, bd_mouth — the face looks up (+y), slightly toward +z
+ [[-.01,.04,.055],[-.01,.04,-.03]].forEach(([x,y,z])=>{const bd_e=new THREE.Mesh(new THREE.SphereGeometry(.013,8,6),bd_EYE);bd_e.scale.set(1.8,.35,1);bd_e.position.set(x+.01,.108,z+.005);bd_head.add(bd_e);
+   const bd_lid=new THREE.Mesh(new THREE.SphereGeometry(.02,8,6),bd_SKIN_D);bd_lid.scale.set(1.6,.45,1);bd_lid.position.set(x+.01,.113,z+.005);bd_head.add(bd_lid)});
+ const bd_nose=new THREE.Mesh(new THREE.ConeGeometry(.018,.045,8),bd_SKIN_D);bd_nose.position.set(-.035,.118,.012);bd_nose.rotation.z=-.2;bd_head.add(bd_nose);
+ const bd_mouth=new THREE.Mesh(new THREE.BoxGeometry(.004,.003,.05),bd_EYE);bd_mouth.position.set(-.075,.098,.014);bd_mouth.rotation.y=-.3;bd_head.add(bd_mouth);
+ [[.0,.05,.108],[.0,.05,-.098]].forEach(([x,y,z])=>{const bd_ear=new THREE.Mesh(new THREE.SphereGeometry(.024,8,6),bd_SKIN_D);bd_ear.scale.set(.8,1.1,.4);bd_ear.position.set(x,y,z);bd_head.add(bd_ear)});
+ body.add(bd_head);
+ // ---- hands: bd_palm + fingers ----
+ const bd_hand=(pos,ry,mat)=>{const bd_h=new THREE.Group();bd_h.position.set(...pos);bd_h.rotation.y=ry;
+   const bd_palm=new THREE.Mesh(new THREE.BoxGeometry(.075,.03,.07),mat);bd_palm.castShadow=true;bd_h.add(bd_palm);
+   for(let i=0;i<4;i++){const bd_f=new THREE.Mesh(new THREE.CylinderGeometry(.009,.008,.055,6),mat);bd_f.rotation.z=Math.PI/2;bd_f.position.set(.06,-.002,-.028+i*.019);bd_f.rotation.y=(i-1.5)*.08;bd_h.add(bd_f)}
+   const bd_th=new THREE.Mesh(new THREE.CylinderGeometry(.01,.009,.04,6),mat);bd_th.rotation.x=Math.PI/2;bd_th.rotation.z=.4;bd_th.position.set(.02,.0,.055);bd_h.add(bd_th);
+   body.add(bd_h);return bd_h};
+ // right arm flung out toward the barrel
+ bd_limb(bd_SHIRT,[.53,.14,.2],[.32,.085,.46],.058,.05);bd_joint(bd_SHIRT,[.32,.085,.46],.05);
+ bd_limb(bd_SHIRT,[.32,.085,.46],[.17,.045,.66],.05,.04);
+ bd_hand([.13,.03,.7],1.0,bd_SKIN);
+ // left arm tucked against his side, bd_hand on the belly
+ bd_limb(bd_SHIRT,[.54,.14,-.18],[.3,.11,-.3],.058,.05);bd_joint(bd_SHIRT,[.3,.11,-.3],.05);
+ bd_limb(bd_SHIRT,[.3,.11,-.3],[.16,.2,-.1],.05,.04);
+ bd_hand([.12,.235,-.06],-1.2,bd_SKIN);
+ // ---- legs: right straight, left bent at the knee and fallen outward ----
+ bd_limb(bd_TROUS,[-.42,.12,-.1],[-.74,.1,-.13],.09,.072);bd_joint(bd_TROUS,[-.74,.1,-.13],.07);
+ bd_limb(bd_TROUS,[-.74,.1,-.13],[-1.04,.075,-.15],.07,.055);
+ bd_limb(bd_TROUS,[-.42,.12,.12],[-.7,.13,.27],.09,.072);bd_joint(bd_TROUS,[-.7,.13,.27],.07);
+ bd_limb(bd_TROUS,[-.7,.13,.27],[-.96,.075,.12],.07,.055);
+ // boots with shafts, heels and soles
+ const bd_boot=(x,z,ry,rz)=>{const bd_b=new THREE.Group();bd_b.position.set(x,.055,z);bd_b.rotation.y=ry;bd_b.rotation.z=rz;
+   const bd_foot=box(.21,.075,.1,M.dark,0,0,0,bd_b);bd_foot.castShadow=true;
+   const bd_shaft=new THREE.Mesh(new THREE.CylinderGeometry(.05,.052,.05,12),M.dark);bd_shaft.rotation.z=Math.PI/2;bd_shaft.position.set(.07,.03,0);bd_b.add(bd_shaft);
+   box(.22,.02,.11,M.dark,0,-.05,0,bd_b);box(.05,.035,.11,M.dark,.075,-.06,0,bd_b);
+   body.add(bd_b);return bd_b};
+ bd_boot(-1.12,-.155,-.1,-.15);bd_boot(-1.05,.06,.5,.12);
+ // ---- bd_collar, buttons, watch chain loop ----
+ const bd_collar=new THREE.Mesh(new THREE.TorusGeometry(.058,.016,6,16),bd_SHIRT);bd_collar.rotation.x=Math.PI/2;bd_collar.position.set(.62,.15,.02);body.add(bd_collar);
+ for(let bd_b=0;bd_b<4;bd_b++){const bd_bt=new THREE.Mesh(new THREE.CylinderGeometry(.011,.011,.006,8),M.brass);bd_bt.rotation.z=Math.PI/2;bd_bt.position.set(.42-bd_b*.13,.23,.035);body.add(bd_bt)}
  G.mark=new THREE.Mesh(new THREE.PlaneGeometry(.5,.5),new THREE.MeshBasicMaterial({transparent:true,depthWrite:false}));G.mark.rotation.x=-Math.PI/2;G.mark.position.set(.15,.012,.55);body.add(G.mark);
- const pool=new THREE.Mesh(new THREE.CircleGeometry(.45,24),new THREE.MeshStandardMaterial({color:0x3a070c,roughness:.3}));pool.rotation.x=-Math.PI/2;pool.position.set(.5,.008,.35);body.add(pool);G.pool=pool;
- body.position.set(-1.2,0,1.0);body.rotation.y=.35;scene.add(body);reg(body,'body',{pos:[-.5,1.8,2.1],look:[-1.1,.1,1.0]});
+ const pool=new THREE.Mesh(new THREE.CircleGeometry(.45,24),new THREE.MeshStandardMaterial({color:0x3a070c,roughness:.3}));pool.rotation.x=-Math.PI/2;pool.position.set(.7,.008,.25);body.add(pool);G.pool=pool;
+ body.scale.setScalar(.83);body.position.set(-1.2,0,1.0);body.rotation.y=.35;scene.add(body);reg(body,'body',{pos:[-.5,1.8,2.1],look:[-1.1,.1,1.0]});
  // painting + safe (north wall x=-2)
  G.safe=new THREE.Group();box(.7,.7,.05,M.iron,-2,1.7,-2.9,G.safe);box(.7,.05,.45,M.iron,-2,2.025,-2.7,G.safe);box(.7,.05,.45,M.iron,-2,1.375,-2.7,G.safe);box(.05,.7,.45,M.iron,-2.325,1.7,-2.7,G.safe);box(.05,.7,.45,M.iron,-1.675,1.7,-2.7,G.safe);const sd=new THREE.Group();box(.62,.62,.05,new THREE.MeshStandardMaterial({color:0x22242c,metalness:.7,roughness:.4}),.31,0,0,sd);const dialM=new THREE.Mesh(new THREE.CylinderGeometry(.08,.08,.04,20),M.brass);dialM.rotation.x=Math.PI/2;dialM.position.set(.31,0,.04);sd.add(dialM);
  const keypad=new THREE.Mesh(new THREE.PlaneGeometry(.16,.2),new THREE.MeshStandardMaterial({map:keypadTex(),emissiveMap:keypadTex(),emissive:0x5fdc8a,emissiveIntensity:.5,roughness:.4}));keypad.position.set(.45,-.05,.03);sd.add(keypad);
@@ -576,7 +643,7 @@ function buildCinema(){
 function buildLab(){const lab=Cine.lab;lab.scene=new THREE.Scene();lab.scene.background=new THREE.Color(0x071019);lab.camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.01,100);lab.camera.position.set(0,.2,4.2);lab.camera.lookAt(0,0,0);lab.scene.add(new THREE.HemisphereLight(0xc5eaff,0x3d251c,1.2));const key=new THREE.DirectionalLight(0xffdab0,2);key.position.set(-3,4,5);lab.scene.add(key);const rim=new THREE.DirectionalLight(0x61bdff,2);rim.position.set(3,1,-2);lab.scene.add(rim);lab.uvLight=new THREE.PointLight(0x934bff,0,15);lab.uvLight.position.set(0,1,2);lab.scene.add(lab.uvLight);lab.pivot=new THREE.Group();lab.scene.add(lab.pivot);const grid=new THREE.GridHelper(16,40,0x264a57,0x132a36);grid.position.y=-1.55;lab.scene.add(grid);const ring=new THREE.Mesh(new THREE.TorusGeometry(1.38,.008,8,100),new THREE.MeshBasicMaterial({color:0x6a949b}));ring.rotation.x=-Math.PI/2;ring.position.y=-1.52;lab.scene.add(ring)}
 function openLab(){const id=Cine.examId,lab=Cine.lab;if(!id||G.st.done)return;const source=id==='glass'?interact.find(o=>o.userData.id==='glass'):id==='clock'?G.clock:({poker:G.pokerMesh,revolver:G.gunMesh,opener:G.openerMesh,poison:G.poisonMesh})[id];if(!source||!source.visible){caption(CX[lang].empty);return}
  lab.id=id;lab.open=true;lab.uv=false;lab.drag=false;drag=false;lab.previousFocus=document.activeElement;lab.uvLight.intensity=0;lab.pivot.rotation.set(id==='clock'?0:.12,id==='clock'?0:-.25,0);const clone=source.clone(true);clone.position.set(0,0,0);clone.rotation.set(0,0,0);clone.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.castShadow=false;o.receiveShadow=false;if(o.material.map===G.printDecal.material.map){lab.print=o;o.material.opacity=0}}});
- lab.pivot.add(clone);const bounds=new THREE.Box3().setFromObject(clone);const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());clone.position.sub(center);const scale=2/Math.max(size.x,size.y,size.z);clone.scale.multiplyScalar(scale);clone.position.multiplyScalar(scale);lab.clone=clone;lab.camera.position.z=4.2;$('lab-zoom').value='4.2';$('lab').classList.add('open');document.body.classList.add('in-lab');$('labUV').classList.remove('on');$('labUV').style.display=id==='glass'?'':'none';$('labUV').disabled=!G.st.uv;$('labUV').title=G.st.uv?'':CX[lang].needUV;cinemaLanguage();$('labClose').focus()}
+ lab.pivot.add(clone);const bounds=new THREE.Box3().setFromObject(clone);const center=bounds.getCenter(new THREE.Vector3()),size=bounds.getSize(new THREE.Vector3());clone.position.sub(center);const visH=2*4.2*Math.tan(lab.camera.fov*Math.PI/360),visW=visH*lab.camera.aspect;const scale=.9*Math.min(visW,visH)/size.length();clone.scale.multiplyScalar(scale);clone.position.multiplyScalar(scale);lab.clone=clone;lab.camera.position.z=4.2;$('lab-zoom').value='4.2';$('lab').classList.add('open');document.body.classList.add('in-lab');$('labUV').classList.remove('on');$('labUV').style.display=id==='glass'?'':'none';$('labUV').disabled=!G.st.uv;$('labUV').title=G.st.uv?'':CX[lang].needUV;cinemaLanguage();$('labClose').focus()}
 function closeLab(){const lab=Cine.lab;if(!lab.open)return;lab.open=false;lab.drag=false;if(lab.clone){lab.clone.traverse(o=>{if(o.isMesh)o.material.dispose()});lab.pivot.remove(lab.clone);lab.clone=null}lab.print=null;$('lab').classList.remove('open');document.body.classList.remove('in-lab');if(lab.previousFocus&&lab.previousFocus.isConnected)lab.previousFocus.focus()}
 function startAmbience(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();AC.resume();if(Cine.ambient)return;const n=AC.sampleRate*3,b=AC.createBuffer(1,n,AC.sampleRate),a=b.getChannelData(0);let last=0;for(let i=0;i<n;i++){last=(last+Math.random()*.035-.0175)/1.018;a[i]=last*3}const source=AC.createBufferSource();source.buffer=b;source.loop=true;const filter=AC.createBiquadFilter();filter.type='lowpass';filter.frequency.value=1150;Cine.ambient=AC.createGain();Cine.ambient.gain.value=snd?.12:0;source.connect(filter);filter.connect(Cine.ambient);Cine.ambient.connect(AC.destination);source.start()}catch(e){}}
 function thunder(){if(!snd||!AC||document.hidden)return;const n=AC.sampleRate*2.7,b=AC.createBuffer(1,n,AC.sampleRate),a=b.getChannelData(0);let p=0;for(let i=0;i<n;i++){p=(p+Math.random()*.12-.06)/1.025;a[i]=p}const s=AC.createBufferSource();s.buffer=b;const f=AC.createBiquadFilter();f.type='lowpass';f.frequency.value=180;const g=AC.createGain();g.gain.setValueAtTime(.001,AC.currentTime);g.gain.exponentialRampToValueAtTime(.7,AC.currentTime+.22);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+2.7);s.connect(f);f.connect(g);g.connect(AC.destination);s.onended=()=>{s.disconnect();f.disconnect();g.disconnect()};s.start()}
