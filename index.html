@@ -426,6 +426,38 @@ body.lamp-aan #koffiekas{opacity:1}
 }
 @media (prefers-reduced-motion:reduce){#koffiekas{transition:none}}
 /* voetregel */
+#voet a{color:rgba(201,168,108,.6);text-decoration:none;border-bottom:1px dotted rgba(201,168,108,.45)}
+#voet a:hover{color:var(--manilla)}
+#notitieOverlay{position:fixed;inset:0;z-index:50;background:rgba(8,6,4,.78);display:flex;align-items:center;justify-content:center;padding:18px}
+#notitieOverlay[hidden]{display:none}
+.notitieBlad{position:relative;width:min(520px,100%);max-height:calc(100vh - 36px);overflow:auto;background:linear-gradient(178deg,var(--papier) 0%,#d9cba6 100%);border:1px solid rgba(0,0,0,.4);box-shadow:0 18px 40px rgba(0,0,0,.6);padding:26px 28px 22px;transform:rotate(.4deg);color:#3c3324;font-family:inherit}
+.notitieStempel{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.16em;color:#8e2a22;border:2px solid rgba(142,42,34,.55);padding:3px 8px;transform:rotate(-2deg)}
+.notitieBlad h2{margin:14px 0 4px;font-size:22px;font-weight:700;letter-spacing:.02em;color:#2a2114}
+.notitieUitleg{margin:0 0 14px;font-size:13px;line-height:1.6}
+.notitieBlad label{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#5a4c34;margin-top:12px}
+.notitieBlad label span{font-weight:400;letter-spacing:0;text-transform:none;color:#7a6a4e}
+.notitieBlad input,.notitieBlad textarea{display:block;width:100%;box-sizing:border-box;margin-top:5px;padding:9px 10px;font:14px/1.5 Georgia,serif;color:#2a2114;background:rgba(255,255,255,.45);border:1px solid rgba(60,51,36,.35);border-radius:2px}
+.notitieBlad textarea{resize:vertical;min-height:120px}
+.notitieBlad input:focus,.notitieBlad textarea:focus{outline:2px solid rgba(142,42,34,.5);outline-offset:1px}
+.notitieHoning{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.notitieRij{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px}
+.notitieKnop{font:inherit;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--papier);background:#8e2a22;border:0;padding:11px 16px;cursor:pointer;border-radius:2px}
+.notitieKnop:hover{background:#a8352b}
+.notitieKnop[disabled]{opacity:.55;cursor:default}
+#notitieStatus{font-size:13px;color:#5a4c34}
+#notitieStatus.ok{color:#2f6a3a;font-weight:700}
+#notitieStatus.fout{color:#8e2a22}
+.notitieKlein{font-size:12.5px;line-height:1.55;color:#6a5a40;margin:12px 0 0}
+.notitieKlein a,.privacyBlad a{color:#8e2a22}
+.privacyBlad{width:min(600px,100%);padding:30px 32px 26px}
+.privacyBlad p{font-size:14.5px;line-height:1.65;margin:12px 0 0}
+.privacyBlad h2{font-size:24px}
+.privacyBlad p b{color:#2a2114}
+#privacyOverlay{position:fixed;inset:0;z-index:51;background:rgba(8,6,4,.78);display:flex;align-items:center;justify-content:center;padding:18px}
+#privacyOverlay[hidden]{display:none}
+.notitieSluit{position:absolute;top:8px;right:10px;font:22px/1 Georgia,serif;color:#5a4c34;background:none;border:0;cursor:pointer;padding:4px 8px}
+.notitieSluit:hover{color:#8e2a22}
+@media (max-width:520px){.notitieBlad{padding:20px 18px 18px;transform:none}.privacyBlad p{font-size:14px}}
 #voet{
   position:relative;
   z-index:2;
@@ -472,7 +504,40 @@ body.lamp-aan #koffiekas{opacity:1}
     <a id="kkKnop" href="#" target="_blank" rel="noopener">&#9749; Pour the night shift a coffee</a>
     <div class="kkKlein">Voluntary &middot; via Ko-fi &middot; the archive stays free, always</div>
   </section>
-  <div id="voet">The graveyard files stay open &middot; new cases are logged nightly</div>
+  <div id="voet">The graveyard files stay open &middot; new cases are logged nightly &middot; <a href="#" id="notitieLink">leave a note for the night desk</a> &middot; <a href="#" class="privacyLink">privacy</a></div>
+
+  <div id="privacyOverlay" role="dialog" aria-modal="true" aria-labelledby="privacyKop" hidden>
+    <div class="notitieBlad privacyBlad">
+      <button type="button" class="notitieSluit" id="privacySluit" aria-label="Close">&times;</button>
+      <div class="notitieStempel">PRIVACY &middot; PLAIN WORDS</div>
+      <h2 id="privacyKop">How your data is handled</h2>
+      <p><b>The games.</b> Everything runs in your browser. Your progress, hints used and the language you chose are kept in your browser&rsquo;s local storage, on your own device. They never leave it, and clearing your browser data removes them. No cookies, no analytics, no tracking.</p>
+      <p><b>The note form.</b> Only if you send a note do we receive what you typed: your message, and your name and e-mail address if you chose to give them. It reaches us as an e-mail, delivered by <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener">FormSubmit</a>, which handles the submission and does not keep your message afterwards. We use it solely to read your note and reply, keep it until it has been dealt with, and share it with nobody. Send an e-mail to the address below if you want it deleted.</p>
+      <p><b>Hosting.</b> The site is served by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a>, which logs the IP address of every visitor for security reasons, as any web host does. We do not see or use those logs.</p>
+      <p><b>The coffee fund.</b> Donations go through Ko-fi under Ko-fi&rsquo;s own privacy terms. Nothing about a donation comes back to this site.</p>
+      <p><b>Who is responsible.</b> Kellie van de Kerkhof, the person behind graveyardfiles.com, reachable at <a href="mailto:kellievandekerkhof@gmail.com">kellievandekerkhof@gmail.com</a>. Under the GDPR you may ask what we hold about you, have it corrected or deleted, or complain to the Dutch Data Protection Authority (Autoriteit Persoonsgegevens).</p>
+      <p class="notitieKlein">Last updated 19 September 2026.</p>
+    </div>
+  </div>
+
+  <!-- ===== bericht aan de nachtdienst ===== -->
+  <div id="notitieOverlay" role="dialog" aria-modal="true" aria-labelledby="notitieKop" hidden>
+    <form id="notitieFormulier" class="notitieBlad" novalidate>
+      <button type="button" class="notitieSluit" id="notitieSluit" aria-label="Close">&times;</button>
+      <div class="notitieStempel">MEMO &middot; NIGHT DESK</div>
+      <h2 id="notitieKop">Leave a note</h2>
+      <p class="notitieUitleg">A clue that did not hold, a typo in a statement, a case you would like to see next &mdash; anything. It lands on the night desk and gets read.</p>
+      <label>Your name <span>(optional)</span><input type="text" name="name" maxlength="80" autocomplete="name"></label>
+      <label>Reply address <span>(optional)</span><input type="email" name="email" maxlength="120" autocomplete="email"></label>
+      <label>Your note<textarea name="message" rows="6" maxlength="3000" required></textarea></label>
+      <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="notitieHoning" aria-hidden="true">
+      <p class="notitieKlein">Your note is delivered to the night desk by e-mail through FormSubmit and used only to read and reply. Nothing is stored on this site. <a href="#" class="privacyLink">How your data is handled</a>.</p>
+      <div class="notitieRij">
+        <button type="submit" class="notitieKnop" id="notitieVerzend">Send to the night desk</button>
+        <span id="notitieStatus" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
 </main>
 <script>
 "use strict";
@@ -647,6 +712,51 @@ function renderArchive(){
 }
 
 window.renderArchive = renderArchive;
+
+/* ---- note to the night desk (FormSubmit, no backend needed) ---- */
+(function(){
+  const NACHTDIENST = "kellievandekerkhof@gmail.com";
+  const overlay = document.getElementById("notitieOverlay"),
+        form = document.getElementById("notitieFormulier"),
+        status = document.getElementById("notitieStatus"),
+        knop = document.getElementById("notitieVerzend");
+  let laatsteFocus = null;
+  function open(e){ if(e) e.preventDefault(); laatsteFocus = document.activeElement; overlay.hidden = false; status.textContent = ""; status.className = ""; form.reset(); setTimeout(function(){ form.querySelector("textarea").focus(); }, 30); }
+  function sluit(){ overlay.hidden = true; if (laatsteFocus && laatsteFocus.focus) laatsteFocus.focus(); }
+  document.getElementById("notitieLink").addEventListener("click", open);
+  const privacy = document.getElementById("privacyOverlay");
+  document.querySelectorAll(".privacyLink").forEach(function(a){ a.addEventListener("click", function(e){ e.preventDefault(); privacy.hidden = false; document.getElementById("privacySluit").focus(); }); });
+  document.getElementById("privacySluit").addEventListener("click", function(){ privacy.hidden = true; });
+  privacy.addEventListener("click", function(e){ if (e.target === privacy) privacy.hidden = true; });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !privacy.hidden) privacy.hidden = true; });
+  document.getElementById("notitieSluit").addEventListener("click", sluit);
+  overlay.addEventListener("click", function(e){ if (e.target === overlay) sluit(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !overlay.hidden) sluit(); });
+  form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    const fd = new FormData(form);
+    const bericht = (fd.get("message") || "").trim();
+    if (!bericht){ status.textContent = "The note is still blank."; status.className = "fout"; form.querySelector("textarea").focus(); return; }
+    if (fd.get("_honey")) { status.textContent = "Filed."; status.className = "ok"; return; }
+    fd.set("_subject", "Note from the night desk \u2014 graveyardfiles.com");
+    fd.set("_template", "table");
+    fd.set("_captcha", "false");
+    fd.set("page", location.href);
+    knop.disabled = true; status.textContent = "Sending\u2026"; status.className = "";
+    try {
+      const r = await fetch("https://formsubmit.co/ajax/" + NACHTDIENST, { method: "POST", headers: { "Accept": "application/json" }, body: fd });
+      const data = await r.json().catch(function(){ return {}; });
+      if (r.ok && (data.success === "true" || data.success === true)) {
+        status.textContent = "Filed. The night desk has it. Thank you."; status.className = "ok"; form.reset();
+        setTimeout(sluit, 2600);
+      } else { throw new Error(data.message || ("HTTP " + r.status)); }
+    } catch (err) {
+      const body = encodeURIComponent(bericht + "\n\n\u2014 " + (fd.get("name") || "anonymous") + (fd.get("email") ? " (" + fd.get("email") + ")" : ""));
+      status.innerHTML = "The line is down. <a href=\"mailto:" + NACHTDIENST + "?subject=Note%20for%20the%20night%20desk&body=" + body + "\">Send it by mail instead</a>.";
+      status.className = "fout";
+    } finally { knop.disabled = false; }
+  });
+})();
 window.CASES = CASES;
 window.DRAWERS = DRAWERS;
 
