@@ -1,17 +1,238 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://graveyardfiles.com/</loc><lastmod>2026-09-08</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://graveyardfiles.com/meridian-house.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/night-frequency.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/night-train-212.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-switch-room.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/ravenscourt.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-light-table.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-night-porter.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-floor-plan.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-black-column.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/seaview.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/halfmoon.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-stopped-clock.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://graveyardfiles.com/the-empty-barrel.html</loc><lastmod>2026-09-08</lastmod><changefreq>yearly</changefreq><priority>0.8</priority></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://graveyardfiles.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/meridian-house.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/meridian-house.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/villa-meridiaan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/meridian-house.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/villa-meridiaan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/meridian-house.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/villa-meridiaan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/meridian-house.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/night-frequency.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/night-frequency.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachtfrequentie.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/night-frequency.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/nachtfrequentie.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/night-frequency.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachtfrequentie.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/night-frequency.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/night-train-212.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/night-train-212.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachttrein212.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/night-train-212.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/nachttrein212.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/night-train-212.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachttrein212.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/night-train-212.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/seaview.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/seaview.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/zeezicht.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/seaview.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/zeezicht.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/seaview.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/zeezicht.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/seaview.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/halfmoon.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/halfmoon.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/halvemaan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/halfmoon.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/halvemaan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/halfmoon.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/halvemaan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/halfmoon.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-night-porter.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-night-porter.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachtportier.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-night-porter.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/nachtportier.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-night-porter.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachtportier.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-night-porter.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-floor-plan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-floor-plan.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/grondplan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-floor-plan.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/grondplan.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-floor-plan.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/grondplan.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-floor-plan.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-switch-room.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-switch-room.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/schakelkamer.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-switch-room.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/schakelkamer.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-switch-room.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/schakelkamer.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-switch-room.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/ravenscourt.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/ravenscourt.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/ravenhorst.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/ravenscourt.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/ravenhorst.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/ravenscourt.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/ravenhorst.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/ravenscourt.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-light-table.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-light-table.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/de-lichttafel.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-light-table.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/de-lichttafel.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-light-table.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/de-lichttafel.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-light-table.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-black-column.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-black-column.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/de-zwarte-kolom.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-black-column.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/nl/de-zwarte-kolom.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-black-column.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/de-zwarte-kolom.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-black-column.html"/>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-stopped-clock.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-stopped-clock.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/the-stopped-clock.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-stopped-clock.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://graveyardfiles.com/the-empty-barrel.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-empty-barrel.html"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/the-empty-barrel.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-empty-barrel.html"/>
+    <lastmod>2026-09-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

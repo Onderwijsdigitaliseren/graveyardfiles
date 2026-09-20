@@ -1,0 +1,66 @@
+Plak per Engels bestand dit blok in de <head>, direct na </title> of de bestaande canonical.
+De canonical staat er al in — controleer dat er niet twee komen te staan.
+
+=== meridian-house.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/meridian-house.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/villa-meridiaan.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/meridian-house.html">
+
+=== night-frequency.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/night-frequency.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachtfrequentie.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/night-frequency.html">
+
+=== night-train-212.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/night-train-212.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachttrein212.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/night-train-212.html">
+
+=== seaview.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/seaview.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/zeezicht.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/seaview.html">
+
+=== halfmoon.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/halfmoon.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/halvemaan.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/halfmoon.html">
+
+=== the-night-porter.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-night-porter.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/nachtportier.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-night-porter.html">
+
+=== the-floor-plan.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-floor-plan.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/grondplan.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-floor-plan.html">
+
+=== the-switch-room.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-switch-room.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/schakelkamer.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-switch-room.html">
+
+=== ravenscourt.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/ravenscourt.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/ravenhorst.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/ravenscourt.html">
+
+=== the-light-table.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-light-table.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/de-lichttafel.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-light-table.html">
+
+=== the-black-column.html ===
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-black-column.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/de-zwarte-kolom.html">
+<link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/the-black-column.html">
+
+=== the-stopped-clock.html en the-empty-barrel.html (tweetalig, zelfde URL) ===
+--- the-stopped-clock.html ---
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-stopped-clock.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/the-stopped-clock.html">
+
+--- the-empty-barrel.html ---
+<link rel="alternate" hreflang="en" href="https://graveyardfiles.com/the-empty-barrel.html">
+<link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/the-empty-barrel.html">
