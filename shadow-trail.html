@@ -42,6 +42,7 @@ p{margin:0}
 .btn.ghost{background:transparent;color:var(--paper);border:1px solid var(--street)}
 .btn.red{background:var(--blood);color:#fff}
 .btn:disabled{opacity:.45}
+.btn.sm{width:auto;align-self:center;padding:8px 14px;font-size:14px;font-weight:500}
 .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--street);border:1px solid var(--street)}
 .strip div{background:var(--night2);padding:10px 8px;text-align:center}
 .strip b{display:block;font-family:var(--f-type);font-weight:400;font-size:20px;color:var(--spook);font-variant-numeric:tabular-nums}
@@ -163,7 +164,7 @@ input[type=range]{width:100%;accent-color:var(--blood)}
       <button class="btn" id="bResume" hidden>Ga verder met je zaak</button>
       <button class="btn" id="bGps">Start de zaak van vandaag</button>
       <button class="btn ghost" id="bRandom">Extra zaak op deze plek</button>
-      <button class="btn ghost" id="bDemo">Oefenronde zonder lopen</button>
+      <button class="btn ghost sm" id="bDemo">Proefronde in fictief Amsterdam</button>
       <p class="note" id="status"></p>
       <ol class="how">
         <li>De kaart zet acht sporen neer bij echte plekken om je heen: de kerk, de bushalte, het café.</li>
@@ -171,6 +172,7 @@ input[type=range]{width:100%;accent-color:var(--blood)}
         <li>Zeldzame schimmen duiken alleen op als je dichtbij bent. Vang ze voor je Schimmenboek en een tip.</li>
       </ol>
       <button class="btn ghost" id="bBookHome">Schimmenboek</button>
+      <button class="btn ghost sm" id="bWipe">Wissen</button>
       <p class="note">Blijf op de openbare weg en let op het verkeer. Je hoeft nergens naar binnen.</p>
     </div>
   </section>
@@ -185,6 +187,7 @@ input[type=range]{width:100%;accent-color:var(--blood)}
         <div class="list" id="bfSus"></div>
       </div>
       <button class="btn" id="bGo">De nacht in</button>
+      <button class="btn ghost" id="bBack">Terug</button>
     </div>
   </section>
 
@@ -197,6 +200,7 @@ input[type=range]{width:100%;accent-color:var(--blood)}
       <div><b id="hD">0,0</b><span>Km</span></div>
     </div>
     <div id="zoom">
+      <button type="button" id="zM" aria-label="Menu">☰</button>
       <button type="button" id="zIn" aria-label="Inzoomen">+</button>
       <button type="button" id="zOut" aria-label="Uitzoomen">−</button>
       <button type="button" id="zMe" aria-label="Centreer op mij">◎</button>
@@ -350,35 +354,41 @@ function startGps(seed){
   st.textContent="Je locatie zoeken…";
   navigator.geolocation.getCurrentPosition(async pos=>{
     const lat=pos.coords.latitude,lon=pos.coords.longitude,R=R0;
-    st.textContent="De buurt in kaart brengen…";
-    const kx=111320*Math.cos(lat*Math.PI/180),ky=110540,xy=(la,lo)=>[(lo-lon)*kx,-(la-lat)*ky];
-    let pois=[],ways=[];
+    const kx=111320*Math.cos(lat*Math.PI/180),ky=110540,xy=(la,lo)=>[(lo-lon)*kx,-(la-lat)*ky],A="(around:"+R+","+lat+","+lon+")";
+    const hosts=["https://overpass-api.de/api/interpreter","https://overpass.private.coffee/api/interpreter","https://maps.mail.ru/osm/tools/overpass/api/interpreter"];
+    // alle servers tegelijk vragen; de eerste die antwoordt wint
+    const ask=(q,ms)=>{const ac=new AbortController(),to=setTimeout(()=>ac.abort(),ms);
+      return Promise.any(hosts.map(h=>fetch(h,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"data="+encodeURIComponent(q),signal:ac.signal}).then(r=>{if(!r.ok)throw new Error("server "+r.status);return r.json()})))
+        .then(d=>{clearTimeout(to);ac.abort();return d},e=>{clearTimeout(to);throw e})};
+    let pois=[],ways=[];const c=LS.get("ss_map",null);
+    // deze buurt al eens geladen: meteen starten
+    if(c&&c.R>=R&&c.pois&&c.pois.length&&Math.hypot((c.lon-lon)*kx,(c.lat-lat)*ky)<150){const ox=(c.lon-lon)*kx,oy=-(c.lat-lat)*ky;
+      pois=c.pois.map(p=>({x:p.x+ox,y:p.y+oy,type:p.type,name:p.name}));ways=(c.ways||[]).map(w=>({w:w.w,n:w.n,p:w.p.map((v,i)=>Math.round(v+(i%2?oy:ox)))}));
+      st.textContent="";build(seed,"gps",pois,ways,{lat,lon,kx,ky});return}
+    st.textContent="Plekken in je buurt zoeken…";
     try{
-      const q=`[out:json][timeout:25];(nw(around:${R},${lat},${lon})[amenity~"^(place_of_worship|bank|atm|cafe|pub|bar|restaurant|pharmacy|post_box|library|school|fuel)$"];nw(around:${R},${lat},${lon})[tourism~"^(hotel|artwork|museum)$"];nw(around:${R},${lat},${lon})[shop~"^(supermarket|bakery|convenience)$"];node(around:${R},${lat},${lon})[highway=bus_stop];nw(around:${R},${lat},${lon})[leisure~"^(park|playground)$"];way(around:${R+150},${lat},${lon})[highway~"^(residential|tertiary|secondary|primary|unclassified|living_street|pedestrian|footway|path|cycleway|service)$"];);out geom;`;
-      const hosts=["https://overpass-api.de/api/interpreter","https://overpass.private.coffee/api/interpreter","https://maps.mail.ru/osm/tools/overpass/api/interpreter"];let d=null,why="";
-      for(let i=0;i<hosts.length&&!d;i++){
-        st.textContent="De buurt in kaart brengen… (poging "+(i+1)+" van "+hosts.length+")";
-        const ac=new AbortController(),to=setTimeout(()=>ac.abort(),30000);
-        try{const res=await fetch(hosts[i],{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"data="+encodeURIComponent(q),signal:ac.signal});
-          if(!res.ok)throw new Error("server antwoordt "+res.status);d=await res.json()}
-        catch(e){why=e.name==="AbortError"?"duurde te lang":(e.message||"geen verbinding")}
-        clearTimeout(to);
-      }
-      if(!d)throw new Error(why);
-      for(const e of d.elements||[]){
-        const ty=poiType(e.tags);
-        if(e.type==="way"&&e.geometry&&!ty&&e.tags&&e.tags.highway){const p=[];e.geometry.forEach(g=>{const c=xy(g.lat,g.lon);p.push(Math.round(c[0]),Math.round(c[1]))});const h=e.tags.highway;ways.push({p,w:/primary|secondary|tertiary/.test(h)?3:/footway|path|cycleway/.test(h)?1:2,n:e.tags.name||""})}
-        else if(ty){let la=e.lat,lo=e.lon;if(la==null&&e.geometry){la=0;lo=0;e.geometry.forEach(g=>{la+=g.lat;lo+=g.lon});la/=e.geometry.length;lo/=e.geometry.length}if(la==null)continue;const c=xy(la,lo);pois.push({x:c[0],y:c[1],type:ty,name:e.tags.name||""})}
-      }
-    }catch(e){toast("Geen kaartgegevens ("+e.message+"). De sporen liggen op loopafstand om je heen.")}
-    st.textContent="";build(seed,"gps",pois,ways,{lat,lon,kx,ky});
+      const d=await ask('[out:json][timeout:15];(nwr'+A+'[amenity~"^(place_of_worship|bank|atm|cafe|pub|bar|restaurant|pharmacy|post_box|library|school|fuel)$"];nwr'+A+'[tourism~"^(hotel|artwork|museum)$"];nwr'+A+'[shop~"^(supermarket|bakery|convenience)$"];node'+A+'[highway=bus_stop];nwr'+A+'[leisure~"^(park|playground)$"];);out center qt 400;',18000);
+      for(const e of d.elements||[]){const ty=poiType(e.tags),q=e.type==="node"?[e.lat,e.lon]:e.center?[e.center.lat,e.center.lon]:null;if(!ty||!q)continue;const p=xy(q[0],q[1]);pois.push({x:p[0],y:p[1],type:ty,name:e.tags.name||""})}
+    }catch(e){toast("De kaartdienst reageert niet. Je sporen liggen op loopafstand om je heen.")}
+    st.textContent="";build(seed,"gps",pois,[],{lat,lon,kx,ky});
+    // straten komen op de achtergrond; het spel wacht er niet op
+    const mine=G;
+    ask('[out:json][timeout:25];way(around:'+(R+150)+','+lat+','+lon+')[highway~"^(residential|tertiary|secondary|primary|unclassified|living_street|pedestrian|footway|path|cycleway|service)$"];out geom qt;',45000).then(d=>{
+      for(const e of d.elements||[]){if(!e.geometry)continue;const p=[];e.geometry.forEach(g=>{const q=xy(g.lat,g.lon);p.push(Math.round(q[0]),Math.round(q[1]))});const h=(e.tags&&e.tags.highway)||"";ways.push({p,w:/primary|secondary|tertiary/.test(h)?3:/footway|path|cycleway/.test(h)?1:2,n:(e.tags&&e.tags.name)||""})}
+      if(G&&G===mine){W=ways;LS.set(WK,W)}
+      if(pois.length)LS.set("ss_map",{lat,lon,R,pois,ways});
+    }).catch(()=>{if(pois.length)LS.set("ss_map",{lat,lon,R,pois,ways:[]})});
   },err=>{fail("Geen toegang tot je locatie. Open dit spel in de browser van je telefoon via een https-adres en sta locatie toe. Hier kun je de oefenronde spelen.")},{enableHighAccuracy:true,timeout:20000});
 }
 function demoWorld(){
-  const r=rngOf(7),ways=[];
-  for(let g=-750;g<=750;g+=150){const a=[],b=[];for(let t=-750;t<=750;t+=150){a.push(t,Math.round(g+(r()-.5)*40));b.push(Math.round(g+(r()-.5)*40),t)}ways.push({p:a,w:g%450===0?3:2,n:""},{p:b,w:g%450===0?3:2,n:""})}
-  const L=[[-300,-150,"kerk","Sint-Bavokerk"],[150,-300,"cafe","Café De Gouden Leeuw"],[450,150,"hotel","Hotel Winterlicht"],[-150,300,"apotheek","Apotheek De Vijzel"],[300,300,"halte","Bushalte Marktplein"],[-450,150,"bank","Spaarbank Halvemaan"],[0,-450,"park","Stadspark"],[-150,-150,"post","Brievenbus Kerkstraat"],[150,150,"bieb","Bibliotheek"],[-300,450,"school","Basisschool De Wissel"],[300,-150,"winkel","Bakkerij Van Dam"],[0,550,"kunst","Beeld De Wachter"],[-550,-300,"tank","Tankstation Oostpoort"]];
-  return{ways,pois:L.map(l=>({x:l[0],y:l[1],type:l[2],name:l[3]}))};
+  // fictieve grachtengordel: ringen rond een middelpunt ten noorden van de speler
+  const cy=-500,ways=[],arc=(r,w,n)=>{const p=[];for(let a=25;a<=155;a+=5){const t=a*Math.PI/180;p.push(Math.round(r*Math.cos(t)),Math.round(cy+r*Math.sin(t)))}ways.push({p,w,n:n||""})};
+  [[400,"Schaduwgracht"],[560,"Lantaarngracht"],[740,"Nachtgracht"],[920,"Mistgracht"]].forEach(c=>arc(c[0],9,c[1]));
+  [[400],[560],[740],[920]].forEach(c=>{arc(c[0]-26,1);arc(c[0]+26,1)});
+  [330,470,650,830].forEach(r=>arc(r,2));
+  for(let a=30;a<=150;a+=12){const t=a*Math.PI/180;ways.push({p:[Math.round(260*Math.cos(t)),Math.round(cy+260*Math.sin(t)),Math.round(1000*Math.cos(t)),Math.round(cy+1000*Math.sin(t))],w:a===90||a===54||a===126?3:2,n:""})}
+  const L=[[330,90,"kerk","Oude Nachtkerk"],[470,70,"cafe","Café De Blauwe Reiger"],[470,112,"post","Brievenbus Lantaarnsteeg"],[650,90,"hotel","Hotel Winterlicht"],[650,68,"bank","Spaarbank De Halve Maan"],[650,113,"apotheek","Apotheek De Gouden Vijzel"],[830,80,"park","Schimmenplantsoen"],[830,102,"halte","Tramhalte Nachtgracht"],[830,58,"bieb","Bibliotheek De Nachtschuit"],[830,124,"kunst","Beeld De Wachter"],[470,45,"winkel","Bakkerij Van Dam"],[470,136,"school","School De Wissel"],[980,90,"bankje","Bankje aan de Mistgracht"]];
+  return{ways,pois:L.map(l=>{const t=l[1]*Math.PI/180;return{x:Math.round(l[0]*Math.cos(t)),y:Math.round(cy+l[0]*Math.sin(t)),type:l[2],name:l[3]}})};
 }
 function build(seed,mode,pois,ways,origin){
   const c=genCase(seed);if(!c){toast("Deze zaak wil niet kloppen. Probeer een extra zaak.");return}
@@ -411,7 +421,7 @@ function susCard(s,i){return `<div class="sus"><b>${esc(s.name)}</b><small>${esc
 $("#bGo").onclick=()=>{G.t0=Date.now();save();enter()};
 function save(){if(G){G.px=P.x;G.py=P.y;LS.set("ss_game",G)}}
 function enter(){
-  show("play");V.follow=true;V.s=Math.min(innerWidth,innerHeight)/(G.R*2.3);sel=null;walkTo=null;arrived=null;$("#chip").hidden=true;
+  show("play");V.follow=true;V.s=Math.min(innerWidth,innerHeight)/(G.R*1.5);sel=null;walkTo=null;arrived=null;$("#chip").hidden=true;
   if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null}
   if(G.mode==="gps"&&navigator.geolocation){const o=G.origin;watchId=navigator.geolocation.watchPosition(p=>{const x=(p.coords.longitude-o.lon)*o.kx,y=-(p.coords.latitude-o.lat)*o.ky,d=Math.hypot(x-P.x,y-P.y);if(d>3&&d<80)G.dist+=d;if(d>3){P.x=x;P.y=y}P.acc=p.coords.accuracy||0},()=>{},{enableHighAccuracy:true,maximumAge:2000})}
   try{navigator.wakeLock&&navigator.wakeLock.request("screen").catch(()=>{})}catch(e){}
@@ -438,7 +448,8 @@ const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function draw(t){
   cx.setTransform(dpr,0,0,dpr,0,0);cx.fillStyle="#101a2b";cx.fillRect(0,0,cw,chh);
   cx.lineCap="round";cx.lineJoin="round";
-  for(const w of W){cx.strokeStyle=w.w===1?"#22324f":"#2c3f62";cx.lineWidth=Math.max(1.2,(w.w===3?9:w.w===2?6:2.5)*V.s);cx.beginPath();for(let i=0;i<w.p.length;i+=2){const X=sx(w.p[i]),Y=sy(w.p[i+1]);i?cx.lineTo(X,Y):cx.moveTo(X,Y)}cx.stroke()}
+  for(const w of W){cx.strokeStyle=w.w===9?"#173f5c":w.w===1?"#22324f":"#2c3f62";cx.lineWidth=Math.max(1.2,(w.w===9?30:w.w===3?9:w.w===2?6:2.5)*V.s);cx.beginPath();for(let i=0;i<w.p.length;i+=2){const X=sx(w.p[i]),Y=sy(w.p[i+1]);i?cx.lineTo(X,Y):cx.moveTo(X,Y)}cx.stroke()}
+  cx.font="italic 12px Georgia,serif";cx.textAlign="center";cx.fillStyle="#5f8fb0";for(const w of W){if(w.w===9&&w.n){const m=Math.floor(w.p.length/4)*2;cx.fillText(w.n,sx(w.p[m]),sy(w.p[m+1])+4)}}
   // speelveld
   cx.strokeStyle="rgba(147,166,198,.25)";cx.setLineDash([4,8]);cx.lineWidth=1;cx.beginPath();cx.arc(sx(0),sy(0),G.R*V.s,0,7);cx.stroke();cx.setLineDash([]);
   const bob=still?0:Math.sin(t/500)*3;
@@ -447,7 +458,7 @@ function draw(t){
     if(s.kind==="wit")ghost(cx,X,Y+(s.done?0:bob*.4),38,"#a6ead9",s.done?.3:.95);
     else{cx.save();cx.globalAlpha=s.done?.35:1;cx.fillStyle="#f0a63a";cx.translate(X,Y);cx.rotate(Math.PI/4);cx.fillRect(-9,-9,18,18);cx.restore();if(!s.done&&!still){cx.strokeStyle="rgba(240,166,58,"+(.6-((t/1500)%1)*.6)+")";cx.lineWidth=2;cx.beginPath();cx.arc(X,Y,12+((t/1500)%1)*16,0,7);cx.stroke()}}
     if(sel===s){cx.strokeStyle="#ece4d2";cx.lineWidth=2;cx.beginPath();cx.arc(X,Y,24,0,7);cx.stroke()}
-    cx.fillStyle=s.done?"#5f7090":"#ece4d2";cx.fillText((s.done?"✓ ":"")+s.name.toUpperCase().slice(0,26),X,Y+40)});
+    cx.fillStyle=s.done?"#5f7090":"#ece4d2";if(V.s>=.4||sel===s)cx.fillText((s.done?"✓ ":"")+s.name.toUpperCase().slice(0,26),X,Y+40)});
   G.rare.forEach(q=>{if(q.done||dTo(q)>200)return;const X=sx(q.x),Y=sy(q.y),tier=SHADES[q.id][1];ghost(cx,X,Y-bob*.4,42,tier===3?"#f0a63a":tier===2?"#c9a6ea":"#ffffff",still?.8:.5+.4*Math.abs(Math.sin(t/300)));cx.fillStyle="#ece4d2";cx.fillText("???",X,Y+42);if(sel===q){cx.strokeStyle="#ece4d2";cx.lineWidth=2;cx.beginPath();cx.arc(X,Y,26,0,7);cx.stroke()}});
   // speler
   const X=sx(P.x),Y=sy(P.y);cx.fillStyle="rgba(240,166,58,.12)";cx.beginPath();cx.arc(X,Y,35*V.s,0,7);cx.fill();cx.strokeStyle="rgba(240,166,58,.5)";cx.lineWidth=1;cx.stroke();
@@ -767,6 +778,27 @@ $("#snd").onclick=()=>{try{AC=AC||new (window.AudioContext||window.webkitAudioCo
     const src=AC.createBufferSource(),fl=AC.createBiquadFilter(),gn=AC.createGain();src.buffer=buf;src.loop=true;fl.type="bandpass";fl.frequency.value=1400;fl.Q.value=.4;gn.gain.value=.06;src.connect(fl);fl.connect(gn);gn.connect(AC.destination);src.start();rainNode=src}
   }catch(e){}
   $("#snd").textContent=rainNode?"Regen aan":"Regen uit";$("#snd").setAttribute("aria-pressed",rainNode?"true":"false")};
+const GK="ss_game",WK="ss_ways",T={"menu": "Pauze", "map": "Terug naar de kaart", "home": "Naar het startscherm", "wipeG": "Deze zaak wissen", "cancel": "Annuleren", "saved": "Je zaak is bewaard. Kies Ga verder om door te gaan.", "wipeQ": "Deze zaak wissen?", "wipeT": "Je gevonden sporen en notities van deze zaak verdwijnen. Je rang en Schimmenboek blijven.", "wipeY": "Lopende zaak wissen", "wipeH": "Wissen", "wipeAll": "Alles wissen", "allQ": "Alles wissen?", "allT": "Je lopende zaak, rang, punten, dagen op rij en Schimmenboek verdwijnen van dit toestel. Dit kun je niet terugdraaien.", "allY": "Ja, wis alles", "wiped": "Gewist."};
+/* ---------- terug en wissen ---------- */
+function stopWatch(){if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null}}
+function leavePlay(){save();stopWatch();G=null;home()}
+function wipeGame(){LS.del(GK);LS.del(WK);stopWatch();G=null;closeSheet();home();toast(T.wiped)}
+function confirmSheet(title,text,yes,fn){sheet('<h2>'+title+'</h2><p>'+text+'</p><button type="button" class="btn red" id="cfY">'+yes+'</button><button type="button" class="btn ghost dk" id="shX">'+T.cancel+'</button>');
+  $("#sheetBody").onclick=e=>{if(e.target.id==="shX")closeSheet();else if(e.target.id==="cfY")fn()}}
+function menuSheet(){sheet('<h2>'+T.menu+'</h2><button type="button" class="btn" id="mBack">'+T.map+'</button><button type="button" class="btn ghost dk" id="mHome">'+T.home+'</button><button type="button" class="btn ghost dk" id="mWipe">'+T.wipeG+'</button>');
+  $("#sheetBody").onclick=e=>{const i=e.target.id;if(i==="mBack")closeSheet();else if(i==="mHome"){closeSheet();leavePlay();toast(T.saved)}else if(i==="mWipe")confirmSheet(T.wipeQ,T.wipeT,T.wipeY,wipeGame)}}
+function wipeSheet(){const has=!!LS.get(GK,null);sheet('<h2>'+T.wipeH+'</h2>'+(has?'<button type="button" class="btn ghost dk" id="wG">'+T.wipeY+'</button>':'')+'<button type="button" class="btn ghost dk" id="wA">'+T.wipeAll+'</button><button type="button" class="btn" id="shX">'+T.cancel+'</button>');
+  $("#sheetBody").onclick=e=>{const i=e.target.id;if(i==="shX")closeSheet();else if(i==="wG")confirmSheet(T.wipeQ,T.wipeT,T.wipeY,wipeGame);
+    else if(i==="wA")confirmSheet(T.allQ,T.allT,T.allY,()=>{LS.del(GK);LS.del(WK);LS.del("ss_prof");prof={xp:0,streak:0,last:"",solved:0,book:{}};closeSheet();home();toast(T.wiped)})}}
+function goBack(){
+  if(!$("#ar").hidden){$("#arX").click();return true}
+  if(!$("#sheet").hidden){const k=$("#mgSkip");if(k&&!k.hidden)k.click();else if($("#sheet").dataset.lock){const x=$("#shX");if(x)x.click()}else closeSheet();return true}
+  if(!$("#load").hidden)return true;
+  if(!$("#brief").hidden){G=null;home();return true}
+  if(!$("#play").hidden){leavePlay();toast(T.saved);return true}
+  return false}
+try{history.pushState({ss:1},"");addEventListener("popstate",()=>{if(goBack()){try{history.pushState({ss:1},"")}catch(e){}}})}catch(e){}
+$("#zM").onclick=menuSheet;$("#bBack").onclick=()=>{goBack()};$("#bWipe").onclick=wipeSheet;
 home();
 })();
 </script>
@@ -794,7 +826,7 @@ home();
       <button class="btn" id="bResume" hidden>Pick up your case</button>
       <button class="btn" id="bGps">Start today's case</button>
       <button class="btn ghost" id="bRandom">Extra case right here</button>
-      <button class="btn ghost" id="bDemo">Practice round, no walking</button>
+      <button class="btn ghost sm" id="bDemo">Trial round in a fictional Amsterdam</button>
       <p class="note" id="status"></p>
       <ol class="how">
         <li>The map drops eight leads at real places around you: the church, the bus stop, the café.</li>
@@ -802,6 +834,7 @@ home();
         <li>Rare shades only show when you are close. Catch them for your Book of Shades and a tip.</li>
       </ol>
       <button class="btn ghost" id="bBookHome">Book of Shades</button>
+      <button class="btn ghost sm" id="bWipe">Erase</button>
       <p class="note">Stay on public roads and mind the traffic. You never have to go inside anywhere.</p>
     </div>
   </section>
@@ -816,6 +849,7 @@ home();
         <div class="list" id="bfSus"></div>
       </div>
       <button class="btn" id="bGo">Into the night</button>
+      <button class="btn ghost" id="bBack">Back</button>
     </div>
   </section>
 
@@ -828,6 +862,7 @@ home();
       <div><b id="hD">0.0</b><span>Km</span></div>
     </div>
     <div id="zoom">
+      <button type="button" id="zM" aria-label="Menu">☰</button>
       <button type="button" id="zIn" aria-label="Zoom in">+</button>
       <button type="button" id="zOut" aria-label="Zoom out">−</button>
       <button type="button" id="zMe" aria-label="Centre on me">◎</button>
@@ -981,35 +1016,41 @@ function startGps(seed){
   st.textContent="Finding your location…";
   navigator.geolocation.getCurrentPosition(async pos=>{
     const lat=pos.coords.latitude,lon=pos.coords.longitude,R=R0;
-    st.textContent="Mapping the neighbourhood…";
-    const kx=111320*Math.cos(lat*Math.PI/180),ky=110540,xy=(la,lo)=>[(lo-lon)*kx,-(la-lat)*ky];
-    let pois=[],ways=[];
+    const kx=111320*Math.cos(lat*Math.PI/180),ky=110540,xy=(la,lo)=>[(lo-lon)*kx,-(la-lat)*ky],A="(around:"+R+","+lat+","+lon+")";
+    const hosts=["https://overpass-api.de/api/interpreter","https://overpass.private.coffee/api/interpreter","https://maps.mail.ru/osm/tools/overpass/api/interpreter"];
+    // alle servers tegelijk vragen; de eerste die antwoordt wint
+    const ask=(q,ms)=>{const ac=new AbortController(),to=setTimeout(()=>ac.abort(),ms);
+      return Promise.any(hosts.map(h=>fetch(h,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"data="+encodeURIComponent(q),signal:ac.signal}).then(r=>{if(!r.ok)throw new Error("server "+r.status);return r.json()})))
+        .then(d=>{clearTimeout(to);ac.abort();return d},e=>{clearTimeout(to);throw e})};
+    let pois=[],ways=[];const c=LS.get("ss_map",null);
+    // deze buurt al eens geladen: meteen starten
+    if(c&&c.R>=R&&c.pois&&c.pois.length&&Math.hypot((c.lon-lon)*kx,(c.lat-lat)*ky)<150){const ox=(c.lon-lon)*kx,oy=-(c.lat-lat)*ky;
+      pois=c.pois.map(p=>({x:p.x+ox,y:p.y+oy,type:p.type,name:p.name}));ways=(c.ways||[]).map(w=>({w:w.w,n:w.n,p:w.p.map((v,i)=>Math.round(v+(i%2?oy:ox)))}));
+      st.textContent="";build(seed,"gps",pois,ways,{lat,lon,kx,ky});return}
+    st.textContent="Finding places near you…";
     try{
-      const q=`[out:json][timeout:25];(nw(around:${R},${lat},${lon})[amenity~"^(place_of_worship|bank|atm|cafe|pub|bar|restaurant|pharmacy|post_box|library|school|fuel)$"];nw(around:${R},${lat},${lon})[tourism~"^(hotel|artwork|museum)$"];nw(around:${R},${lat},${lon})[shop~"^(supermarket|bakery|convenience)$"];node(around:${R},${lat},${lon})[highway=bus_stop];nw(around:${R},${lat},${lon})[leisure~"^(park|playground)$"];way(around:${R+150},${lat},${lon})[highway~"^(residential|tertiary|secondary|primary|unclassified|living_street|pedestrian|footway|path|cycleway|service)$"];);out geom;`;
-      const hosts=["https://overpass-api.de/api/interpreter","https://overpass.private.coffee/api/interpreter","https://maps.mail.ru/osm/tools/overpass/api/interpreter"];let d=null,why="";
-      for(let i=0;i<hosts.length&&!d;i++){
-        st.textContent="Mapping the neighbourhood… (attempt "+(i+1)+" of "+hosts.length+")";
-        const ac=new AbortController(),to=setTimeout(()=>ac.abort(),30000);
-        try{const res=await fetch(hosts[i],{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:"data="+encodeURIComponent(q),signal:ac.signal});
-          if(!res.ok)throw new Error("server returned "+res.status);d=await res.json()}
-        catch(e){why=e.name==="AbortError"?"took too long":(e.message||"no connection")}
-        clearTimeout(to);
-      }
-      if(!d)throw new Error(why);
-      for(const e of d.elements||[]){
-        const ty=poiType(e.tags);
-        if(e.type==="way"&&e.geometry&&!ty&&e.tags&&e.tags.highway){const p=[];e.geometry.forEach(g=>{const c=xy(g.lat,g.lon);p.push(Math.round(c[0]),Math.round(c[1]))});const h=e.tags.highway;ways.push({p,w:/primary|secondary|tertiary/.test(h)?3:/footway|path|cycleway/.test(h)?1:2,n:e.tags.name||""})}
-        else if(ty){let la=e.lat,lo=e.lon;if(la==null&&e.geometry){la=0;lo=0;e.geometry.forEach(g=>{la+=g.lat;lo+=g.lon});la/=e.geometry.length;lo/=e.geometry.length}if(la==null)continue;const c=xy(la,lo);pois.push({x:c[0],y:c[1],type:ty,name:e.tags.name||""})}
-      }
-    }catch(e){toast("No map data ("+e.message+"). The leads are within walking distance around you.")}
-    st.textContent="";build(seed,"gps",pois,ways,{lat,lon,kx,ky});
+      const d=await ask('[out:json][timeout:15];(nwr'+A+'[amenity~"^(place_of_worship|bank|atm|cafe|pub|bar|restaurant|pharmacy|post_box|library|school|fuel)$"];nwr'+A+'[tourism~"^(hotel|artwork|museum)$"];nwr'+A+'[shop~"^(supermarket|bakery|convenience)$"];node'+A+'[highway=bus_stop];nwr'+A+'[leisure~"^(park|playground)$"];);out center qt 400;',18000);
+      for(const e of d.elements||[]){const ty=poiType(e.tags),q=e.type==="node"?[e.lat,e.lon]:e.center?[e.center.lat,e.center.lon]:null;if(!ty||!q)continue;const p=xy(q[0],q[1]);pois.push({x:p[0],y:p[1],type:ty,name:e.tags.name||""})}
+    }catch(e){toast("The map service is not answering. Your leads are placed within walking distance.")}
+    st.textContent="";build(seed,"gps",pois,[],{lat,lon,kx,ky});
+    // straten komen op de achtergrond; het spel wacht er niet op
+    const mine=G;
+    ask('[out:json][timeout:25];way(around:'+(R+150)+','+lat+','+lon+')[highway~"^(residential|tertiary|secondary|primary|unclassified|living_street|pedestrian|footway|path|cycleway|service)$"];out geom qt;',45000).then(d=>{
+      for(const e of d.elements||[]){if(!e.geometry)continue;const p=[];e.geometry.forEach(g=>{const q=xy(g.lat,g.lon);p.push(Math.round(q[0]),Math.round(q[1]))});const h=(e.tags&&e.tags.highway)||"";ways.push({p,w:/primary|secondary|tertiary/.test(h)?3:/footway|path|cycleway/.test(h)?1:2,n:(e.tags&&e.tags.name)||""})}
+      if(G&&G===mine){W=ways;LS.set(WK,W)}
+      if(pois.length)LS.set("ss_map",{lat,lon,R,pois,ways});
+    }).catch(()=>{if(pois.length)LS.set("ss_map",{lat,lon,R,pois,ways:[]})});
   },err=>{fail("No access to your location. Open this game in your phone's browser on an https address and allow location. Here you can play the practice round.")},{enableHighAccuracy:true,timeout:20000});
 }
 function demoWorld(){
-  const r=rngOf(7),ways=[];
-  for(let g=-750;g<=750;g+=150){const a=[],b=[];for(let t=-750;t<=750;t+=150){a.push(t,Math.round(g+(r()-.5)*40));b.push(Math.round(g+(r()-.5)*40),t)}ways.push({p:a,w:g%450===0?3:2,n:""},{p:b,w:g%450===0?3:2,n:""})}
-  const L=[[-300,-150,"kerk","St Bavo's Church"],[150,-300,"cafe","The Golden Lion"],[450,150,"hotel","Hotel Winterlight"],[-150,300,"apotheek","The Mortar Pharmacy"],[300,300,"halte","Market Square bus stop"],[-450,150,"bank","Half Moon Savings Bank"],[0,-450,"park","Town Park"],[-150,-150,"post","Church Street postbox"],[150,150,"bieb","Library"],[-300,450,"school","Crossways Primary School"],[300,-150,"winkel","Dunn's Bakery"],[0,550,"kunst","The Watchman statue"],[-550,-300,"tank","Eastgate petrol station"]];
-  return{ways,pois:L.map(l=>({x:l[0],y:l[1],type:l[2],name:l[3]}))};
+  // fictieve grachtengordel: ringen rond een middelpunt ten noorden van de speler
+  const cy=-500,ways=[],arc=(r,w,n)=>{const p=[];for(let a=25;a<=155;a+=5){const t=a*Math.PI/180;p.push(Math.round(r*Math.cos(t)),Math.round(cy+r*Math.sin(t)))}ways.push({p,w,n:n||""})};
+  [[400,"Schaduwgracht"],[560,"Lantaarngracht"],[740,"Nachtgracht"],[920,"Mistgracht"]].forEach(c=>arc(c[0],9,c[1]));
+  [[400],[560],[740],[920]].forEach(c=>{arc(c[0]-26,1);arc(c[0]+26,1)});
+  [330,470,650,830].forEach(r=>arc(r,2));
+  for(let a=30;a<=150;a+=12){const t=a*Math.PI/180;ways.push({p:[Math.round(260*Math.cos(t)),Math.round(cy+260*Math.sin(t)),Math.round(1000*Math.cos(t)),Math.round(cy+1000*Math.sin(t))],w:a===90||a===54||a===126?3:2,n:""})}
+  const L=[[330,90,"kerk","Oude Nachtkerk"],[470,70,"cafe","Café De Blauwe Reiger"],[470,112,"post","Brievenbus Lantaarnsteeg"],[650,90,"hotel","Hotel Winterlicht"],[650,68,"bank","Spaarbank De Halve Maan"],[650,113,"apotheek","Apotheek De Gouden Vijzel"],[830,80,"park","Schimmenplantsoen"],[830,102,"halte","Tramhalte Nachtgracht"],[830,58,"bieb","Bibliotheek De Nachtschuit"],[830,124,"kunst","Beeld De Wachter"],[470,45,"winkel","Bakkerij Van Dam"],[470,136,"school","School De Wissel"],[980,90,"bankje","Bankje aan de Mistgracht"]];
+  return{ways,pois:L.map(l=>{const t=l[1]*Math.PI/180;return{x:Math.round(l[0]*Math.cos(t)),y:Math.round(cy+l[0]*Math.sin(t)),type:l[2],name:l[3]}})};
 }
 function build(seed,mode,pois,ways,origin){
   const c=genCase(seed);if(!c){toast("This case won't add up. Try an extra case.");return}
@@ -1042,7 +1083,7 @@ function susCard(s,i){return `<div class="sus"><b>${esc(s.name)}</b><small>${esc
 $("#bGo").onclick=()=>{G.t0=Date.now();save();enter()};
 function save(){if(G){G.px=P.x;G.py=P.y;LS.set("ss_game_en",G)}}
 function enter(){
-  show("play");V.follow=true;V.s=Math.min(innerWidth,innerHeight)/(G.R*2.3);sel=null;walkTo=null;arrived=null;$("#chip").hidden=true;
+  show("play");V.follow=true;V.s=Math.min(innerWidth,innerHeight)/(G.R*1.5);sel=null;walkTo=null;arrived=null;$("#chip").hidden=true;
   if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null}
   if(G.mode==="gps"&&navigator.geolocation){const o=G.origin;watchId=navigator.geolocation.watchPosition(p=>{const x=(p.coords.longitude-o.lon)*o.kx,y=-(p.coords.latitude-o.lat)*o.ky,d=Math.hypot(x-P.x,y-P.y);if(d>3&&d<80)G.dist+=d;if(d>3){P.x=x;P.y=y}P.acc=p.coords.accuracy||0},()=>{},{enableHighAccuracy:true,maximumAge:2000})}
   try{navigator.wakeLock&&navigator.wakeLock.request("screen").catch(()=>{})}catch(e){}
@@ -1069,7 +1110,8 @@ const still=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function draw(t){
   cx.setTransform(dpr,0,0,dpr,0,0);cx.fillStyle="#101a2b";cx.fillRect(0,0,cw,chh);
   cx.lineCap="round";cx.lineJoin="round";
-  for(const w of W){cx.strokeStyle=w.w===1?"#22324f":"#2c3f62";cx.lineWidth=Math.max(1.2,(w.w===3?9:w.w===2?6:2.5)*V.s);cx.beginPath();for(let i=0;i<w.p.length;i+=2){const X=sx(w.p[i]),Y=sy(w.p[i+1]);i?cx.lineTo(X,Y):cx.moveTo(X,Y)}cx.stroke()}
+  for(const w of W){cx.strokeStyle=w.w===9?"#173f5c":w.w===1?"#22324f":"#2c3f62";cx.lineWidth=Math.max(1.2,(w.w===9?30:w.w===3?9:w.w===2?6:2.5)*V.s);cx.beginPath();for(let i=0;i<w.p.length;i+=2){const X=sx(w.p[i]),Y=sy(w.p[i+1]);i?cx.lineTo(X,Y):cx.moveTo(X,Y)}cx.stroke()}
+  cx.font="italic 12px Georgia,serif";cx.textAlign="center";cx.fillStyle="#5f8fb0";for(const w of W){if(w.w===9&&w.n){const m=Math.floor(w.p.length/4)*2;cx.fillText(w.n,sx(w.p[m]),sy(w.p[m+1])+4)}}
   // speelveld
   cx.strokeStyle="rgba(147,166,198,.25)";cx.setLineDash([4,8]);cx.lineWidth=1;cx.beginPath();cx.arc(sx(0),sy(0),G.R*V.s,0,7);cx.stroke();cx.setLineDash([]);
   const bob=still?0:Math.sin(t/500)*3;
@@ -1078,7 +1120,7 @@ function draw(t){
     if(s.kind==="wit")ghost(cx,X,Y+(s.done?0:bob*.4),38,"#a6ead9",s.done?.3:.95);
     else{cx.save();cx.globalAlpha=s.done?.35:1;cx.fillStyle="#f0a63a";cx.translate(X,Y);cx.rotate(Math.PI/4);cx.fillRect(-9,-9,18,18);cx.restore();if(!s.done&&!still){cx.strokeStyle="rgba(240,166,58,"+(.6-((t/1500)%1)*.6)+")";cx.lineWidth=2;cx.beginPath();cx.arc(X,Y,12+((t/1500)%1)*16,0,7);cx.stroke()}}
     if(sel===s){cx.strokeStyle="#ece4d2";cx.lineWidth=2;cx.beginPath();cx.arc(X,Y,24,0,7);cx.stroke()}
-    cx.fillStyle=s.done?"#5f7090":"#ece4d2";cx.fillText((s.done?"✓ ":"")+s.name.toUpperCase().slice(0,26),X,Y+40)});
+    cx.fillStyle=s.done?"#5f7090":"#ece4d2";if(V.s>=.4||sel===s)cx.fillText((s.done?"✓ ":"")+s.name.toUpperCase().slice(0,26),X,Y+40)});
   G.rare.forEach(q=>{if(q.done||dTo(q)>200)return;const X=sx(q.x),Y=sy(q.y),tier=SHADES[q.id][1];ghost(cx,X,Y-bob*.4,42,tier===3?"#f0a63a":tier===2?"#c9a6ea":"#ffffff",still?.8:.5+.4*Math.abs(Math.sin(t/300)));cx.fillStyle="#ece4d2";cx.fillText("???",X,Y+42);if(sel===q){cx.strokeStyle="#ece4d2";cx.lineWidth=2;cx.beginPath();cx.arc(X,Y,26,0,7);cx.stroke()}});
   // speler
   const X=sx(P.x),Y=sy(P.y);cx.fillStyle="rgba(240,166,58,.12)";cx.beginPath();cx.arc(X,Y,35*V.s,0,7);cx.fill();cx.strokeStyle="rgba(240,166,58,.5)";cx.lineWidth=1;cx.stroke();
@@ -1398,6 +1440,27 @@ $("#snd").onclick=()=>{try{AC=AC||new (window.AudioContext||window.webkitAudioCo
     const src=AC.createBufferSource(),fl=AC.createBiquadFilter(),gn=AC.createGain();src.buffer=buf;src.loop=true;fl.type="bandpass";fl.frequency.value=1400;fl.Q.value=.4;gn.gain.value=.06;src.connect(fl);fl.connect(gn);gn.connect(AC.destination);src.start();rainNode=src}
   }catch(e){}
   $("#snd").textContent=rainNode?"Rain on":"Rain off";$("#snd").setAttribute("aria-pressed",rainNode?"true":"false")};
+const GK="ss_game_en",WK="ss_ways_en",T={"menu": "Paused", "map": "Back to the map", "home": "To the start screen", "wipeG": "Erase this case", "cancel": "Cancel", "saved": "Your case is saved. Pick it up from the start screen.", "wipeQ": "Erase this case?", "wipeT": "The leads and notes from this case will be gone. Your rank and Book of Shades stay.", "wipeY": "Erase the open case", "wipeH": "Erase", "wipeAll": "Erase everything", "allQ": "Erase everything?", "allT": "Your open case, rank, points, streak and Book of Shades will be removed from this device. This cannot be undone.", "allY": "Yes, erase it all", "wiped": "Erased."};
+/* ---------- terug en wissen ---------- */
+function stopWatch(){if(watchId!=null){navigator.geolocation.clearWatch(watchId);watchId=null}}
+function leavePlay(){save();stopWatch();G=null;home()}
+function wipeGame(){LS.del(GK);LS.del(WK);stopWatch();G=null;closeSheet();home();toast(T.wiped)}
+function confirmSheet(title,text,yes,fn){sheet('<h2>'+title+'</h2><p>'+text+'</p><button type="button" class="btn red" id="cfY">'+yes+'</button><button type="button" class="btn ghost dk" id="shX">'+T.cancel+'</button>');
+  $("#sheetBody").onclick=e=>{if(e.target.id==="shX")closeSheet();else if(e.target.id==="cfY")fn()}}
+function menuSheet(){sheet('<h2>'+T.menu+'</h2><button type="button" class="btn" id="mBack">'+T.map+'</button><button type="button" class="btn ghost dk" id="mHome">'+T.home+'</button><button type="button" class="btn ghost dk" id="mWipe">'+T.wipeG+'</button>');
+  $("#sheetBody").onclick=e=>{const i=e.target.id;if(i==="mBack")closeSheet();else if(i==="mHome"){closeSheet();leavePlay();toast(T.saved)}else if(i==="mWipe")confirmSheet(T.wipeQ,T.wipeT,T.wipeY,wipeGame)}}
+function wipeSheet(){const has=!!LS.get(GK,null);sheet('<h2>'+T.wipeH+'</h2>'+(has?'<button type="button" class="btn ghost dk" id="wG">'+T.wipeY+'</button>':'')+'<button type="button" class="btn ghost dk" id="wA">'+T.wipeAll+'</button><button type="button" class="btn" id="shX">'+T.cancel+'</button>');
+  $("#sheetBody").onclick=e=>{const i=e.target.id;if(i==="shX")closeSheet();else if(i==="wG")confirmSheet(T.wipeQ,T.wipeT,T.wipeY,wipeGame);
+    else if(i==="wA")confirmSheet(T.allQ,T.allT,T.allY,()=>{LS.del(GK);LS.del(WK);LS.del("ss_prof");prof={xp:0,streak:0,last:"",solved:0,book:{}};closeSheet();home();toast(T.wiped)})}}
+function goBack(){
+  if(!$("#ar").hidden){$("#arX").click();return true}
+  if(!$("#sheet").hidden){const k=$("#mgSkip");if(k&&!k.hidden)k.click();else if($("#sheet").dataset.lock){const x=$("#shX");if(x)x.click()}else closeSheet();return true}
+  if(!$("#load").hidden)return true;
+  if(!$("#brief").hidden){G=null;home();return true}
+  if(!$("#play").hidden){leavePlay();toast(T.saved);return true}
+  return false}
+try{history.pushState({ss:1},"");addEventListener("popstate",()=>{if(goBack()){try{history.pushState({ss:1},"")}catch(e){}}})}catch(e){}
+$("#zM").onclick=menuSheet;$("#bBack").onclick=()=>{goBack()};$("#bWipe").onclick=wipeSheet;
 home();
 })();
 </script>
