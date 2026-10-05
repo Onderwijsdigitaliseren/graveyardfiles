@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Het Nachtdossier – Online detectivespellen, moordzaken &amp; cold cases</title>
-<meta name="description" content="Gratis online moordzaken en cold case spellen in het Nederlands. Bestudeer het bewijs, verhoor de verdachten en los vijftien fictieve noir-zaken op in je browser.">
+<meta name="description" content="Online moordzaken en cold case spellen in het Nederlands, gratis te beginnen. Bestudeer het bewijs, verhoor de verdachten en los vijftien fictieve noir-zaken op in je browser.">
 <link rel="canonical" href="https://graveyardfiles.com/nl/">
 <link rel="alternate" hreflang="en" href="https://graveyardfiles.com/">
 <link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/">
 <link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/">
 <meta property="og:site_name" content="Het Nachtdossier">
 <meta property="og:title" content="Het Nachtdossier – Interactieve moordzaken online">
-<meta property="og:description" content="Bestudeer het bewijs, verhoor de verdachten en los meeslepende fictieve cold cases op. Gratis, voor één speler, in je browser — inclusief 3D escaperooms.">
+<meta property="og:description" content="Bestudeer het bewijs, verhoor de verdachten en los meeslepende fictieve cold cases op. Gratis te beginnen, voor één speler, in je browser — inclusief 3D escaperooms.">
 <meta property="og:url" content="https://graveyardfiles.com/nl/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Het Nachtdossier – Interactieve moordzaken online">
-<meta name="twitter:description" content="Gratis noir detectivepuzzels in het Nederlands. Bestudeer het bewijs, verhoor de verdachten, wijs de dader aan.">
+<meta name="twitter:description" content="Noir detectivepuzzels in het Nederlands, gratis te beginnen. Bestudeer het bewijs, verhoor de verdachten, wijs de dader aan.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"Het Nachtdossier","url":"https://graveyardfiles.com/nl/","description":"Gratis online interactieve moordzaken en cold case spellen in het Nederlands.","inLanguage":"nl","isAccessibleForFree":true,"genre":["Detectivefictie","Logische puzzel","Mysteriespel"]}
+{"@context":"https://schema.org","@type":"WebSite","name":"Het Nachtdossier","url":"https://graveyardfiles.com/nl/","description":"Online interactieve moordzaken en cold case spellen in het Nederlands, gratis te beginnen.","inLanguage":"nl","genre":["Detectivefictie","Logische puzzel","Mysteriespel"]}
 </script>
 <style>
 :root{
@@ -657,6 +657,21 @@ body.lamp-aan #koffiekas{opacity:1}
 #bureau{padding-top:52px}
 @media (max-width:640px){.kmChips button{font-size:10.5px;padding:6px 8px 5px}.kmBoven{top:84px}#kmLadeUitleg{font-size:11.5px}
   #kmMap .kmTekstKnop{margin:10px 0 0}.kmKnop{font-size:13px;padding:12px 16px 10px}}
+
+/* ---- Pro-pas ---- */
+.proStrook{grid-column:1/-1;flex-wrap:wrap;background:linear-gradient(178deg,#2b241a,#1d1811);border-color:rgba(201,168,108,.5);color:#d9cba6}
+.proStrook b{color:#f0e2bd}
+.proStrook .strookStempel{color:#d9bc82;border-color:rgba(217,188,130,.7)}
+.proStrook .proLijn{flex:1 1 260px}
+.proStrook a{color:#f0e2bd;font-weight:700;white-space:nowrap}
+.proStrook button{font:inherit;font-size:12px;letter-spacing:.06em;min-height:36px;padding:0 12px;border:1px solid rgba(217,188,130,.6);background:transparent;color:#d9cba6;cursor:pointer;border-radius:2px}
+.proStrook button:hover{background:rgba(217,188,130,.12)}
+.proStrook form{display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex:1 1 100%}
+.proStrook form[hidden]{display:none}
+.proStrook input{font:inherit;font-size:16px;letter-spacing:.12em;text-transform:uppercase;min-height:36px;width:min(230px,100%);padding:0 10px;background:#efe4c5;color:#2a2114;border:1px solid #000;border-radius:2px}
+.proStrook :focus-visible{outline:2px dashed #d9bc82;outline-offset:3px}
+#proMeld{font-size:12px;color:#e9a08f}
+.dossier.slot .stempel{color:#2a2114;border-color:#2a2114;background:rgba(42,33,20,.08)}
 </style>
 </head>
 <body>
@@ -677,19 +692,20 @@ body.lamp-aan #koffiekas{opacity:1}
   <header id="kaart">
     <div class="sub">Afdeling onopgeloste zaken &mdash; nachtdienst</div>
     <h1 class="kop">Interactieve moordzaken &amp; cold cases &mdash; online detectivespellen</h1>
-    <p class="regel">Stap het Nachtdossier binnen en onderzoek vijftien fictieve cold cases, gratis en online. Bestudeer het bewijs, vind verborgen aanwijzingen, verhoor de verdachten en bepaal wat er werkelijk is gebeurd. De lamp brandt. Wie een map opent, neemt de zaak over &mdash; met alles wat daarbij hoort.</p>
+    <p class="regel">Stap het Nachtdossier binnen en onderzoek vijftien fictieve cold cases online. Het eerste dossier in elke lade is gratis. Bestudeer het bewijs, vind verborgen aanwijzingen, verhoor de verdachten en bepaal wat er werkelijk is gebeurd. De lamp brandt. Wie een map opent, neemt de zaak over &mdash; met alles wat daarbij hoort.</p>
   </header>
   </div>
   <div id="stroken">
     <a class="strook" href="villa-meridiaan.html"><span class="strookStempel">Begin hier</span><span><b>Villa Meridiaan</b> &mdash; een dode onderaan de keldertrap, en jij hebt tot zonsopkomst. De beste eerste zaak. &rarr;</span></a>
     <a class="strook" href="https://www.moordwandeling.nl" target="_blank" rel="noopener"><span class="strookStempel">Te voet</span><span><b>Moordwandeling</b> &mdash; een moordzaak die je loopt, in je eigen straten. moordwandeling.nl &rarr;</span></a>
+  <div class="strook proStrook" id="proStrook"><span class="strookStempel">Pro</span><span class="proLijn"><b>Pro-pas</b> &mdash; het eerste dossier in elke lade is gratis. E&eacute;n pascode opent alle andere. <a href="https://ko-fi.com/s/67649bac70" target="_blank" rel="noopener">Haal de Pro-pas &rarr;</a></span><button type="button" id="proHeb">Ik heb een code</button><form id="proForm" autocomplete="off" hidden><input id="proCode" aria-label="Pascode" placeholder="GF-XXXX-XXXX" maxlength="40" autocapitalize="characters" autocorrect="off" spellcheck="false"><button type="submit">Ontzegel</button><span id="proMeld" role="status" aria-live="polite"></span></form></div>
   </div>
   <nav id="tabs" aria-label="Soort zaak"></nav>
   <p id="tabUitleg" aria-live="polite"></p>
   <section id="dossiers" aria-label="Dossiers"></section>
   <details id="overArchief"><summary>Over dit archief</summary>
     <dl class="briefing">
-      <div><dt>Wat dit is</dt><dd>Vijftien op zichzelf staande detectivezaken voor één speler. Gratis, geen account, geen download &mdash; alles draait in je browser. Geschreven voor volwassenen en oudere tieners die van een eerlijk mysterie houden.</dd></div>
+      <div><dt>Wat dit is</dt><dd>Vijftien op zichzelf staande detectivezaken voor één speler. De eerste zaak in elke lade is gratis; een Pro-pas opent de rest. Geen account, geen download &mdash; alles draait in je browser. Geschreven voor volwassenen en oudere tieners die van een eerlijk mysterie houden.</dd></div>
       <div><dt>Hoe het werkt</dt><dd>Lees de verklaringen, doorzoek de kamers, wijs de dader aan. De 3D Gesloten Kamers duren zo’n twintig minuten; de langere dossiers lopen van een uur tot een avond. Je voortgang wordt in deze browser bewaard.</dd></div>
       <div><dt>Waarom vannacht</dt><dd>Elke zaak heeft precies één oplossing, en de aanwijzingen geven je precies genoeg. Er komt niemand helpen. Dat is juist het mooie.</dd></div>
     </dl>
@@ -699,7 +715,7 @@ body.lamp-aan #koffiekas{opacity:1}
     <div class="kkTitel">Koffiekas van de nachtdienst</div>
     <div class="kkTekst">Dit archief draait op late uren en sterke koffie. Hield een zaak je uit de slaap? Een kop koffie voor de nachtdienst houdt de lamp aan.</div>
     <a id="kkKnop" href="#" target="_blank" rel="noopener">&#9749; Zet een koffie klaar</a>
-    <div class="kkKlein">Vrijwillig &middot; via Ko-fi &middot; het archief blijft altijd gratis</div>
+    <div class="kkKlein">Vrijwillig &middot; via Ko-fi</div>
   </section>
   <div id="voet">Het nachtdossier blijft open &middot; nieuwe zaken worden bijgeschreven &middot; <a href="#" id="notitieLink">laat een notitie achter voor de nachtdienst</a> &middot; <a href="#" class="privacyLink">privacy</a></div>
 
@@ -708,7 +724,7 @@ body.lamp-aan #koffiekas{opacity:1}
       <button type="button" class="notitieSluit" id="privacySluit" aria-label="Sluiten">&times;</button>
       <div class="notitieStempel">PRIVACY &middot; IN GEWONE TAAL</div>
       <h2 id="privacyKop">Hoe met je gegevens wordt omgegaan</h2>
-      <p><b>De spellen.</b> Alles draait in je browser. Je voortgang, gebruikte hints en je taalkeuze staan in de lokale opslag van je browser, op je eigen apparaat. Ze verlaten dat apparaat nooit, en het wissen van je browsergegevens verwijdert ze. Geen cookies, geen analytics, geen tracking.</p>
+      <p><b>De spellen.</b> Alles draait in je browser. Je voortgang, gebruikte hints, je taalkeuze en je Pro-pascode staan in de lokale opslag van je browser, op je eigen apparaat. Ze verlaten dat apparaat nooit, en het wissen van je browsergegevens verwijdert ze. Geen cookies, geen analytics, geen tracking.</p>
       <p><b>Het notitieformulier.</b> Alleen als je een notitie verstuurt, ontvangen wij wat je hebt getypt: je bericht, en je naam en e-mailadres als je die hebt opgegeven. Het bereikt ons als e-mail, bezorgd door <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener">FormSubmit</a>, dat de verzending afhandelt en je bericht daarna niet bewaart. Wij gebruiken het uitsluitend om je notitie te lezen en te beantwoorden, bewaren het tot het is afgehandeld en delen het met niemand. Stuur een e-mail naar het adres hieronder als je wilt dat het wordt verwijderd.</p>
       <p><b>Hosting.</b> De site wordt geserveerd door <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a>, dat om veiligheidsredenen het IP-adres van elke bezoeker logt, zoals iedere webhost doet. Wij zien of gebruiken die logs niet.</p>
       <p><b>De koffiekas.</b> Donaties lopen via Ko-fi onder de eigen privacyvoorwaarden van Ko-fi. Er komt niets over een donatie terug naar deze site.</p>
@@ -889,11 +905,62 @@ const DRAWERS = [
   { type: "grid", label: "Lade VI \u00b7 Kruisroosters", blurb: "Rasterdossiers: elke verdachte hoort bij precies \u00e9\u00e9n voorwerp en \u00e9\u00e9n plek. Streep weg wat niet kan, tot er \u00e9\u00e9n naam overblijft." }
 ];
 
+/* ================================================================
+   PRO — sealed files. PRO_FILES = every case that needs the pass.
+   A stored pass code (set by a sealed file or by the strip above)
+   switches the stamps back to normal.
+   ================================================================ */
+const PRO_FILES = ["nachtfrequentie.html", "nachttrein212.html", "zeezicht.html", "halvemaan.html", "schakelkamer.html", "ravenhorst.html", "de-lichttafel.html", "grondplan.html", "../the-empty-barrel.html"];
+const PRO_T = {"actief": "<b>Pro-pas actief</b> &mdash; elk dossier in het archief is open op dit apparaat.", "fout": "Die code opent het archief niet. Controleer op typfouten.", "bezig": "Controleren\u2026"};
+const PRO_KEY = "gf_pro_code";
+function proNorm(c){ return String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); }
+function proCode(){ try { return localStorage.getItem(PRO_KEY) || ""; } catch (e) { return ""; } }
+const PRO_OPEN = !!proCode();
+CASES.forEach(function(c){
+  if (PRO_FILES.indexOf(c.file.split("#")[0]) < 0) return;
+  c.pro = true;
+  if (!PRO_OPEN) c.stamp = "Pro";
+});
+/* checks a code against a live sealed file; true / false, or throws when it cannot check */
+async function proCheck(code){
+  const r = await fetch(PRO_FILES[0], { cache: "no-store" });
+  const m = (await r.text()).match(/<script type="application\/json" id="gfpro">([\s\S]*?)<\/script>/);
+  if (!m) throw new Error("no seal");
+  const P = JSON.parse(m[1]), S = crypto.subtle;
+  const b64 = function(s){ const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+  const basis = await S.importKey("raw", new TextEncoder().encode(proNorm(code)), "PBKDF2", false, ["deriveKey"]);
+  const kek = await S.deriveKey({ name: "PBKDF2", salt: b64(P.salt), iterations: P.it, hash: "SHA-256" }, basis, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  for (const k of P.keys){ const w = b64(k); try { await S.decrypt({ name: "AES-GCM", iv: w.subarray(0, 12) }, kek, w.subarray(12)); return true; } catch (e) {} }
+  return false;
+}
+(function(){
+  const strook = document.getElementById("proStrook"); if (!strook) return;
+  const lijn = strook.querySelector(".proLijn"), form = document.getElementById("proForm"),
+        veld = document.getElementById("proCode"), meld = document.getElementById("proMeld");
+  if (PRO_OPEN){ lijn.innerHTML = PRO_T.actief; return; }
+  function schoon(){ const u = new URL(location.href); u.searchParams.delete("code"); return u.pathname + u.search + u.hash; }
+  async function probeer(code){
+    if (proNorm(code).length < 6){ meld.textContent = PRO_T.fout; return; }
+    meld.textContent = PRO_T.bezig;
+    let ok;
+    try { ok = await proCheck(code); }
+    catch (e) { location.href = PRO_FILES[0] + "?code=" + encodeURIComponent(proNorm(code)); return; }
+    if (!ok){ meld.textContent = PRO_T.fout; form.hidden = false; veld.value = code; veld.select(); return; }
+    try { localStorage.setItem(PRO_KEY, proNorm(code)); } catch (e) {}
+    location.replace(schoon());
+  }
+  document.getElementById("proHeb").addEventListener("click", function(){ form.hidden = false; this.hidden = true; veld.focus(); });
+  form.addEventListener("submit", function(e){ e.preventDefault(); probeer(veld.value); });
+  let q = ""; try { q = new URL(location.href).searchParams.get("code") || ""; } catch (e) {}
+  if (q) { form.hidden = false; document.getElementById("proHeb").hidden = true; probeer(q); }
+})();
+
 function makeFolder(c, soort){
   const a = document.createElement("a");
   a.className = "dossier";
   a.href = c.file;
   a.dataset.type = c.type;
+  if (c.pro) a.classList.add(PRO_OPEN ? "pro" : "slot");
   a.title = c.description;
   a.innerHTML =
     '<div class="zaaksoort"></div>' +
