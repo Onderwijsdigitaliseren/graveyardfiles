@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Graveyard Files – Interactive Murder Mystery &amp; Cold Case Games</title>
-<meta name="description" content="Free online murder mystery and cold case games. Examine the evidence, question the suspects and solve fifteen fictional noir cases in your browser.">
+<meta name="description" content="Online murder mystery and cold case games, free to start. Examine the evidence, question the suspects and solve fifteen fictional noir cases in your browser.">
 <link rel="canonical" href="https://graveyardfiles.com/">
 <link rel="alternate" hreflang="en" href="https://graveyardfiles.com/">
 <link rel="alternate" hreflang="nl" href="https://graveyardfiles.com/nl/">
 <link rel="alternate" hreflang="x-default" href="https://graveyardfiles.com/">
 <meta property="og:site_name" content="The Graveyard Files">
 <meta property="og:title" content="The Graveyard Files – Interactive Murder Mystery Games">
-<meta property="og:description" content="Examine the evidence, question the suspects and solve immersive fictional cold cases online. Free, single-player, in your browser — including 3D escape rooms.">
+<meta property="og:description" content="Examine the evidence, question the suspects and solve immersive fictional cold cases online. Free to start, single-player, in your browser — including 3D escape rooms.">
 <meta property="og:url" content="https://graveyardfiles.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="The Graveyard Files – Interactive Murder Mystery Games">
-<meta name="twitter:description" content="Nine free noir detective puzzles. Examine the evidence, question the suspects, name the killer.">
+<meta name="twitter:description" content="Noir detective puzzles, free to start. Examine the evidence, question the suspects, name the killer.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","name":"The Graveyard Files","url":"https://graveyardfiles.com/","description":"Free online interactive murder mystery and cold case games.","inLanguage":"en","isAccessibleForFree":true,"genre":["Detective fiction","Logic puzzle","Mystery game"]}
+{"@context":"https://schema.org","@type":"WebSite","name":"The Graveyard Files","url":"https://graveyardfiles.com/","description":"Online interactive murder mystery and cold case games, free to start.","inLanguage":"en","genre":["Detective fiction","Logic puzzle","Mystery game"]}
 </script>
 <style>
 :root{
@@ -656,6 +656,21 @@ body.lamp-aan #koffiekas{opacity:1}
 #bureau{padding-top:52px}
 @media (max-width:640px){.kmChips button{font-size:10.5px;padding:6px 8px 5px}.kmBoven{top:84px}#kmLadeUitleg{font-size:11.5px}
   #kmMap .kmTekstKnop{margin:10px 0 0}.kmKnop{font-size:13px;padding:12px 16px 10px}}
+
+/* ---- Pro-pas ---- */
+.proStrook{grid-column:1/-1;flex-wrap:wrap;background:linear-gradient(178deg,#2b241a,#1d1811);border-color:rgba(201,168,108,.5);color:#d9cba6}
+.proStrook b{color:#f0e2bd}
+.proStrook .strookStempel{color:#d9bc82;border-color:rgba(217,188,130,.7)}
+.proStrook .proLijn{flex:1 1 260px}
+.proStrook a{color:#f0e2bd;font-weight:700;white-space:nowrap}
+.proStrook button{font:inherit;font-size:12px;letter-spacing:.06em;min-height:36px;padding:0 12px;border:1px solid rgba(217,188,130,.6);background:transparent;color:#d9cba6;cursor:pointer;border-radius:2px}
+.proStrook button:hover{background:rgba(217,188,130,.12)}
+.proStrook form{display:flex;gap:8px;flex-wrap:wrap;align-items:center;flex:1 1 100%}
+.proStrook form[hidden]{display:none}
+.proStrook input{font:inherit;font-size:16px;letter-spacing:.12em;text-transform:uppercase;min-height:36px;width:min(230px,100%);padding:0 10px;background:#efe4c5;color:#2a2114;border:1px solid #000;border-radius:2px}
+.proStrook :focus-visible{outline:2px dashed #d9bc82;outline-offset:3px}
+#proMeld{font-size:12px;color:#e9a08f}
+.dossier.slot .stempel{color:#2a2114;border-color:#2a2114;background:rgba(42,33,20,.08)}
 </style>
 </head>
 <body>
@@ -676,19 +691,20 @@ body.lamp-aan #koffiekas{opacity:1}
   <header id="kaart">
     <div class="sub">Unsolved Cases Division &mdash; Graveyard Shift</div>
     <h1 class="kop">Interactive Murder Mystery &amp; Cold Case Games</h1>
-    <p class="regel">Enter the Graveyard Files and investigate fifteen fictional cold cases, free and online. Examine the evidence, uncover hidden clues, question the suspects and decide what really happened. The lamp is on. Open a folder and the case is yours &mdash; along with everything it carries.</p>
+    <p class="regel">Enter the Graveyard Files and investigate fifteen fictional cold cases online. The first file in every drawer is free. Examine the evidence, uncover hidden clues, question the suspects and decide what really happened. The lamp is on. Open a folder and the case is yours &mdash; along with everything it carries.</p>
   </header>
   </div>
   <div id="stroken">
     <a class="strook" href="meridian-house.html"><span class="strookStempel">Start here</span><span><b>Meridian House</b> &mdash; a body at the foot of the cellar stairs, and you have until sunrise. The best first case. &rarr;</span></a>
     <a class="strook" href="https://www.murderwalk.com" target="_blank" rel="noopener"><span class="strookStempel">On foot</span><span><b>Murder Walk</b> &mdash; a murder mystery you walk, in your own streets. murderwalk.com &rarr;</span></a>
+  <div class="strook proStrook" id="proStrook"><span class="strookStempel">Pro</span><span class="proLijn"><b>Pro Pass</b> &mdash; the first file in every drawer is free. One pass code opens all the others. <a href="https://ko-fi.com/s/67649bac70" target="_blank" rel="noopener">Get the Pro pass &rarr;</a></span><button type="button" id="proHeb">I have a code</button><form id="proForm" autocomplete="off" hidden><input id="proCode" aria-label="Pass code" placeholder="GF-XXXX-XXXX" maxlength="40" autocapitalize="characters" autocorrect="off" spellcheck="false"><button type="submit">Unseal</button><span id="proMeld" role="status" aria-live="polite"></span></form></div>
   </div>
   <nav id="tabs" aria-label="Type of case"></nav>
   <p id="tabUitleg" aria-live="polite"></p>
   <section id="dossiers" aria-label="Case files"></section>
   <details id="overArchief"><summary>About this archive</summary>
     <dl class="briefing">
-      <div><dt>What this is</dt><dd>Fifteen self-contained detective cases for one player. Free, no account, no download &mdash; everything runs in your browser. Written for adults and older teens who like a fair mystery.</dd></div>
+      <div><dt>What this is</dt><dd>Fifteen self-contained detective cases for one player. The first case in every drawer is free; a Pro pass opens the rest. No account, no download &mdash; everything runs in your browser. Written for adults and older teens who like a fair mystery.</dd></div>
       <div><dt>How it works</dt><dd>Read the statements, search the rooms, name the killer. The 3D Locked Rooms take about twenty minutes; the longer files run from an hour to an evening. Your progress is saved in this browser.</dd></div>
       <div><dt>Why tonight</dt><dd>Every case has exactly one solution, and the clues give you exactly enough. Nobody is coming to help. That is the appeal.</dd></div>
     </dl>
@@ -698,7 +714,7 @@ body.lamp-aan #koffiekas{opacity:1}
     <div class="kkTitel">The Night Shift Coffee Fund</div>
     <div class="kkTekst">This archive runs on late hours and strong coffee. Did a case keep you up? A coffee for the night shift keeps the lamp burning.</div>
     <a id="kkKnop" href="#" target="_blank" rel="noopener">&#9749; Pour the night shift a coffee</a>
-    <div class="kkKlein">Voluntary &middot; via Ko-fi &middot; the archive stays free, always</div>
+    <div class="kkKlein">Voluntary &middot; via Ko-fi</div>
   </section>
   <div id="voet">The graveyard files stay open &middot; new cases are logged nightly &middot; <a href="#" id="notitieLink">leave a note for the night desk</a> &middot; <a href="#" class="privacyLink">privacy</a></div>
 
@@ -707,7 +723,7 @@ body.lamp-aan #koffiekas{opacity:1}
       <button type="button" class="notitieSluit" id="privacySluit" aria-label="Close">&times;</button>
       <div class="notitieStempel">PRIVACY &middot; PLAIN WORDS</div>
       <h2 id="privacyKop">How your data is handled</h2>
-      <p><b>The games.</b> Everything runs in your browser. Your progress, hints used and the language you chose are kept in your browser&rsquo;s local storage, on your own device. They never leave it, and clearing your browser data removes them. No cookies, no analytics, no tracking.</p>
+      <p><b>The games.</b> Everything runs in your browser. Your progress, hints used, the language you chose and your Pro pass code are kept in your browser&rsquo;s local storage, on your own device. They never leave it, and clearing your browser data removes them. No cookies, no analytics, no tracking.</p>
       <p><b>The note form.</b> Only if you send a note do we receive what you typed: your message, and your name and e-mail address if you chose to give them. It reaches us as an e-mail, delivered by <a href="https://formsubmit.co/privacy.pdf" target="_blank" rel="noopener">FormSubmit</a>, which handles the submission and does not keep your message afterwards. We use it solely to read your note and reply, keep it until it has been dealt with, and share it with nobody. Send an e-mail to the address below if you want it deleted.</p>
       <p><b>Hosting.</b> The site is served by <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub Pages</a>, which logs the IP address of every visitor for security reasons, as any web host does. We do not see or use those logs.</p>
       <p><b>The coffee fund.</b> Donations go through Ko-fi under Ko-fi&rsquo;s own privacy terms. Nothing about a donation comes back to this site.</p>
@@ -888,11 +904,62 @@ const DRAWERS = [
   { type: "grid", label: "Drawer VI \u00b7 Deduction Grids", blurb: "Grid files: every suspect matches exactly one object and one place. Cross out what can\u2019t be true until one name remains." }
 ];
 
+/* ================================================================
+   PRO — sealed files. PRO_FILES = every case that needs the pass.
+   A stored pass code (set by a sealed file or by the strip above)
+   switches the stamps back to normal.
+   ================================================================ */
+const PRO_FILES = ["night-frequency.html", "night-train-212.html", "seaview.html", "halfmoon.html", "the-switch-room.html", "ravenscourt.html", "the-light-table.html", "the-floor-plan.html", "the-empty-barrel.html"];
+const PRO_T = {"actief": "<b>Pro Pass active</b> &mdash; every file in the archive is open on this device.", "fout": "That code doesn\u2019t open the archive. Check for typos.", "bezig": "Checking\u2026"};
+const PRO_KEY = "gf_pro_code";
+function proNorm(c){ return String(c || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); }
+function proCode(){ try { return localStorage.getItem(PRO_KEY) || ""; } catch (e) { return ""; } }
+const PRO_OPEN = !!proCode();
+CASES.forEach(function(c){
+  if (PRO_FILES.indexOf(c.file.split("#")[0]) < 0) return;
+  c.pro = true;
+  if (!PRO_OPEN) c.stamp = "Pro";
+});
+/* checks a code against a live sealed file; true / false, or throws when it cannot check */
+async function proCheck(code){
+  const r = await fetch(PRO_FILES[0], { cache: "no-store" });
+  const m = (await r.text()).match(/<script type="application\/json" id="gfpro">([\s\S]*?)<\/script>/);
+  if (!m) throw new Error("no seal");
+  const P = JSON.parse(m[1]), S = crypto.subtle;
+  const b64 = function(s){ const b = atob(s), u = new Uint8Array(b.length); for (let i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return u; };
+  const basis = await S.importKey("raw", new TextEncoder().encode(proNorm(code)), "PBKDF2", false, ["deriveKey"]);
+  const kek = await S.deriveKey({ name: "PBKDF2", salt: b64(P.salt), iterations: P.it, hash: "SHA-256" }, basis, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+  for (const k of P.keys){ const w = b64(k); try { await S.decrypt({ name: "AES-GCM", iv: w.subarray(0, 12) }, kek, w.subarray(12)); return true; } catch (e) {} }
+  return false;
+}
+(function(){
+  const strook = document.getElementById("proStrook"); if (!strook) return;
+  const lijn = strook.querySelector(".proLijn"), form = document.getElementById("proForm"),
+        veld = document.getElementById("proCode"), meld = document.getElementById("proMeld");
+  if (PRO_OPEN){ lijn.innerHTML = PRO_T.actief; return; }
+  function schoon(){ const u = new URL(location.href); u.searchParams.delete("code"); return u.pathname + u.search + u.hash; }
+  async function probeer(code){
+    if (proNorm(code).length < 6){ meld.textContent = PRO_T.fout; return; }
+    meld.textContent = PRO_T.bezig;
+    let ok;
+    try { ok = await proCheck(code); }
+    catch (e) { location.href = PRO_FILES[0] + "?code=" + encodeURIComponent(proNorm(code)); return; }
+    if (!ok){ meld.textContent = PRO_T.fout; form.hidden = false; veld.value = code; veld.select(); return; }
+    try { localStorage.setItem(PRO_KEY, proNorm(code)); } catch (e) {}
+    location.replace(schoon());
+  }
+  document.getElementById("proHeb").addEventListener("click", function(){ form.hidden = false; this.hidden = true; veld.focus(); });
+  form.addEventListener("submit", function(e){ e.preventDefault(); probeer(veld.value); });
+  let q = ""; try { q = new URL(location.href).searchParams.get("code") || ""; } catch (e) {}
+  if (q) { form.hidden = false; document.getElementById("proHeb").hidden = true; probeer(q); }
+})();
+
 function makeFolder(c, soort){
   const a = document.createElement("a");
   a.className = "dossier";
   a.href = c.file;
   a.dataset.type = c.type;
+  if (c.pro) a.classList.add(PRO_OPEN ? "pro" : "slot");
   a.title = c.description;
   a.innerHTML =
     '<div class="zaaksoort"></div>' +
