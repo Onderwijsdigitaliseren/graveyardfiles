@@ -601,8 +601,8 @@ const T = {"free": "Free", "open": "Open", "sealed": "Sealed — Pro pass", "sta
 CASES.forEach(function(c, i){ c.art = EXTRA[i][0]; c.hook = EXTRA[i][1]; });
 CASES.forEach(function(c){ if (c.stamp === T.nieuw) c.nieuw = true; });
 /* het archief toont de nieuwste dossiers eerst */
-const BY_NEW = CASES.filter(function(c){ return !c.nietNieuw; }).sort(function(a, b){ return (b.added || "").localeCompare(a.added || ""); });
-BY_NEW.slice(0, 4).forEach(function(c){ c.nieuw = true; if (c.stamp !== T.nieuw && !c.pro) c.stamp = T.nieuw; });
+const BY_NEW = CASES.slice().sort(function(a, b){ return (b.added || "").localeCompare(a.added || ""); });
+BY_NEW.filter(function(c){ return !c.nietNieuw; }).slice(0, 4).forEach(function(c){ c.nieuw = true; if (c.stamp !== T.nieuw && !c.pro) c.stamp = T.nieuw; });
 
 /* ---------- Pro: balk + paneel ---------- */
 (function(){
@@ -679,7 +679,7 @@ function renderArchive(){
   });
   BY_NEW.forEach(function(c){ const dr = DRAWERS.filter(function(d){ return d.type === c.type; })[0]; const naam = dr ? (dr.label.split(" \u00b7 ")[1] || dr.label) : c.type; holder.appendChild(makeFolder(c, naam, CASES.indexOf(c) + 1)); });
   const nieuwHolder = document.getElementById("nieuwe");
-  if (nieuwHolder) BY_NEW.slice(0, 4).forEach(function(c){ const dr = DRAWERS.filter(function(d){ return d.type === c.type; })[0]; const naam = dr ? (dr.label.split(" \u00b7 ")[1] || dr.label) : c.type; nieuwHolder.appendChild(makeFolder(c, naam, CASES.indexOf(c) + 1)); });
+  if (nieuwHolder) BY_NEW.filter(function(c){ return !c.nietNieuw; }).slice(0, 4).forEach(function(c){ const dr = DRAWERS.filter(function(d){ return d.type === c.type; })[0]; const naam = dr ? (dr.label.split(" \u00b7 ")[1] || dr.label) : c.type; nieuwHolder.appendChild(makeFolder(c, naam, CASES.indexOf(c) + 1)); });
   kies("", eerste);
   /* de foto's worden op het blad gelegd zodra ze in beeld komen */
   const rustig = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
