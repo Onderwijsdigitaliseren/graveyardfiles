@@ -531,6 +531,7 @@ const CASES = [
     added: "2026-10-11",
     description: "Stilleveen staat leeg sinds de jonker in 1938 uit de put werd gehaald. Bouw het weer op, pand voor pand, akker voor akker; wie thuiskomt, gaat praten. Zeven spreken de waarheid. Een dorpsbouwer met een moord als hart.",
     file: "../the-silent-village.html#nl",
+    nietNieuw: true,
     stamp: "Onopgelost"
   },
   {
@@ -600,7 +601,7 @@ const T = {"free": "Gratis", "open": "Open", "sealed": "Verzegeld — Pro-pas", 
 CASES.forEach(function(c, i){ c.art = EXTRA[i][0]; c.hook = EXTRA[i][1]; });
 CASES.forEach(function(c){ if (c.stamp === T.nieuw) c.nieuw = true; });
 /* het archief toont de nieuwste dossiers eerst */
-const BY_NEW = CASES.slice().sort(function(a, b){ return (b.added || "").localeCompare(a.added || ""); });
+const BY_NEW = CASES.filter(function(c){ return !c.nietNieuw; }).sort(function(a, b){ return (b.added || "").localeCompare(a.added || ""); });
 BY_NEW.slice(0, 4).forEach(function(c){ c.nieuw = true; if (c.stamp !== T.nieuw && !c.pro) c.stamp = T.nieuw; });
 
 /* ---------- Pro: balk + paneel ---------- */
